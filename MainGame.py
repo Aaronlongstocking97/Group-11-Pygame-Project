@@ -28,8 +28,6 @@ class MainGame(object):
         
         # This is going to create a sprite group that can store objects 
         self.xxx_group = pygame.sprite.Group()
-        # Create a single object
-        
 
 
     def __update_sprites(self):
