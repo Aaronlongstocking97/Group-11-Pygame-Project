@@ -5,8 +5,8 @@ from GameSprites import *
 class MainGame(object):
 
     def __init__(self):
-        self.screen = pygame.display.set_mode(SCREEN_RECT.size)
-        self.clock = pygame.time.Clock()
+        self._screen = pygame.display.set_mode(SCREEN_RECT.size)
+        self._clock = pygame.time.Clock()
 
         self.__create_sprites()
 
@@ -14,7 +14,7 @@ class MainGame(object):
 
         while True:
 
-            self.clock.tick(FRAME_RATE)
+            self._clock.tick(FRAME_RATE)
             
             self.__update_sprites()
 
