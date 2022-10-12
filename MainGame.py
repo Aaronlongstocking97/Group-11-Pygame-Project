@@ -42,11 +42,7 @@ class MainGame(object):
                 self.__quit_game()
             
         # This is going to add a object in this group
-<<<<<<< Updated upstream
-        #self.xxx_group.add("object")
-=======
         # self.xxx_group.add("object")
->>>>>>> Stashed changes
 
     def __collide_check(self):
         pass
