@@ -4,6 +4,7 @@ from GameSprites import *
 
 class MainGame(object):
 
+    pygame.init()
     def __init__(self):
         self._screen = pygame.display.set_mode(SCREEN_RECT.size)
         self._clock = pygame.time.Clock()
