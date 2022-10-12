@@ -31,10 +31,10 @@ class MainGame(object):
 
 
     def __update_sprites(self):
-
-        for xxx in self.xxx_group:
+        pass
+        #for xxx in self.xxx_group:
             # This is goint to draw every object in this group to the screen
-            self.screen.blit("object.image", "object.rect")
+        #    self.screen.blit("object.image", "object.rect")
 
     def __event_handle(self):
         for event in pygame.event.get():
