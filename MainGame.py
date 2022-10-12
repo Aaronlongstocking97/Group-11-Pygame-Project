@@ -25,9 +25,9 @@ class MainGame(object):
             pygame.display.update()
 
     def __create_sprites(self):
-        
+        pass
         # This is going to create a sprite group that can store objects 
-        self.xxx_group = pygame.sprite.Group()
+        # self.xxx_group = pygame.sprite.Group()
 
 
     def __update_sprites(self):
@@ -42,7 +42,7 @@ class MainGame(object):
                 self.__quit_game()
             
         # This is going to add a object in this group
-        self.xxx_group.add("object")
+        #self.xxx_group.add("object")
 
     def __collide_check(self):
         pass
