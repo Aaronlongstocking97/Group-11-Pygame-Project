@@ -1,7 +1,7 @@
 import pygame
 from GameSprites import *
 from bag import *
-from Item import Item
+from item import Item
 
 
 class MainGame(object):
