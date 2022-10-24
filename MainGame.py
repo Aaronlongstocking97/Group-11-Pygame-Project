@@ -1,5 +1,6 @@
 import pygame
 from GameSprites import *
+from Item import Item
 
 
 class MainGame(object):
@@ -27,14 +28,16 @@ class MainGame(object):
     def __create_sprites(self):
         
         # This is going to create a sprite group that can store objects 
-        self.xxx_group = pygame.sprite.Group()
+        self.items_group = pygame.sprite.Group()
+        self.item = Item("player.png")
+        # self.items_group.add(self.item)
 
 
     def __update_sprites(self):
-
-        for xxx in self.xxx_group:
-            # This is goint to draw every object in this group to the screen
-            self.screen.blit("object.image", "object.rect")
+        self.screen.blit(self.item.image, self.item.rect)
+        # for xxx in self.xxx_group:
+        #     # This is goint to draw every object in this group to the screen
+        #     self.screen.blit("object.image", "object.rect")
 
     def __event_handle(self):
         for event in pygame.event.get():
@@ -42,7 +45,7 @@ class MainGame(object):
                 self.__quit_game()
             
         # This is going to add a object in this group
-        self.xxx_group.add("object")
+        # self.xxx_group.add("object")
 
     def __collide_check(self):
         pass
