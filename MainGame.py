@@ -30,8 +30,7 @@ class MainGame(object):
         # This is going to create a sprite group that can store objects 
         self.items_group = pygame.sprite.Group()
         self.item = Item("player.png")
-        # self.items_group.add(self.item)
-
+        self.item.set_size((10, 10))
 
     def __update_sprites(self):
         self.screen.blit(self.item.image, self.item.rect)
