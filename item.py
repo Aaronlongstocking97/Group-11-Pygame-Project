@@ -2,6 +2,9 @@ import pygame
 from GameSprites import GameSprite
 # This is the item
 
+pygame.init()
+pygame.font.init()
+
 class Item(GameSprite):
 
     def __init__(self, image_path, speed  = 0):
@@ -16,21 +19,22 @@ class Item(GameSprite):
         '''Size the item image'''
 
         # Set the image size
-        self.size = pygame.transform.scale(self.image, size)
+        self.image = pygame.transform.scale(self.image, size)
     
     def set_description(self, description):
 
         # Set the description
         self.description = description
 
-    def show_description(self):
+    def show_description(self, window_width, window_height):
         '''Show item description'''
 
         # Render the description on the window
-        font = pygame.font.Font(self.font, self.font_size)
-        return font.render(self.description, True, self.text_color, self.text_bg_color)
-
-
+        font = pygame.font.Font('freesansbold.ttf', self.font_size)
+        text = font.render(self.description, True, self.text_color, self.text_bg_color)
+        text_rect = text.get_rect()
+        text_rect.center = (window_width, window_height)
+        
 
 
 
