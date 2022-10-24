@@ -16,7 +16,7 @@ class MainGame(object):
         while True:
 
             self.clock.tick(FRAME_RATE)
-            
+
             self.__update_sprites()
 
             self.__event_handle()
@@ -32,6 +32,8 @@ class MainGame(object):
         self.item = Item("player.png")
         # self.items_group.add(self.item)
 
+        # This is going to create a sprite group that can store objects
+        self.xxx_group = pygame.sprite.Group()
 
     def __update_sprites(self):
         self.screen.blit(self.item.image, self.item.rect)
@@ -43,7 +45,7 @@ class MainGame(object):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.__quit_game()
-            
+
         # This is going to add a object in this group
         # self.xxx_group.add("object")
 
@@ -59,8 +61,8 @@ def main():
 
     start = MainGame()
 
-    start.startGame() 
+    start.startGame()
+
 
 if __name__ == "__main__":
     main()
-
