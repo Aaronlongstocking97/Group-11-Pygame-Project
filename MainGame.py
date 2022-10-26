@@ -1,6 +1,7 @@
 import pygame
 from GameSprites import *
 from Item import Item
+from Hero import Hero
 
 
 class MainGame(object):
@@ -8,6 +9,8 @@ class MainGame(object):
     def __init__(self):
         self.screen = pygame.display.set_mode(SCREEN_RECT.size)
         self.clock = pygame.time.Clock()
+
+        self.hero = Hero(0,0,"assets/character/character_temp.png")
 
         self.__create_sprites()
 
@@ -59,6 +62,31 @@ class MainGame(object):
         pygame.quit()
         exit()
 
+    def process_events(self):
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                 self.Hero.move_right()
+                elif event.key == pygame.K_LEFT:
+                 self.Hero.move_left()
+                elif event.key == pygame.K_UP:
+                 self.Hero.move_up()
+                elif event.key == pygame.K_DOWN:
+                 self.Hero.move_down()
+
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                  self.Hero.stop_move_right()
+                elif event.key == pygame.K_LEFT:
+                  self.Hero.stop_move_left()
+                elif event.key == pygame.K_UP:
+                  self.Hero.stop_move_up()
+                elif event.key == pygame.K_DOWN:
+                  self.Hero.stop_move_down()
+
+        return False
 
 def main():
 
