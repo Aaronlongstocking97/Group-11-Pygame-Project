@@ -1,7 +1,7 @@
 import pygame
 
 # All the constants would be placed here
-SCREEN_RECT = pygame.Rect(0,0,960,800)
+SCREEN_RECT = pygame.Rect(0,0,990,800)
 FRAME_RATE = 60
 
 
