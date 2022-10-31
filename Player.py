@@ -27,8 +27,8 @@ class Player(GameSprite):
             self.rect.y += self.speed # Down move
         
         # Limit the player in the window screen
-        if self.rect.right > 480:
-            self.rect.right = 480
+        if self.rect.right > 990:
+            self.rect.right = 990
         elif self.rect.left < 0:
             self.rect.left = 0
         elif self.rect.top < 0:
