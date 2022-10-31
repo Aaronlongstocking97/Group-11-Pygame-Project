@@ -4,12 +4,18 @@ from GameSprites import GameSprite
 class Item(GameSprite):
 
     def __init__(self, image_path, speed  = 0):
+        super().__init__(image_path)
         self.image = pygame.image.load(image_path)
         self.rect = self.image.get_rect()
         self.font = 'freesansbold.ttf'
         self.font_size = 20
         self.text_color = (0, 0, 0)
         self.text_bg_color = (255, 255, 255)
+        self.mask = pygame.mask.from_surface(self.image)
+
+    def set_position(self, x, y):
+        self.rect.x = x
+        self.rect.y = y
 
     def set_size(self, size):
         '''Size the item image'''
