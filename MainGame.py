@@ -2,13 +2,17 @@ import pygame
 from GameSprites import *
 from item import Item
 from Player import Player
+from bag import *
+from item import Item
 
 
 class MainGame(object):
 
+    pygame.init()
+
     def __init__(self):
-        self.screen = pygame.display.set_mode(SCREEN_RECT.size)
-        self.clock = pygame.time.Clock()
+        self._screen = pygame.display.set_mode(SCREEN_RECT.size)
+        self._clock = pygame.time.Clock()
 
         self.__create_sprites()
 
@@ -16,7 +20,7 @@ class MainGame(object):
 
         while True:
 
-            self.clock.tick(FRAME_RATE)
+            self._clock.tick(FRAME_RATE)
 
             self.__update_sprites()
 
@@ -27,8 +31,18 @@ class MainGame(object):
             pygame.display.update()
 
     def __create_sprites(self):
-        
-        # This is going to create a sprite group that can store objects 
+        self.bag_group = pygame.sprite.Group()
+        # This is going to create a sprite group that can store objects
+        # self.xxx_group = pygame.sprite.Group()
+        self.bag = Bag()
+
+    def __update_sprites(self):
+        self._screen.blit(self.bag.bag_image, self.bag.bag_rect)
+        self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
+
+        # for xxx in self.xxx_group:
+        # This is goint to draw every object in this group to the screen
+        #    self.screen.blit("object.image", "object.rect")
         self.items_group = pygame.sprite.Group()
         self.item = Item("assets/items/key.png")
         self.player = Player("player.png")
@@ -52,6 +66,15 @@ class MainGame(object):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.__quit_game()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_a:
+                    if self.bag.index > 0:
+                        self.bag.hover_rect.x -= 50
+                        self.bag.index -= 1
+                elif event.key == pygame.K_d:
+                    if self.bag.index < 99:
+                        self.bag.hover_rect.x += 50
+                        self.bag.index += 1
 
         # This is going to add a object in this group
         # self.xxx_group.add("object")
