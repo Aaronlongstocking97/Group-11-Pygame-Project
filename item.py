@@ -1,9 +1,5 @@
 import pygame 
 from GameSprites import GameSprite
-# This is the item
-
-pygame.init()
-pygame.font.init()
 
 class Item(GameSprite):
 
@@ -34,6 +30,11 @@ class Item(GameSprite):
         text = font.render(self.description, True, self.text_color, self.text_bg_color)
         text_rect = text.get_rect()
         text_rect.center = (window_width, window_height)
+
+    def set_position(self, x, y):
+        self.rect.x = x
+        self.rect.y = y
+
         
 
 
