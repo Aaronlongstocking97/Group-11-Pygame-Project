@@ -4,6 +4,7 @@ from GameSprites import GameSprite
 class Item(GameSprite):
 
     def __init__(self, image_path, speed  = 0):
+        super().__init__(image_path)
         self.image = pygame.image.load(image_path)
         self.rect = self.image.get_rect()
         self.font = 'freesansbold.ttf'
