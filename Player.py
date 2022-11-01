@@ -2,11 +2,10 @@ import pygame
 from GameSprites import GameSprite
 
 class Player(GameSprite):
+    
     def __init__(self, image_path, speed=3):
-        self.image = pygame.image.load(image_path)
-        self.rect = self.image.get_rect()
-        self.size = pygame.transform.scale(self.image, (30, 30))
-        self.speed = speed
+        super().__init__(image_path, speed, (30, 30))
+
 
     def set_position(self, x, y):
         self.rect.x = x

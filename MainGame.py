@@ -35,11 +35,12 @@ class MainGame(object):
         self.bag_group = pygame.sprite.Group()
         self.bag = Bag()
 
-        self.item = Item("assets/items/key.png")
+        self.item = Item("assets/items/key.png", ITEM_SIZE)
         self.player = Player("player.png")
+        self.item2 = Item("assets/items/key.png", ITEM_SIZE)
+        self.item2.set_position(100, 100)
 
         self.item.set_position(400, 400)
-        self.item.set_size((100, 100))
         self.player.set_position(250, 250)
         self.items_group = pygame.sprite.Group()
         self.items_group.add(self.item)
@@ -52,6 +53,7 @@ class MainGame(object):
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
         self._screen.blit(self.item.image, self.item.rect)
         self._screen.blit(self.player.image, self.player.rect)
+        self._screen.blit(self.item2.image, self.item2.rect)
         self.player.move()
 
     def __event_handle(self):
@@ -70,10 +72,14 @@ class MainGame(object):
 
 
     def __collide_check(self):
-        test =pygame.sprite.spritecollide(self.player, self.items_group, True)
-        if test:
+        if pygame.sprite.collide_mask(self.player, self.item):
+        # test = pygame.sprite.spritecollide(self.player, self.items_group, True, pygame.sprite.collide_mask)
             self.bag.append_item(self.item)
-            print("nice")
+
+        if pygame.sprite.collide_mask(self.player, self.item2):
+        # test = pygame.sprite.spritecollide(self.player, self.items_group, True, pygame.sprite.collide_mask)
+            self.bag.append_item(self.item2)
+            
 
     def __quit_game(self):
         pygame.quit()

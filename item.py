@@ -3,15 +3,12 @@ from GameSprites import GameSprite
 
 class Item(GameSprite):
 
-    def __init__(self, image_path, speed  = 0):
-        super().__init__(image_path)
-        self.image = pygame.image.load(image_path)
-        self.rect = self.image.get_rect()
+    def __init__(self, image_path, size):
+        super().__init__(image_path, speed  = 0, size = size)
         self.font = 'freesansbold.ttf'
         self.font_size = 20
         self.text_color = (0, 0, 0)
         self.text_bg_color = (255, 255, 255)
-        self.mask = pygame.mask.from_surface(self.image)
 
     def set_position(self, x, y):
         self.rect.x = x
