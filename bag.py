@@ -23,8 +23,8 @@ class Bag(GameSprite):
     def append_item(self, item):
         if len(self.items_list) < 9:
             self.items_list.append(item)
-            item.rect.y = SCREEN_RECT.bottom
-            item.rect.x = self.bag_rect + self.items_list.index(item) * 110
+            item.rect.y = self.bag_rect.y + 30
+            item.rect.x = self.bag_rect.x + 25 + self.items_list.index(item) * 110
 
     def use_item(self, hero_rect):
         item = self.items_list.pop(self.index)
