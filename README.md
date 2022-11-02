@@ -1,7 +1,8 @@
 # Overview
 
-{Important!  Do not say in this section that this is college assignment.  Talk about what you are trying to accomplish as a software engineer to further your learning.}
+Background Story: An unlucky kid was locked in the school, and he is trying to solve the problems in the rooms in order to get free. 
 
+![](assets/chararcter/character_temp.png)
 {Provide a description the game that you wrote. Describe how to play your game.}
 
 {Describe your purpose for writing this software.}
@@ -18,9 +19,8 @@
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
-* [Web Site Name](http://url.link.goes.here)
-* [Web Site Name](http://url.link.goes.here)
+* [Pygame](https://www.pygame.org/docs/)
+* [Visual Studio Code](https://code.visualstudio.com/)
 
 # Future Work
 
