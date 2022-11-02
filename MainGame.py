@@ -36,6 +36,7 @@ class MainGame(object):
         self.bag = Bag()
 
         self.item = Item("assets/items/key.png", ITEM_SIZE)
+
         self.player = Player("player.png")
         self.item2 = Item("assets/items/key.png", ITEM_SIZE)
         self.item2.set_position(100, 100)
@@ -79,7 +80,6 @@ class MainGame(object):
         if pygame.sprite.collide_mask(self.player, self.item2):
         # test = pygame.sprite.spritecollide(self.player, self.items_group, True, pygame.sprite.collide_mask)
             self.bag.append_item(self.item2)
-            
 
     def __quit_game(self):
         pygame.quit()
