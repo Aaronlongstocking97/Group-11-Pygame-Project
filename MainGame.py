@@ -2,13 +2,18 @@ import pygame
 from GameSprites import *
 from item import Item
 from Player import Player
+from bag import *
+from item import Item
+from background import *
 
 
 class MainGame(object):
 
+    pygame.init()
+
     def __init__(self):
-        self.screen = pygame.display.set_mode(SCREEN_RECT.size)
-        self.clock = pygame.time.Clock()
+        self._screen = pygame.display.set_mode(SCREEN_RECT.size)
+        self._clock = pygame.time.Clock()
 
         self.__create_sprites()
 
@@ -16,7 +21,7 @@ class MainGame(object):
 
         while True:
 
-            self.clock.tick(FRAME_RATE)
+            self._clock.tick(FRAME_RATE)
 
             self.__update_sprites()
 
@@ -27,37 +32,54 @@ class MainGame(object):
             pygame.display.update()
 
     def __create_sprites(self):
-        
-        # This is going to create a sprite group that can store objects 
-        self.items_group = pygame.sprite.Group()
-        self.item = Item("assets/items/key.png")
+        self.bag_group = pygame.sprite.Group()
+        self.bag = Bag()
+
+        self.item = Item("assets/items/key.png", ITEM_SIZE)
         self.player = Player("player.png")
+        self.item2 = Item("assets/items/key.png", ITEM_SIZE)
+        self.item2.set_position(100, 100)
 
-        self.item.set_size((100, 100))
-        self.player.set_position(50, 100)
+        self.item.set_position(400, 400)
+        self.player.set_position(250, 250)
+        self.items_group = pygame.sprite.Group()
+        self.items_group.add(self.item)
 
-        # This is going to create a sprite group that can store objects
-        self.xxx_group = pygame.sprite.Group()
+        self.background = Background()
 
     def __update_sprites(self):
-        self.screen.blit(self.item.image, self.item.rect)
-        self.screen.blit(self.player.image, self.player.rect)
+        self._screen.blit(self.background.image, self.background.rect)
+        self._screen.blit(self.bag.bag_image, self.bag.bag_rect)
+        self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
+        self._screen.blit(self.item.image, self.item.rect)
+        self._screen.blit(self.player.image, self.player.rect)
+        self._screen.blit(self.item2.image, self.item2.rect)
         self.player.move()
-        
-        # for xxx in self.xxx_group:
-        #     # This is goint to draw every object in this group to the screen
-        #     self.screen.blit("object.image", "object.rect")
 
     def __event_handle(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.__quit_game()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_a:
+                    if self.bag.index > 0:
+                        self.bag.hover_rect.x -= 110
+                        self.bag.index -= 1
+                elif event.key == pygame.K_d:
+                    if self.bag.index < 8:
+                        self.bag.hover_rect.x += 110
+                        self.bag.index += 1
 
-        # This is going to add a object in this group
-        # self.xxx_group.add("object")
 
     def __collide_check(self):
-        pass
+        if pygame.sprite.collide_mask(self.player, self.item):
+        # test = pygame.sprite.spritecollide(self.player, self.items_group, True, pygame.sprite.collide_mask)
+            self.bag.append_item(self.item)
+
+        if pygame.sprite.collide_mask(self.player, self.item2):
+        # test = pygame.sprite.spritecollide(self.player, self.items_group, True, pygame.sprite.collide_mask)
+            self.bag.append_item(self.item2)
+            
 
     def __quit_game(self):
         pygame.quit()
