@@ -2,11 +2,10 @@ import pygame
 from GameSprites import GameSprite
 
 class Player(GameSprite):
+    
     def __init__(self, image_path, speed=3):
-        self.image = pygame.image.load(image_path)
-        self.rect = self.image.get_rect()
-        self.size = pygame.transform.scale(self.image, (30, 30))
-        self.speed = speed
+        super().__init__(image_path, speed, (30, 30))
+
 
     def set_position(self, x, y):
         self.rect.x = x
@@ -27,8 +26,8 @@ class Player(GameSprite):
             self.rect.y += self.speed # Down move
         
         # Limit the player in the window screen
-        if self.rect.right > 480:
-            self.rect.right = 480
+        if self.rect.right > 990:
+            self.rect.right = 990
         elif self.rect.left < 0:
             self.rect.left = 0
         elif self.rect.top < 0:
