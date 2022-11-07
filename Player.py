@@ -31,5 +31,5 @@ class Player(GameSprite):
             self.rect.left = 0
         elif self.rect.top < 0:
             self.rect.top = 0
-        elif self.rect.bottom > 800:
-            self.rect.bottom = 800
+        elif self.rect.bottom > 700:
+            self.rect.bottom = 700
