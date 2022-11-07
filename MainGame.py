@@ -18,6 +18,13 @@ class MainGame(object):
 
         self.__create_sprites()
 
+        self.room1Display = True
+        self.room2Display = False
+        self.room3Display = False
+        self.room4Display = False
+        self.room5Display = False
+
+
     def startGame(self):
 
         while True:
@@ -33,6 +40,7 @@ class MainGame(object):
             pygame.display.update()
 
     def __create_sprites(self):
+
         self.bag_group = pygame.sprite.Group()
         self.bag = Bag()
 
@@ -47,17 +55,31 @@ class MainGame(object):
         self.items_group = pygame.sprite.Group()
         self.items_group.add(self.item)
 
-        self.background = Background()
+        self.room1 = RoomOne()
+        self.room1.createRoomOne()
+        
 
     def __update_sprites(self):
-        self._screen.blit(self.background.image, self.background.rect)
+        if self.room1Display:
+            self.room1.DrawRoomOne(self)
+        if self.room2Display:
+            pass
+        if self.room3Display:
+            pass
+        if self.room4Display:
+            pass
+        if self.room5Display:
+            pass      
+
         self._screen.blit(self.bag.bag_image, self.bag.bag_rect)
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
-        self._screen.blit(self.item.image, self.item.rect)
         self._screen.blit(self.player.image, self.player.rect)
-        self._screen.blit(self.item2.image, self.item2.rect)
-        self._screen.blit(self.door.image, self.door.rect)
+        for item in self.bag.items_list:
+            self._screen.blit(item.image, item.rect)
+
         self.player.move()
+
+
 
     def __event_handle(self):
         for event in pygame.event.get():
@@ -75,20 +97,15 @@ class MainGame(object):
 
 
     def __collide_check(self):
-        if pygame.sprite.collide_mask(self.player, self.item):
+        if pygame.sprite.collide_mask(self.player, self.room1.item):
         # test = pygame.sprite.spritecollide(self.player, self.items_group, True, pygame.sprite.collide_mask)
-            self.bag.append_item(self.item)
+            self.bag.append_item(self.room1.item)
+            self.room1.removeItemFrom(self.room1.item)
 
-        if pygame.sprite.collide_mask(self.player, self.item2):
+        if pygame.sprite.collide_mask(self.player, self.room1.item2):
         # test = pygame.sprite.spritecollide(self.player, self.items_group, True, pygame.sprite.collide_mask)
-            self.bag.append_item(self.item2)
-
-        # Open door animation
-        if pygame.sprite.collide_mask(self.player, self.door):
-            self.new_door_img = self.door.open_door()
-            self.new_door = Door(self.new_door_img, ITEM_SIZE)
-            self._screen.blit(self.new_door.image, self.door.rect)
-            
+            self.bag.append_item(self.room1.item2)
+            self.room1.removeItemFrom(self.room1.item2)
 
     def __quit_game(self):
         pygame.quit()
