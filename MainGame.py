@@ -18,6 +18,11 @@ class MainGame(object):
         self.__create_sprites()
 
         self.room1Display = True
+        self.room2Display = False
+        self.room3Display = False
+        self.room4Display = False
+        self.room5Display = False
+
 
     def startGame(self):
 
@@ -46,7 +51,14 @@ class MainGame(object):
     def __update_sprites(self):
         if self.room1Display:
             self.room1.DrawRoomOne(self)
-        
+        if self.room2Display:
+            pass
+        if self.room3Display:
+            pass
+        if self.room4Display:
+            pass
+        if self.room5Display:
+            pass      
 
         self._screen.blit(self.bag.bag_image, self.bag.bag_rect)
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
