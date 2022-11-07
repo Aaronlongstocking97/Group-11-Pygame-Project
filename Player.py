@@ -3,9 +3,8 @@ from GameSprites import GameSprite
 
 class Player(GameSprite):
     
-    def __init__(self, image_path, speed=3):
-        super().__init__(image_path, speed, (30, 30))
-
+    def __init__(self, image_path, size, speed=3):
+        super().__init__(image_path,speed, size)
 
     def set_position(self, x, y):
         self.rect.x = x
@@ -32,5 +31,5 @@ class Player(GameSprite):
             self.rect.left = 0
         elif self.rect.top < 0:
             self.rect.top = 0
-        elif self.rect.bottom > 700:
-            self.rect.bottom = 700
+        elif self.rect.bottom > 800:
+            self.rect.bottom = 800

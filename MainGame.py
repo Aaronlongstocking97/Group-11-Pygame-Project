@@ -36,9 +36,9 @@ class MainGame(object):
         self.bag_group = pygame.sprite.Group()
         self.bag = Bag()
 
-        self.door = Door("door.png", ITEM_SIZE)
+        self.door = Door("assets/items/door.png", ITEM_SIZE)
         self.item = Item("assets/items/key.png", ITEM_SIZE)
-        self.player = Player("player.png")
+        self.player = Player("assets/chararcter/character_temp.png", (200,200))
         self.item2 = Item("assets/items/key.png", ITEM_SIZE)
         self.item2.set_position(100, 100)
 
