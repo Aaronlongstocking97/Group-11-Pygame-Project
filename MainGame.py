@@ -5,6 +5,7 @@ from Player import Player
 from bag import *
 from item import Item
 from background import *
+from door import Door
 
 
 class MainGame(object):
@@ -35,6 +36,7 @@ class MainGame(object):
         self.bag_group = pygame.sprite.Group()
         self.bag = Bag()
 
+        self.door = Door("door.png", ITEM_SIZE)
         self.item = Item("assets/items/key.png", ITEM_SIZE)
         self.player = Player("player.png")
         self.item2 = Item("assets/items/key.png", ITEM_SIZE)
@@ -54,6 +56,7 @@ class MainGame(object):
         self._screen.blit(self.item.image, self.item.rect)
         self._screen.blit(self.player.image, self.player.rect)
         self._screen.blit(self.item2.image, self.item2.rect)
+        self._screen.blit(self.door.image, self.door.rect)
         self.player.move()
 
     def __event_handle(self):
@@ -79,6 +82,12 @@ class MainGame(object):
         if pygame.sprite.collide_mask(self.player, self.item2):
         # test = pygame.sprite.spritecollide(self.player, self.items_group, True, pygame.sprite.collide_mask)
             self.bag.append_item(self.item2)
+
+        # Open door animation
+        if pygame.sprite.collide_mask(self.player, self.door):
+            self.new_door_img = self.door.open_door()
+            self.new_door = Door(self.new_door_img, ITEM_SIZE)
+            self._screen.blit(self.new_door.image, self.door.rect)
             
 
     def __quit_game(self):
