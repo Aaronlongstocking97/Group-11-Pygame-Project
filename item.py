@@ -3,8 +3,9 @@ from GameSprites import GameSprite
 
 class Item(GameSprite):
 
+
     def __init__(self, image_path, size):
-        super().__init__(image_path, speed  = 0, size = size)
+        super().__init__(image_path, speed = 0, size = size)
         self.font = 'freesansbold.ttf'
         self.font_size = 20
         self.text_color = (0, 0, 0)

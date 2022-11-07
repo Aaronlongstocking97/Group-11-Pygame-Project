@@ -5,6 +5,7 @@ from Player import Player
 from bag import *
 from item import Item
 from background import *
+from door import Door
 
 
 class MainGame(object):
@@ -42,7 +43,17 @@ class MainGame(object):
 
         self.bag_group = pygame.sprite.Group()
         self.bag = Bag()
-        self.player = Player("player.png")
+
+        self.door = Door("assets/items/door.png", ITEM_SIZE)
+        self.item = Item("assets/items/key.png", ITEM_SIZE)
+        self.player = Player("assets/chararcter/character_temp.png", (200,200))
+        self.item2 = Item("assets/items/key.png", ITEM_SIZE)
+        self.item2.set_position(100, 100)
+
+        self.item.set_position(400, 400)
+        self.player.set_position(250, 250)
+        self.items_group = pygame.sprite.Group()
+        self.items_group.add(self.item)
 
         self.room1 = RoomOne()
         self.room1.createRoomOne()
