@@ -38,7 +38,6 @@ class Item(GameSprite):
         self.rect.x = x
         self.rect.y = y
 
-        
 
 
 

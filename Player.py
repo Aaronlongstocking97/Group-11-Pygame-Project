@@ -3,8 +3,8 @@ from GameSprites import GameSprite
 
 class Player(GameSprite):
     
-    def __init__(self, image_path, speed=3):
-        super().__init__(image_path, speed, (30, 30))
+    def __init__(self, image_path, size, speed=3):
+        super().__init__(image_path, speed, size=size)
 
 
     def set_position(self, x, y):
