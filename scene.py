@@ -7,7 +7,7 @@ from item import Item
 ROOM1 = "assets/background.png"
 ROOM2 = "assets/background2.png"
 
-class Sence(GameSprite):
+class Scene(GameSprite):
 
     def __init__(self, image):
         super().__init__(image)
@@ -19,17 +19,18 @@ class Sence(GameSprite):
         y = position.y
         item.set_position(x,y)
 
-class RoomOne(Sence):
+class RoomOne(Scene):
 
     def __init__(self,image):
         super().__init__(image)
         self.itemsGroup = pygame.sprite.Group()
+        # self.doorGroup = pygame.sprite.Group()
 
     def addItemTo(self, item, position):
         return super().addItemTo(item, position)
 
 
-class RoomTwo(Sence):
+class RoomTwo(Scene):
 
     def __init__(self,image):
         super().__init__(image)

@@ -34,9 +34,6 @@ class Item(GameSprite):
         text_rect = text.get_rect()
         text_rect.center = (window_width, window_height)
 
-    def set_position(self, x, y):
-        self.rect.x = x
-        self.rect.y = y
 
 
 

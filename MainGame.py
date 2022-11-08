@@ -3,8 +3,7 @@ from GameSprites import *
 from item import Item
 from Player import Player
 from bag import *
-from item import Item
-from sence import *
+from scene import *
 
 
 class MainGame(object):
@@ -17,16 +16,12 @@ class MainGame(object):
 
         self.__create_sprites()
 
-        # self.room1Display = True
-        # self.room2Display = False
-        # self.room3Display = False
-        # self.room4Display = False
-        # self.room5Display = False
-
         self.current_room = None
 
 
     def startGame(self):
+
+        self.current_room = self.room1
 
         while True:
 
@@ -94,22 +89,14 @@ class MainGame(object):
 
 
     def __update_sprites(self):
-        # if self.room1Display:
-        #     self.__draw_room(self.room1)
-        #     self.current_room = self.room1
-        # if self.room2Display:
-        #     self.__draw_room(self.room2)
+        
         self.__draw_room(self.current_room)
-        # if self.room3Display:
-        #     pass
-        # if self.room4Display:
-        #     pass
-        # if self.room5Display:
-        #     pass      
+
 
         self._screen.blit(self.bag.bag_image, self.bag.bag_rect)
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
         self._screen.blit(self.player.image, self.player.rect)
+        
         for item in self.bag.items_list:
             if item != 0:
                 self._screen.blit(item.image, item.rect)
@@ -140,28 +127,18 @@ class MainGame(object):
                 for item in collide:
                     item.remove(self.current_room.itemsGroup)
                     self.bag.append_item(item)
-                    print(self.bag.bagGroup)
-                    self.__switch_room()
 
     def __draw_room(self, room):
         self._screen.blit(room.image, room.rect)
         for item in room.itemsGroup:
             self._screen.blit(item.image, item.rect)
 
-    def __switch_room(self):
-        self.room1Display = False
-        self.room2Display = True
+    def __switch_room(self, next_room):
+        self.current_room = next_room
+
     def __quit_game(self):
         pygame.quit()
         exit()
 
 
-def main():
 
-    start = MainGame()
-
-    start.startGame()
-
-
-if __name__ == "__main__":
-    main()
