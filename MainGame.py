@@ -17,11 +17,11 @@ class MainGame(object):
 
         self.__create_sprites()
 
-        self.room1Display = True
-        self.room2Display = False
-        self.room3Display = False
-        self.room4Display = False
-        self.room5Display = False
+        # self.room1Display = True
+        # self.room2Display = False
+        # self.room3Display = False
+        # self.room4Display = False
+        # self.room5Display = False
 
         self.current_room = None
 
@@ -94,18 +94,18 @@ class MainGame(object):
 
 
     def __update_sprites(self):
-        if self.room1Display:
-            self.__draw_room(self.room1)
-            self.current_room = self.room1
-        if self.room2Display:
-            self.__draw_room(self.room2)
-            self.current_room = self.room2
-        if self.room3Display:
-            pass
-        if self.room4Display:
-            pass
-        if self.room5Display:
-            pass      
+        # if self.room1Display:
+        #     self.__draw_room(self.room1)
+        #     self.current_room = self.room1
+        # if self.room2Display:
+        #     self.__draw_room(self.room2)
+        self.__draw_room(self.current_room)
+        # if self.room3Display:
+        #     pass
+        # if self.room4Display:
+        #     pass
+        # if self.room5Display:
+        #     pass      
 
         self._screen.blit(self.bag.bag_image, self.bag.bag_rect)
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
