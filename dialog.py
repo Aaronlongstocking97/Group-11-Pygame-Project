@@ -1,49 +1,37 @@
 # import pygame module in this program
 import pygame
-import GameSprites
+from GameSprites import *
 
 
-class Dialog(GameSprites.GameSprite):
+class Dialog(GameSprite):
 
     def __init__(self):
         self.image = ""
+        # setting the pygame font style(1st parameter)
+        # and size of font(2nd parameter)
+        self.Font = pygame.font.SysFont('timesnewroman', 30)
+        self.win = pygame.display.set_mode((500, 500))
+
+        def display(self):
+            # define the RGB value for white,
+            # green, yellow, orange colour
+            white = (255, 255, 255)
+            yellow = (255, 255, 0)
+            green = (0, 255, 255)
+            orange = (255, 100, 0)
+            done = False
 
 
-# activate the pygame library
-# initiate pygame and give permission
-# to use pygame's functionality.
-pygame.init()
-
-
-# create the display surface object
-# (x, y) is the height and width of pygame window
-win = pygame.display.set_mode((500, 500))
-
-# set the pygame window name
-pygame.display.set_caption("Scrolling Text")
-
-# setting the pygame font style(1st parameter)
-# and size of font(2nd parameter)
-Font = pygame.font.SysFont('timesnewroman', 30)
-
-# define the RGB value for white,
-# green, yellow, orange colour
-white = (255, 255, 255)
-yellow = (255, 255, 0)
-green = (0, 255, 255)
-orange = (255, 100, 0)
-done = False
-
-# Split the text into letters
-# 3rd parameter is font colour and
-# 4th parameter is Font background
-letter1 = Font.render("H", False, orange, yellow)
-letter2 = Font.render("E", False, orange, green)
-letter3 = Font.render("M", False, orange, yellow)
-letter4 = Font.render("A", False, orange, green)
-letter5 = Font.render("N", False, orange, yellow)
-letter6 = Font.render("T", False, orange, green)
-letter7 = Font.render("H", False, orange, yellow)
+        # Split the text into letters
+        # 3rd parameter is font colour and
+        # 4th parameter is Font background
+        letter1 = Font.render("H", False, orange, yellow)
+        letter2 = Font.render("E", False, orange, green)
+        letter3 = Font.render("M", False, orange, yellow)
+        letter4 = Font.render("A", False, orange, green)
+        letter5 = Font.render("N", False, orange, yellow)
+        letter6 = Font.render("T", False, orange, green)
+        letter7 = Font.render("H", False, orange, yellow)
 
 # assigning values to
 # i and c variable
