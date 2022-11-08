@@ -8,6 +8,8 @@ class Door(Item):
     def open_door(self, no_key = False):
         if not no_key:
             return "assets/items/door (1).png"
+        else:
+            return "assets/items/door.png"
 
     def next_room(self):
         return pygame.Rect(0,0,990,800)

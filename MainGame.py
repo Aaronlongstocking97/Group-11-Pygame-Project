@@ -45,6 +45,7 @@ class MainGame(object):
         self.bag = Bag()
 
         self.door = Door("assets/items/door.png", ITEM_SIZE)
+        self.door.set_position(200, 210)
         self.item = Item("assets/items/key.png", ITEM_SIZE)
         self.player = Player("assets/chararcter/character_temp.png", (200,200))
         self.item2 = Item("assets/items/key.png", ITEM_SIZE)
@@ -74,6 +75,7 @@ class MainGame(object):
         self._screen.blit(self.bag.bag_image, self.bag.bag_rect)
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
         self._screen.blit(self.player.image, self.player.rect)
+        self._screen.blit(self.door.image, self.door.rect)
         for item in self.bag.items_list:
             self._screen.blit(item.image, item.rect)
 
@@ -106,6 +108,12 @@ class MainGame(object):
         # test = pygame.sprite.spritecollide(self.player, self.items_group, True, pygame.sprite.collide_mask)
             self.bag.append_item(self.room1.item2)
             self.room1.removeItemFrom(self.room1.item2)
+
+        if pygame.sprite.collide_mask(self.player, self.door):
+            self.new_door_img = self.door.open_door(True)
+            self.new_door = Door(self.new_door_img, ITEM_SIZE)
+            self._screen.blit(self.new_door.image, self.door.rect)
+            
 
     def __quit_game(self):
         pygame.quit()
