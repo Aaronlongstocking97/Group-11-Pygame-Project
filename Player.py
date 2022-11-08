@@ -4,7 +4,8 @@ from GameSprites import GameSprite
 class Player(GameSprite):
     
     def __init__(self, image_path, size, speed=3):
-        super().__init__(image_path,speed, size)
+        super().__init__(image_path, speed, size=size)
+
 
     def set_position(self, x, y):
         self.rect.x = x
