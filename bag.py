@@ -1,4 +1,5 @@
 from GameSprites import *
+from item import *
 
 BAG_IMAGE = "assets/items/bag.png"
 HOVER_IMAGE = "assets/items/hover.png"
@@ -20,9 +21,10 @@ class Bag(GameSprite):
         self.items_list = [0,0,0,0,0,0,0,0,0]
         self.index = 0
         self.bagGroup = pygame.sprite.Group()
+        self.keysGroup = pygame.sprite.Group()
         self.remain = 9
 
-    def append_item(self, item):
+    def append_item(self, item, group):
         done = False
         next_space = 0
         while not done:
@@ -32,7 +34,7 @@ class Bag(GameSprite):
                 self.items_list[next_space] = item
                 item.rect.y = self.bag_rect.y + 30
                 item.rect.x = self.bag_rect.x + 25 + self.items_list.index(item) * 110
-                self.bagGroup.add(item)
+                group.add(item)
                 self.remain -= 1
                 done = True
             else: 
@@ -41,10 +43,17 @@ class Bag(GameSprite):
     def put_item(self, room, position):
         item = self.items_list[self.index]
         if item != 0:
-            room.addItemTo(item, position)
-            self.items_list[self.index] = 0
-            item.remove(self.bagGroup)
-            self.remain += 1
+            if type(item) == type(Key("assets/items/key.png", size=None)):
+                room.addItemTo(item, position, room.keysGroup)
+                self.items_list[self.index] = 0
+                item.remove(self.keysGroup)
+                self.remain += 1
+
+            if type(item) == type(Item("assets/items/key.png", size=None)):
+                room.addItemTo(item, position, room.itemsGroup)
+                self.items_list[self.index] = 0
+                item.remove(self.bagGroup)
+                self.remain += 1
  
 
 
