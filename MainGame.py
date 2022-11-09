@@ -39,7 +39,7 @@ class MainGame(object):
     def __create_sprites(self):
 
         self.bag = Bag()
-        self.player = Player("assets\chararcter\character_temp.png", (60,80))
+        self.player = Player("assets/chararcter/character_front.png", (60,80))
         self.room1 = RoomOne(ROOM1)
         self.room2 = RoomTwo(ROOM2)
         self.player.set_position(600, 600)
