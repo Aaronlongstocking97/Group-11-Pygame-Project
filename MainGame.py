@@ -133,7 +133,16 @@ class MainGame(object):
                         self.bag.index += 1
                 elif event.key == pygame.K_SPACE:
                     # need to be changed
-                    self.bag.put_item(self.current_room, self.player.rect)
+                    item = self.bag.items_list[self.bag.index]
+                    if item != 0:
+                        if type(item) == type(Key("assets/items/key.png", size=None)):
+                            bag_group = self.bag.keysGroup
+                            room_group = self.current_room.keysGroup
+                        elif type(item) == type(Item("assets/items/key.png", size=None)):
+                            bag_group = self.bag.bagGroup
+                            room_group = self.current_room.itemsGroup
+                    self.bag.put_item(item, bag_group)
+                    self.current_room.addItemTo(item, self.player.rect, room_group)
                 elif event.key == pygame.K_1:
                     # need to be changed
                     self.player.open_door(self, self.bag.items_list[self.bag.index])

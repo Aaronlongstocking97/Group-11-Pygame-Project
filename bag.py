@@ -40,20 +40,13 @@ class Bag(GameSprite):
             else: 
                 next_space += 1
 
-    def put_item(self, room, position):
-        item = self.items_list[self.index]
-        if item != 0:
-            if type(item) == type(Key("assets/items/key.png", size=None)):
-                room.addItemTo(item, position, room.keysGroup)
-                self.items_list[self.index] = 0
-                item.remove(self.keysGroup)
-                self.remain += 1
+    def put_item(self, item, bag_group):
+        self.items_list[self.index] = 0
+        item.remove(bag_group)
+        self.remain += 1
+                
 
-            if type(item) == type(Item("assets/items/key.png", size=None)):
-                room.addItemTo(item, position, room.itemsGroup)
-                self.items_list[self.index] = 0
-                item.remove(self.bagGroup)
-                self.remain += 1
+
  
 
 
