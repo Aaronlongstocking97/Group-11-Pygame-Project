@@ -19,7 +19,6 @@ class MainGame(object):
 
         self.current_room = None
 
-
     def startGame(self):
 
         self.current_room = self.room1
@@ -39,12 +38,10 @@ class MainGame(object):
     def __create_sprites(self):
 
         self.bag = Bag()
-        self.player = Player("assets\chararcter\character_temp.png", (60,80))
+        self.player = Player("assets/chararcter/character_front.png", (60, 80))
         self.room1 = RoomOne(ROOM1)
         self.room2 = RoomTwo(ROOM2)
         self.player.set_position(600, 600)
-
-
 
         # The items in room one
         self.door1 = Door("assets/items/door.png", ITEM_SIZE)
@@ -61,11 +58,6 @@ class MainGame(object):
         self.item2.set_position(300, 300)
         self.room1.itemsGroup.add(self.item2)
 
-
-        
-       
-        
-        
         # The items in room two
         # self.item3 = Item("assets/items/key.png", ITEM_SIZE)
         # self.item3.set_position(200, 200)
@@ -88,7 +80,6 @@ class MainGame(object):
         # self.key12 = Item("assets/items/key.png", ITEM_SIZE)
         # self.key12.set_position(200, 500)
 
-
         # self.room2.itemsGroup.add(self.item3)
         # self.room2.itemsGroup.add(self.item4)
         # self.room2.itemsGroup.add(self.item5)
@@ -100,11 +91,9 @@ class MainGame(object):
         # self.room2.itemsGroup.add(self.key11)
         # self.room2.itemsGroup.add(self.key12)
 
-
     def __update_sprites(self):
-        
-        self.__draw_room(self.current_room)
 
+        self.__draw_room(self.current_room)
 
         self._screen.blit(self.bag.bag_image, self.bag.bag_rect)
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
@@ -142,29 +131,32 @@ class MainGame(object):
                             bag_group = self.bag.bagGroup
                             room_group = self.current_room.itemsGroup
                         self.bag.put_item(item, bag_group)
-                        self.current_room.addItemTo(item, self.player.rect, room_group)
+                        self.current_room.addItemTo(
+                            item, self.player.rect, room_group)
                 elif event.key == pygame.K_1:
                     # need to be changed
-                    self.player.open_door(self, self.bag.items_list[self.bag.index])
+                    self.player.open_door(
+                        self, self.bag.items_list[self.bag.index])
 
     def __collide_check(self):
         # add item
-        if self.bag.remain >0:
-            collide = pygame.sprite.spritecollide(self.player, self.current_room.itemsGroup, False, pygame.sprite.collide_mask)
+        if self.bag.remain > 0:
+            collide = pygame.sprite.spritecollide(
+                self.player, self.current_room.itemsGroup, False, pygame.sprite.collide_mask)
             if collide:
                 for item in collide:
                     item.remove(self.current_room.itemsGroup)
                     self.bag.append_item(item, self.bag.bagGroup)
 
-            collide = pygame.sprite.spritecollide(self.player, self.current_room.keysGroup, False, pygame.sprite.collide_mask)
+            collide = pygame.sprite.spritecollide(
+                self.player, self.current_room.keysGroup, False, pygame.sprite.collide_mask)
             if collide:
                 for item in collide:
                     item.remove(self.current_room.keysGroup)
                     self.bag.append_item(item, self.bag.keysGroup)
 
         # if the player can open a door or not
-        
-        
+
     def __draw_room(self, room):
         self._screen.blit(room.image, room.rect)
         for item in room.itemsGroup:
@@ -177,12 +169,6 @@ class MainGame(object):
     def switch_room(self, next_room):
         self.current_room = next_room
 
-
-            
-
     def __quit_game(self):
         pygame.quit()
         exit()
-
-
-
