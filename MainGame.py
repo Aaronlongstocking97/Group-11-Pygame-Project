@@ -51,7 +51,7 @@ class MainGame(object):
         self.door1.set_position(300, 400)
         self.door1.set_next_room(self.room2)
         self.room1.doorGroup.add(self.door1)
-        
+
         self.key1 = Key("assets/items/key.png", ITEM_SIZE)
         self.key1.set_position(400, 400)
         self.key1.set_matched_door(self.door1)
@@ -146,7 +146,7 @@ class MainGame(object):
                 for item in collide:
                     item.remove(self.current_room.itemsGroup)
                     self.bag.append_item(item, self.bag.bagGroup)
-        if self.bag.remain >0:
+
             collide = pygame.sprite.spritecollide(self.player, self.current_room.keysGroup, False, pygame.sprite.collide_mask)
             if collide:
                 for item in collide:
