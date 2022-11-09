@@ -11,8 +11,8 @@ class Door(Item):
         else:
             return "assets/items/door.png"
 
-    def next_room(self):
-        return pygame.Rect(0,0,990,800)
+    def set_next_room(self, room):
+        self.next_room = room
 
             
         
