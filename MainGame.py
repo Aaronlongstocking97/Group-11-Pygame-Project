@@ -43,6 +43,8 @@ class MainGame(object):
         self.room2 = RoomTwo(ROOM2)
         self.player.set_position(600, 600)
 
+        self.door = Door("assets/items/door.png", ITEM_SIZE)
+        self.door.set_position(200, 210)
 
         # The items in room one
         self.item = Item("assets/items/key.png", ITEM_SIZE)
@@ -97,6 +99,8 @@ class MainGame(object):
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
         self._screen.blit(self.player.image, self.player.rect)
         
+        self._screen.blit(self.door.image, self.door.rect)
+
         for item in self.bag.items_list:
             if item != 0:
                 self._screen.blit(item.image, item.rect)
@@ -135,6 +139,12 @@ class MainGame(object):
 
     def __switch_room(self, next_room):
         self.current_room = next_room
+
+        if pygame.sprite.collide_mask(self.player, self.door):
+            self.new_door_img = self.door.open_door(True)
+            self.new_door = Door(self.new_door_img, ITEM_SIZE)
+            self._screen.blit(self.new_door.image, self.door.rect)
+            
 
     def __quit_game(self):
         pygame.quit()
