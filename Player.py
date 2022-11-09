@@ -37,16 +37,23 @@ class Player(GameSprite):
         elif self.rect.bottom > 700:
             self.rect.bottom = 700
 
+    # There may be a better way of doing this function
     def open_door(self, callback, key):
+        # when player collide with a door in door group
         collide = pygame.sprite.spritecollide(callback.player, callback.current_room.doorGroup, False, pygame.sprite.collide_mask)
         if collide:
+            # find the collided door
             for door in collide:
-                if type(key) == type(Key("assets/items/key.png", size= None)):
-                    if key.door == door:
-                        callback.bag.keysGroup.remove(key)
-                        callback.bag.items_list[callback.bag.index] = 0
-                        next_room = door.next_room
-                        callback.switch_room(next_room)
-                    else:
-                        print("It is not the right item to use")
+                # if this key is matching this door
+                if key.door == door:
+                    # remove key from bag's key group
+                    callback.bag.keysGroup.remove(key)
+                    # remove key for the bag list
+                    callback.bag.items_list[callback.bag.index] = 0
+                    # set next room to be the door's next room
+                    next_room = door.next_room
+                    # switch
+                    callback.switch_room(next_room)
+                else:
+                    print("It is not the right key to use")
 
