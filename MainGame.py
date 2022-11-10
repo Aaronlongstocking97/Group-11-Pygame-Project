@@ -39,7 +39,7 @@ class MainGame(object):
     def __create_sprites(self):
 
         self.bag = Bag()
-        self.player = Player("assets\chararcter\character_temp.png", (60,80))
+        self.player = Player("assets/chararcter/character_front.png", (60,80))
         self.room1 = RoomOne(ROOM1)
         self.room2 = RoomTwo(ROOM2)
         self.player.set_position(600, 600)
@@ -48,7 +48,7 @@ class MainGame(object):
 
         # The items in room one
         self.door1 = Door("assets/items/door.png", ITEM_SIZE)
-        self.door1.set_position(300, 400)
+        self.door1.set_position(910, 170)
         self.door1.set_next_room(self.room2)
         self.room1.doorGroup.add(self.door1)
 

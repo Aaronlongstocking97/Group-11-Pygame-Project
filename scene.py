@@ -4,7 +4,7 @@ from Player import Player
 from bag import *
 from item import Item
 
-ROOM1 = "assets/background.png"
+ROOM1 = "assets/rooms/mathroom.png"
 ROOM2 = "assets/background2.png"
 
 class Scene(GameSprite):
