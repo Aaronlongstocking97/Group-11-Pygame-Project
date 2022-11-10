@@ -56,7 +56,7 @@ class MainGame(object):
 
         self.door1 = Door("assets/items/door.png", ITEM_SIZE)
         # set position of door(testing)
-        self.door1.set_position(300, 400)
+        self.door1.set_position(910, 230)
         # set the next room when player enter this door
         self.door1.set_next_room(self.room2)
         # This is a door and it is in room 1, so it should be in the door group of room1
