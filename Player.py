@@ -1,6 +1,6 @@
-import pygame
-from GameSprites import GameSprite
+from GameSprites import *
 from item import *
+from key import *
 
 
 class Player(GameSprite):
