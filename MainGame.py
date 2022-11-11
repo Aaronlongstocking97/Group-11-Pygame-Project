@@ -5,6 +5,8 @@ from Player import Player
 from bag import *
 from scene import *
 from door import *
+from dialog import *
+from key import *
 
 
 class MainGame(object):
@@ -38,10 +40,14 @@ class MainGame(object):
     def __create_sprites(self):
 
         self.bag = Bag()
-        self.player = Player("assets/chararcter/character_front.png", (60, 80))
+        self.player = Player(
+            "assets/chararcter/character_front.png", (60, 80))
         self.room1 = RoomOne(ROOM1)
         self.room2 = RoomTwo(ROOM2)
         self.player.set_position(600, 600)
+
+        self.dialog = Dialog()
+        self.dialog == self.player
 
         # The items in room one
         self.door1 = Door("assets/items/door.png", ITEM_SIZE)
@@ -98,19 +104,23 @@ class MainGame(object):
         self._screen.blit(self.bag.bag_image, self.bag.bag_rect)
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
         self._screen.blit(self.player.image, self.player.rect)
-
+        # Try to add dialog to this area
         for item in self.bag.bagGroup:
             self._screen.blit(item.image, item.rect)
         for item in self.bag.keysGroup:
             self._screen.blit(item.image, item.rect)
 
+        self.dialog.display(self._screen)
         self.player.move()
 
     def __event_handle(self):
+
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
                 self.__quit_game()
+            # if event.type == self.dialog.display():
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a:
                     if self.bag.index > 0:
@@ -137,6 +147,8 @@ class MainGame(object):
                     # need to be changed
                     self.player.open_door(
                         self, self.bag.items_list[self.bag.index])
+                elif event.key == pygame.K_q:
+                    self.__quit_game()
 
     def __collide_check(self):
         # add item

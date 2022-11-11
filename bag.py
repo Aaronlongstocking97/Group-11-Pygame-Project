@@ -1,13 +1,11 @@
 from GameSprites import *
 from item import *
 
-BAG_IMAGE = "assets/items/bag.png"
-HOVER_IMAGE = "assets/items/hover.png"
 
 class Bag(GameSprite):
 
     def __init__(self, speed=0):
-        
+
         self.bag_image = pygame.image.load(BAG_IMAGE)
         self.hover_image = pygame.image.load(HOVER_IMAGE)
         self.bag_image = pygame.transform.scale(self.bag_image, (990, 110))
@@ -17,8 +15,8 @@ class Bag(GameSprite):
         self.bag_rect = self.bag_image.get_rect()
         self.hover_rect = self.hover_image.get_rect()
         self.bag_rect.y = self.hover_rect.y = SCREEN_RECT.bottom - self.bag_rect.height
-        
-        self.items_list = [0,0,0,0,0,0,0,0,0]
+
+        self.items_list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.index = 0
         self.bagGroup = pygame.sprite.Group()
         self.keysGroup = pygame.sprite.Group()
@@ -33,22 +31,15 @@ class Bag(GameSprite):
             if self.items_list[next_space] == 0:
                 self.items_list[next_space] = item
                 item.rect.y = self.bag_rect.y + 30
-                item.rect.x = self.bag_rect.x + 25 + self.items_list.index(item) * 110
+                item.rect.x = self.bag_rect.x + 25 + \
+                    self.items_list.index(item) * 110
                 group.add(item)
                 self.remain -= 1
                 done = True
-            else: 
+            else:
                 next_space += 1
 
     def put_item(self, item, bag_group):
         self.items_list[self.index] = 0
         item.remove(bag_group)
         self.remain += 1
-                
-
-
- 
-
-
-        
-        
