@@ -1,5 +1,4 @@
 from GameSprites import *
-from item import *
 from key import *
 
 

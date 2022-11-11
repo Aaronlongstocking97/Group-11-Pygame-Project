@@ -16,7 +16,7 @@ WHITE = (255, 255, 255)
 
 BAG_IMAGE = "assets/items/bag.png"
 HOVER_IMAGE = "assets/items/hover.png"
-ROOM1 = "assets/background.png"
+ROOM1 = "assets/rooms/mathroom.png"
 ROOM2 = "assets/background2.png"
 
 # class GameSprite(pygame.sprite.Sprite, ABC):

@@ -47,7 +47,6 @@ class MainGame(object):
         self.player.set_position(600, 600)
 
         self.dialog = Dialog()
-        self.dialog == self.player
 
         # The items in room one
         self.door1 = Door("assets/items/door.png", ITEM_SIZE)
@@ -104,7 +103,6 @@ class MainGame(object):
         self._screen.blit(self.bag.bag_image, self.bag.bag_rect)
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
         self._screen.blit(self.player.image, self.player.rect)
-        # Try to add dialog to this area
         for item in self.bag.bagGroup:
             self._screen.blit(item.image, item.rect)
         for item in self.bag.keysGroup:
@@ -119,8 +117,6 @@ class MainGame(object):
         for event in events:
             if event.type == pygame.QUIT:
                 self.__quit_game()
-            # if event.type == self.dialog.display():
-
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a:
                     if self.bag.index > 0:
@@ -131,7 +127,7 @@ class MainGame(object):
                         self.bag.hover_rect.x += 110
                         self.bag.index += 1
                 elif event.key == pygame.K_SPACE:
-                    # need to be changed
+                    # needs to be changed
                     item = self.bag.items_list[self.bag.index]
                     if item != 0:
                         if type(item) == type(Key("assets/items/key.png", size=None)):
@@ -144,7 +140,7 @@ class MainGame(object):
                         self.current_room.addItemTo(
                             item, self.player.rect, room_group)
                 elif event.key == pygame.K_1:
-                    # need to be changed
+                    # needs to be changed
                     self.player.open_door(
                         self, self.bag.items_list[self.bag.index])
                 elif event.key == pygame.K_q:
