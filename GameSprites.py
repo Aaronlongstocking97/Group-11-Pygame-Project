@@ -21,7 +21,6 @@ ROOM2 = "assets/background2.png"
 
 # class GameSprite(pygame.sprite.Sprite, ABC):
 
-
 class GameSprite(pygame.sprite.Sprite):
 
     def __init__(self, image_name, speed=1, size=None):

@@ -9,6 +9,7 @@ from dialog import *
 from key import *
 
 
+
 class MainGame(object):
 
     pygame.init()
@@ -20,7 +21,7 @@ class MainGame(object):
         # create all the sprites and put them in the right position plus right group
         self.__create_sprites()
 
-        # This is a pointer to point the current room the player is in. 
+        # This is a pointer to point the current room the player is in.
         self.current_room = None
 
     def startGame(self):
@@ -40,16 +41,17 @@ class MainGame(object):
             pygame.display.update()
 
     def __create_sprites(self):
-        # create the bag 
+        # create the bag
         self.bag = Bag()
         # create the player and set the position of player(testing)
-        self.player = Player("assets/chararcter/character_front.png", (60,80))
-        self.player.set_position(400, 400)
+        self.player = Player("assets/chararcter/character_front.png", (60, 80))
+        # self.player.set_position(400, 400)
         # room1
         self.room1 = RoomOne(ROOM1)
         # room2
         self.room2 = RoomTwo(ROOM2)
-        
+
+        self.player.set_position(600, 600)
 
         self.dialog = Dialog()
 
@@ -58,13 +60,12 @@ class MainGame(object):
         self.door1 = Door("assets/items/door.png", ITEM_SIZE)
         # set position of door(testing)
         self.door1.set_position(910, 170)
-        
+
         # set the next room when player enter this door
         self.door1.set_next_room(self.room2)
         # This is a door and it is in room 1, so it should be in the door group of room1
         self.room1.doorGroup.add(self.door1)
 
-        
         self.key1 = Key("assets/items/key.png", ITEM_SIZE)
         self.key1.set_position(400, 400)
         # this is to set this key is to be used for door 1
@@ -77,9 +78,8 @@ class MainGame(object):
         self.item2.set_position(300, 300)
         self.room1.itemsGroup.add(self.item2)
 
-
     def __update_sprites(self):
-        
+
         # draw all the stuffs in the current room
         self.__draw_room(self.current_room)
 
@@ -88,28 +88,25 @@ class MainGame(object):
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
         self._screen.blit(self.player.image, self.player.rect)
 
-        # draw all the stuff in the bag
-        # in the itemsGropu
-        for item in self.bag.itemsGropu:
+        for item in self.bag.bagGroup:
             self._screen.blit(item.image, item.rect)
         # in the keys group
         for item in self.bag.keysGroup:
             self._screen.blit(item.image, item.rect)
 
-
         self.dialog.display(self._screen)
         x = self.player.rect.x
         y = self.player.rect.y
+
         self.player.move()
 
-        collide = pygame.sprite.collide_mask(self.player, self.current_room.walls)
+        collide = pygame.sprite.collide_mask(
+            self.player, self.current_room.walls)
         if collide != None:
             self.player.rect.x = x
             self.player.rect.y = y
 
     def __event_handle(self):
-
-
 
         # all the one time press events would go here. (move is not one time press events becase
         # when you press left and don't release, the player is keeping moving left)
@@ -167,7 +164,8 @@ class MainGame(object):
                         # remove this item in to bag in the specific group
                         self.bag.remove_item(item, bag_group)
                         # put this item in current room of the specific group
-                        self.current_room.addItemTo(item, self.player.rect, room_group)
+                        self.current_room.addItemTo(
+                            item, self.player.rect, room_group)
                 # press 1 to use item
                 elif event.key == pygame.K_1:
                     item = self.bag.items_list[self.bag.index]
@@ -179,9 +177,10 @@ class MainGame(object):
 
     def __collide_check(self):
         # add item
-        if self.bag.remain >0:
+        if self.bag.remain > 0:
             # if player collide with a item in items group(they are almost the same, potentially could be encapuslate into a function)
-            collide = pygame.sprite.spritecollide(self.player, self.current_room.itemsGroup, False, pygame.sprite.collide_mask)
+            collide = pygame.sprite.spritecollide(
+                self.player, self.current_room.itemsGroup, False, pygame.sprite.collide_mask)
             # this is a list
 
             if collide:
@@ -193,7 +192,9 @@ class MainGame(object):
                     self.bag.append_item(item, self.bag.itemsGropu)
 
             # if the player collide with a key
-            collide = pygame.sprite.spritecollide(self.player, self.current_room.keysGroup, False, pygame.sprite.collide_mask)
+
+            collide = pygame.sprite.spritecollide(
+                self.player, self.current_room.keysGroup, False, pygame.sprite.collide_mask)
 
             if collide:
                 for item in collide:
@@ -201,10 +202,13 @@ class MainGame(object):
                     item.remove(self.current_room.keysGroup)
                     self.bag.append_item(item, self.bag.keysGroup)
 
+
+    # the argument here for the room is always be the current room
+
     def __draw_room(self, room):
         # draw background
         self._screen.blit(room.image, room.rect)
-        # draw all the gropus 
+        # draw all the gropus
         for item in room.itemsGroup:
             self._screen.blit(item.image, item.rect)
         for door in room.doorGroup:
