@@ -1,8 +1,6 @@
 from GameSprites import *
 from item import *
 
-BAG_IMAGE = "assets/items/bag.png"
-HOVER_IMAGE = "assets/items/hover.png"
 
 class Bag(GameSprite):
 
@@ -16,10 +14,11 @@ class Bag(GameSprite):
         self.bag_rect = self.bag_image.get_rect()
         self.hover_rect = self.hover_image.get_rect()
         self.bag_rect.y = self.hover_rect.y = SCREEN_RECT.bottom - self.bag_rect.height
-        
+
         # 0 means nothing in the index
-        self.items_list = [0,0,0,0,0,0,0,0,0]
+        self.items_list = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         # the index player select
+
         self.index = 0
         # all groups in bag  
         self.itemsGropu = pygame.sprite.Group()
@@ -41,13 +40,15 @@ class Bag(GameSprite):
                 self.items_list[next_space] = item
                 # change the rect of this item to visully put it into the bag
                 item.rect.y = self.bag_rect.y + 30
-                item.rect.x = self.bag_rect.x + 25 + self.items_list.index(item) * 110
+                item.rect.x = self.bag_rect.x + 25 + \
+                    self.items_list.index(item) * 110
+
                 # add it into the correct group
                 group.add(item)
                 # remain - 1
                 self.remain -= 1
                 done = True
-            else: 
+            else:
                 next_space += 1
 
     # remove an item from the correct group
@@ -58,11 +59,3 @@ class Bag(GameSprite):
         item.remove(bag_group)
         # remain + 1
         self.remain += 1
-                
-
-
- 
-
-
-        
-        
