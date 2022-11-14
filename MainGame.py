@@ -43,7 +43,7 @@ class MainGame(object):
         self.bag = Bag()
         # create the player and set the position of player(testing)
         self.player = Player("assets/chararcter/character_front.png", (60,80))
-        self.player.set_position(600, 600)
+        self.player.set_position(400, 400)
         # room1
         self.room1 = RoomOne(ROOM1)
         # room2
@@ -97,7 +97,14 @@ class MainGame(object):
         for item in self.bag.keysGroup:
             self._screen.blit(item.image, item.rect)
 
+        x = self.player.rect.x
+        y = self.player.rect.y
         self.player.move()
+
+        collide = pygame.sprite.collide_mask(self.player, self.current_room.walls)
+        if collide != None:
+            self.player.rect.x = x
+            self.player.rect.y = y
 
     def __event_handle(self):
         # all the one time press events would go here. (move is not one time press events becase

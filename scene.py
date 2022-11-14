@@ -5,6 +5,7 @@ from bag import *
 from item import Item
 
 ROOM1 = "assets/rooms/mathroom.png"
+ROOM1WALLS = "assets/rooms/mathroom_clutter.png"
 ROOM2 = "assets/background2.png"
 
 class Scene(GameSprite):
@@ -28,6 +29,8 @@ class RoomOne(Scene):
         self.itemsGroup = pygame.sprite.Group()
         self.keysGroup = pygame.sprite.Group()
         self.doorGroup = pygame.sprite.Group()
+        self.walls = GameSprite(ROOM1WALLS, 0, (990,800))
+        self.walls.mask = pygame.mask.from_surface(self.walls.image)
 
     def addItemTo(self, item, position, group):
         return super().addItemTo(item, position, group)
