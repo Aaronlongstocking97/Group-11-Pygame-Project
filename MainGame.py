@@ -58,10 +58,12 @@ class MainGame(object):
         self.key1 = Key("assets/items/key.png", ITEM_SIZE)
         self.key1.set_position(400, 400)
         self.key1.set_matched_door(self.door1)
+        self.key1.description = "This is a key"
         self.room1.keysGroup.add(self.key1)
 
         self.item2 = Item("assets/items/key.png", ITEM_SIZE)
         self.item2.set_position(300, 300)
+        self.item2.description = "This is just an item"
         self.room1.itemsGroup.add(self.item2)
 
 
@@ -113,8 +115,7 @@ class MainGame(object):
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
         self._screen.blit(self.player.image, self.player.rect)
 
-        self._screen.blit(self.dialog.image, self.dialog.rect)
-        # self.dialog.display(self._screen)
+        self.dialog.display(self._screen, self.bag.items_list[self.bag.index])
 
         for item in self.bag.bagGroup:
             self._screen.blit(item.image, item.rect)

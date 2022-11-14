@@ -55,3 +55,6 @@ class Key(Item):
 
     def usage(self):
         pass
+
+    def set_description(self, description):
+        return super().set_description(description)
