@@ -1,4 +1,5 @@
 from GameSprites import *
+
  
 class Dialog(GameSprite):
  
@@ -13,3 +14,4 @@ class Dialog(GameSprite):
     screen.blit(img, (20, 20))
     pygame.display.update()
     # self.clock.tick(5)
+
