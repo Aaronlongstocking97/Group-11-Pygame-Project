@@ -175,6 +175,7 @@ class MainGame(object):
                     if type(item) == type(Key("assets/items/key.png", size=None)):
                         # go to player.open_door
                         self.player.open_door(self, item)
+                        
 
     def __collide_check(self):
         # add item
@@ -196,6 +197,7 @@ class MainGame(object):
 
             if collide:
                 for item in collide:
+                    self.key1.pick_up(True)
                     item.remove(self.current_room.keysGroup)
                     self.bag.append_item(item, self.bag.keysGroup)
 
