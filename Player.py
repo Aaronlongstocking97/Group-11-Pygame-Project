@@ -4,10 +4,8 @@ from item import *
 
 class Player(GameSprite):
     
-
     def __init__(self, image_path, size, speed=3):
         super().__init__(image_path, speed, size=size)
-
         self.size = size
 
         self.images = {
@@ -16,7 +14,6 @@ class Player(GameSprite):
             "Down": pygame.image.load('assets/chararcter/character_front.png'),
             "Up": pygame.image.load('assets/chararcter/character_back.png')
         }
-
     def set_position(self, x, y):
         self.rect.x = x
         self.rect.y = y
@@ -27,31 +24,20 @@ class Player(GameSprite):
 
         # Control the player
         if key_pressed[pygame.K_RIGHT]:
-
             self.image = self.images["Right"]
             self.image = pygame.transform.scale(self.image, self.size)
-
             self.rect.x += self.speed # Right move
-
         elif key_pressed[pygame.K_LEFT]:
-
             self.image = self.images["Left"]
             self.image = pygame.transform.scale(self.image, self.size)
-            
             self.rect.x -= self.speed # Left mvoe
-
         elif key_pressed[pygame.K_UP]:
-
             self.image = self.images["Up"]
             self.image = pygame.transform.scale(self.image, self.size)
-
             self.rect.y -= self.speed # Up move
-
         elif key_pressed[pygame.K_DOWN]:
-
             self.image = self.images["Down"]
             self.image = pygame.transform.scale(self.image, self.size)
-
             self.rect.y += self.speed # Down move
 
         

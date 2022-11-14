@@ -1,5 +1,6 @@
 import pygame 
 from GameSprites import GameSprite
+import time
 
 class Item(GameSprite):
 
@@ -10,16 +11,17 @@ class Item(GameSprite):
         self.font_size = 20
         self.text_color = (0, 0, 0)
         self.text_bg_color = (255, 255, 255)
+        self.size = size
 
     def set_position(self, x, y):
         self.rect.x = x
         self.rect.y = y
 
-    def set_size(self, size):
+    def set_size(self):
         '''Size the item image'''
 
         # Set the image size
-        self.image = pygame.transform.scale(self.image, size)
+        self.image = pygame.transform.scale(self.image, self.size)
     
     def set_description(self, description):
 
@@ -37,6 +39,20 @@ class Item(GameSprite):
 
     def usage(self):
         pass
+
+    def pick_up(self, jump = False):
+        vel_y = 10
+
+        if jump:
+            self.rect.y -= vel_y # Go up
+            vel_y -= 1 # Go down
+            print("jump")
+            pygame.time.wait(100)
+            if vel_y < -5:
+                jump = False
+                vel_y = 10
+                print("jumped")
+            pygame.time.wait(240)
 
 class Key(Item):
 
