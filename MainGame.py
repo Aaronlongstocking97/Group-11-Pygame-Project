@@ -5,6 +5,7 @@ from Player import Player
 from bag import *
 from scene import *
 from door import *
+from dialog import *
 
 
 class MainGame(object):
@@ -43,6 +44,8 @@ class MainGame(object):
         self.room1 = RoomOne(ROOM1)
         self.room2 = RoomTwo(ROOM2)
         self.player.set_position(600, 600)
+
+        self.dialog = Dialog()
 
 
 
@@ -110,10 +113,15 @@ class MainGame(object):
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
         self._screen.blit(self.player.image, self.player.rect)
 
+        self._screen.blit(self.dialog.image, self.dialog.rect)
+        # self.dialog.display(self._screen)
+
         for item in self.bag.bagGroup:
             self._screen.blit(item.image, item.rect)
         for item in self.bag.keysGroup:
             self._screen.blit(item.image, item.rect)
+
+        
 
         self.player.move()
 

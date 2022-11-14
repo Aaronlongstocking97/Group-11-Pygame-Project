@@ -7,6 +7,7 @@ ITEM_SIZE= (60, 60)
 
 BLACK = (0,0,0)
 GREEN = (0,255,0)
+WHITE = (255, 255, 255)
 
 class GameSprite(pygame.sprite.Sprite):
 
