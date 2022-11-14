@@ -5,7 +5,7 @@ from item import *
 class Bag(GameSprite):
 
     def __init__(self, speed=0):
-        
+
         # image and size and ract
         self.bag_image = pygame.image.load(BAG_IMAGE)
         self.hover_image = pygame.image.load(HOVER_IMAGE)
@@ -20,8 +20,8 @@ class Bag(GameSprite):
         # the index player select
 
         self.index = 0
-        # all groups in bag  
-        self.itemsGropu = pygame.sprite.Group()
+        # all groups in bag
+        self.bagGroup = pygame.sprite.Group()
         self.keysGroup = pygame.sprite.Group()
         # how many items can be put in the bag
         self.remain = 9
@@ -53,7 +53,7 @@ class Bag(GameSprite):
 
     # remove an item from the correct group
     def remove_item(self, item, bag_group):
-        # set this space to be 0 
+        # set this space to be 0
         self.items_list[self.index] = 0
         # remove from the correct bag group
         item.remove(bag_group)

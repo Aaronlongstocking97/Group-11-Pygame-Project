@@ -9,7 +9,6 @@ from dialog import *
 from key import *
 
 
-
 class MainGame(object):
 
     pygame.init()
@@ -88,6 +87,7 @@ class MainGame(object):
         self._screen.blit(self.bag.hover_image, self.bag.hover_rect)
         self._screen.blit(self.player.image, self.player.rect)
 
+        # Draw the contents in the bag
         for item in self.bag.bagGroup:
             self._screen.blit(item.image, item.rect)
         # in the keys group
@@ -100,11 +100,11 @@ class MainGame(object):
 
         self.player.move()
 
-        collide = pygame.sprite.collide_mask(
-            self.player, self.current_room.walls)
-        if collide != None:
-            self.player.rect.x = x
-            self.player.rect.y = y
+        # collide = pygame.sprite.collide_mask(
+        #     self.player, self.current_room.walls)
+        # if collide != None:
+        #     self.player.rect.x = x
+        #     self.player.rect.y = y
 
     def __event_handle(self):
 
@@ -142,7 +142,7 @@ class MainGame(object):
                             room_group = self.current_room.keysGroup
                         # same
                         elif type(item) == type(Item("assets/items/key.png", size=None)):
-                            bag_group = self.bag.itemsGropu
+                            bag_group = self.bag.bagGroup
                             room_group = self.current_room.itemsGroup
 
                         self.bag.put_item(item, bag_group)
@@ -158,26 +158,6 @@ class MainGame(object):
     def __collide_check(self):
         # add item
         if self.bag.remain > 0:
-            collide = pygame.sprite.spritecollide(
-                self.player, self.current_room.itemsGroup, False, pygame.sprite.collide_mask)
-
-                        # remove this item in to bag in the specific group
-                        self.bag.remove_item(item, bag_group)
-                        # put this item in current room of the specific group
-                        self.current_room.addItemTo(
-                            item, self.player.rect, room_group)
-                # press 1 to use item
-                elif event.key == pygame.K_1:
-                    item = self.bag.items_list[self.bag.index]
-                    # if this item is a key
-                    if type(item) == type(Key("assets/items/key.png", size=None)):
-                        # go to player.open_door
-                        self.player.open_door(self, item)
-                        
-
-    def __collide_check(self):
-        # add item
-        if self.bag.remain > 0:
             # if player collide with a item in items group(they are almost the same, potentially could be encapuslate into a function)
             collide = pygame.sprite.spritecollide(
                 self.player, self.current_room.itemsGroup, False, pygame.sprite.collide_mask)
@@ -189,7 +169,7 @@ class MainGame(object):
                     # remove item from current room's items group
                     item.remove(self.current_room.itemsGroup)
                     # add item to bag's item group
-                    self.bag.append_item(item, self.bag.itemsGropu)
+                    self.bag.append_item(item, self.bag.bagGroup)
 
             # if the player collide with a key
 
@@ -201,7 +181,6 @@ class MainGame(object):
                     self.key1.pick_up(True)
                     item.remove(self.current_room.keysGroup)
                     self.bag.append_item(item, self.bag.keysGroup)
-
 
     # the argument here for the room is always be the current room
 
