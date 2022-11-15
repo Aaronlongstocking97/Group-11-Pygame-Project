@@ -4,7 +4,7 @@ from key import *
 
 class Player(GameSprite):
 
-    def __init__(self, image_path, size, speed=3):
+    def __init__(self, image_path, size, speed=5):
         super().__init__(image_path, speed, size=size)
 
         self.size = size
@@ -62,16 +62,26 @@ class Player(GameSprite):
         if collide:
             # find the collided door
             for door in collide:
+                if door.locked == True:
                 # if this key is matching this door
-                if type(key) == type(Key("assets/items/key.png", size=None)):
-                    if key.door == door:
-                        # remove key from bag's key group
-                        callback.bag.keysGroup.remove(key)
-                        # remove key for the bag list
-                        callback.bag.items_list[callback.bag.index] = 0
-                        # set next room to be the door's next room
-                        next_room = door.next_room
-                        # switch
-                        callback.switch_room(next_room)
-                    else:
-                        print("It is not the right key to use")
+                    if type(key) == type(Key("assets/items/key.png", size=None)):
+                        if key.door == door:
+                            # remove key from bag's key group
+                            callback.bag.keysGroup.remove(key)
+                            # remove key for the bag list
+                            callback.bag.items_list[callback.bag.index] = 0
+                            # set next room to be the door's next room
+                            next_room = door.next_room
+                            door.locked = False
+                            # switch
+                            x, y = door.position_in_next_room
+                            callback.player.set_position(x, y)
+                            callback.switch_room(next_room)
+                        else:
+                            print("It is not the right key to use")
+                elif door.locked == False:
+                    next_room = door.next_room
+                    x, y = door.position_in_next_room
+                    callback.player.set_position(x, y)
+                    callback.switch_room(next_room)
+
