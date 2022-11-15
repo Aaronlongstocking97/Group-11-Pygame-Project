@@ -2,7 +2,7 @@ import pygame
 # from abc import ABC
 # from abc import abstractmethod
 
-# All the constants would be placed here
+# Game Global Constants
 SCREEN_RECT = pygame.Rect(0, 0, 990, 800)
 FRAME_RATE = 60
 ITEM_SIZE = (60, 60)
@@ -20,6 +20,7 @@ ROOM1 = "assets/rooms/mathroom.png"
 ROOM2 = "assets/background2.png"
 
 # class GameSprite(pygame.sprite.Sprite, ABC):
+
 
 class GameSprite(pygame.sprite.Sprite):
 
