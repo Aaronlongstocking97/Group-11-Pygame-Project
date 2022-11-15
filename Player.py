@@ -7,7 +7,6 @@ class Player(GameSprite):
     def __init__(self, image_path, size, speed=3):
         super().__init__(image_path, speed, size=size)
 
-
         self.size = size
 
         self.images = {
@@ -24,45 +23,27 @@ class Player(GameSprite):
     def move(self):
         '''update method, allows player to move'''
         key_pressed = pygame.key.get_pressed(
-        )  # Catch the key pressed event (if pressed return True, else False)
-
+        )  # Catch the key pressed event
+        # (if pressed return True, else False)
+        self.image = self.images["Right"]
+        self.image = pygame.transform.scale(self.image, self.size)
         # Control the player
         if key_pressed[pygame.K_RIGHT]:
-
-            self.rect.x += self.speed  # Right move
-        elif key_pressed[pygame.K_LEFT]:
-            self.rect.x -= self.speed  # Left mvoe
-        elif key_pressed[pygame.K_UP]:
-            self.rect.y -= self.speed  # Up move
-        elif key_pressed[pygame.K_DOWN]:
-            self.rect.y += self.speed  # Down move
-
-
             self.image = self.images["Right"]
             self.image = pygame.transform.scale(self.image, self.size)
-
-            self.rect.x += self.speed # Right move
-
+            self.rect.x += self.speed  # Right move
         elif key_pressed[pygame.K_LEFT]:
-
             self.image = self.images["Left"]
             self.image = pygame.transform.scale(self.image, self.size)
-            
-            self.rect.x -= self.speed # Left mvoe
-
+            self.rect.x -= self.speed  # Left mvoe
         elif key_pressed[pygame.K_UP]:
-
             self.image = self.images["Up"]
             self.image = pygame.transform.scale(self.image, self.size)
-
-            self.rect.y -= self.speed # Up move
-
+            self.rect.y -= self.speed  # Up move
         elif key_pressed[pygame.K_DOWN]:
-
             self.image = self.images["Down"]
             self.image = pygame.transform.scale(self.image, self.size)
-
-            self.rect.y += self.speed # Down move
+            self.rect.y += self.speed  # Down move
 
         # Limit the player in the window screen
         if self.rect.right > 990:
@@ -76,26 +57,22 @@ class Player(GameSprite):
 
     # There may be a better way of doing this function
     def open_door(self, callback, key):
-
+        # when player collide with a door in door group
         collide = pygame.sprite.spritecollide(
             callback.player, callback.current_room.doorGroup, False, pygame.sprite.collide_mask)
-
-        # when player collide with a door in door group
-        collide = pygame.sprite.spritecollide(callback.player, callback.current_room.doorGroup, False, pygame.sprite.collide_mask)
-
         if collide:
             # find the collided door
             for door in collide:
                 # if this key is matching this door
-                if key.door == door:
-                    # remove key from bag's key group
-                    callback.bag.keysGroup.remove(key)
-                    # remove key for the bag list
-                    callback.bag.items_list[callback.bag.index] = 0
-                    # set next room to be the door's next room
-                    next_room = door.next_room
-                    # switch
-                    callback.switch_room(next_room)
-                else:
-                    print("It is not the right key to use")
-
+                if type(key) == type(Key("assets/items/key.png", size=None)):
+                    if key.door == door:
+                        # remove key from bag's key group
+                        callback.bag.keysGroup.remove(key)
+                        # remove key for the bag list
+                        callback.bag.items_list[callback.bag.index] = 0
+                        # set next room to be the door's next room
+                        next_room = door.next_room
+                        # switch
+                        callback.switch_room(next_room)
+                    else:
+                        print("It is not the right key to use")
