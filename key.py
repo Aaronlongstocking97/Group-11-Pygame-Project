@@ -18,3 +18,12 @@ class Key(Item):
 
     def set_description(self, description):
         return super().set_description(description)
+
+    def init_key(self, room, door, position, description):
+        x, y = position
+        self.set_position(x, y)
+        self.set_description(description)
+        # this is to set this key is to be used for door 1
+        self.set_matched_door(door)
+        # add to the keys group of room1
+        room.keysGroup.add(self)
