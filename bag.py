@@ -20,7 +20,7 @@ class Bag(GameSprite):
         # the index player select
         self.index = 0
         # all groups in bag
-        self.itemsGroup = pygame.sprite.Group()
+        self.bagGroup = pygame.sprite.Group()
         self.keysGroup = pygame.sprite.Group()
         # how many items can be put in the bag
         self.remain = 9

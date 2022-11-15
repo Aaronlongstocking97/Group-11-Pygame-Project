@@ -47,7 +47,7 @@ class MainGame(object):
         self.bag = Bag()
         # create the player and set the position of player(testing)
         self.player = Player("assets/chararcter/character_front.png", (60, 80))
-        self.player.set_position(400, 400)
+        self.player.set_position(600, 600)
         # Create the first room
         self.room1 = RoomOne(ROOM1)
         # Create the second room
@@ -66,6 +66,7 @@ class MainGame(object):
 
         self.key1 = Key("assets/items/key.png", ITEM_SIZE)
         self.key1.set_position(400, 400)
+        self.key1.set_description("This is a key")
         # this is to set this key is to be used for door 1
         self.key1.set_matched_door(self.door1)
         # add to the keys group of room1
@@ -173,7 +174,7 @@ class MainGame(object):
                         elif type(item) == type(Item("assets/items/key.png", size=None)):
                             bag_group = self.bag.bagGroup
                             room_group = self.current_room.itemsGroup
-                        self.bag.put_item(item, bag_group)
+                        self.bag.remove_item(item, bag_group)
                         self.current_room.addItemTo(
                             item, self.player.rect, room_group)
                 elif event.key == pygame.K_1:

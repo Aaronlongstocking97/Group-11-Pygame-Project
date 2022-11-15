@@ -9,6 +9,7 @@ class Item(GameSprite):
         self.font_size = 20
         self.text_color = (0, 0, 0)
         self.text_bg_color = (255, 255, 255)
+        self.description = ""
 
     def set_position(self, x, y):
         self.rect.x = x

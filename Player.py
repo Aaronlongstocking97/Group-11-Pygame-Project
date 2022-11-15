@@ -25,8 +25,7 @@ class Player(GameSprite):
         key_pressed = pygame.key.get_pressed(
         )  # Catch the key pressed event
         # (if pressed return True, else False)
-        self.image = self.images["Right"]
-        self.image = pygame.transform.scale(self.image, self.size)
+
         # Control the player
         if key_pressed[pygame.K_RIGHT]:
             self.image = self.images["Right"]
