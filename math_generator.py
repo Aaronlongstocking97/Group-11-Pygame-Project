@@ -21,7 +21,8 @@ class Generator():
     def generate(self, data):
         choice = random.randint(0, len(data) -1)
         que,ans = data.pop(choice)
+        return que, ans
 
 g = Generator("math_equations")
 
-g.generate(g.data)
+print(g.generate(g.data))
