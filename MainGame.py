@@ -1,12 +1,14 @@
 import pygame
 from GameSprites import *
 from item import *
-from Player import Player
+from Player import *
 from bag import *
 from scene import *
 from door import *
 from dialog import *
 from key import *
+from mathroom import *
+from hallway import *
 
 # Does this still need to take in an object?
 
@@ -28,7 +30,7 @@ class MainGame(object):
 
     def startGame(self):
         # Set the current room to the first room in the game.
-        self.current_room = self.room1
+        self.current_room = self.hallway
 
         while True:
             # frame rate 60 hz
@@ -48,66 +50,71 @@ class MainGame(object):
         # create the player and set the position of player(testing)
         self.player = Player("assets/chararcter/character_front.png", (60, 80))
         self.player.set_position(600, 600)
-        # Create the first room
-        self.room1 = RoomOne(ROOM1)
-        # Create the second room
-        self.room2 = RoomTwo(ROOM2)
-        # Add a spice of dialog to the mix
+
+        # create rooms
+        self.math_room = MathRoom(MATH_ROOM)
+        self.hallway = Hallway(HALLWAY)
+
+        # initialize rooms
+        self.math_room.init_math_room(self)
+        self.hallway.init_hallway(self)
+
+        # Initialize the dialog
         self.dialog = Dialog()
 
-        self.door2 = Door("assets/items/door.png", ITEM_SIZE)
-        self.door2.init_door(self.room2, self.room1, (500, 500), (910, 170))
+        # self.door2 = Door("assets/items/door.png", ITEM_SIZE)
+        # self.door2.init_door(self.room2, self.room1, (500, 500), (910, 170))
 
-        self.key2 = Key("assets/items/key.png", ITEM_SIZE)
-        self.key2.init_key(self.room2, self.door2, (400, 400),
-                           "This is the key for door2")
+        # self.key2 = Key("assets/items/key.png", ITEM_SIZE)
+        # self.key2.init_key(self.room2, self.door2, (400, 400),
+        #                    "This is the key for door2")
 
-        # The items in room one
-        self.door1 = Door("assets/items/door.png", ITEM_SIZE)
-        self.door1.init_door(self.room1, self.room2, (910, 170), (500, 500))
+        # # The items in room one
+        # self.door1 = Door("assets/items/door.png", ITEM_SIZE)
+        # self.door1.init_door(self.room1, self.room2, (910, 170), (500, 500))
 
-        self.key1 = Key("assets/items/key.png", ITEM_SIZE)
-        self.key1.init_key(self.room1, self.door1, (400, 400),
-                           "This is the key for door1")
+        # self.key1 = Key("assets/items/key.png", ITEM_SIZE)
+        # self.key1.init_key(self.room1, self.door1, (400, 400),
+        #                    "This is the key for door1")
 
-        # normal item
-        self.item2 = Item("assets/items/key.png", ITEM_SIZE)
-        self.item2.set_position(300, 300)
-        self.item2.description = "This is just an item"
-        self.room1.itemsGroup.add(self.item2)
+        # # normal item
+        # self.item2 = Item("assets/items/key.png", ITEM_SIZE)
+        # self.item2.set_position(300, 300)
+        # self.item2.description = "This is just an item"
+        # self.room1.itemsGroup.add(self.item2)
 
-        # The items in room two
-        # self.item3 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item3.set_position(200, 200)
-        # self.item4 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item4.set_position(300, 300)
-        # self.item5 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item5.set_position(400, 400)
-        # self.item6 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item6.set_position(100, 100)
-        # self.item7 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item7.set_position(50, 50)
-        # self.item8 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item8.set_position(250, 250)
-        # self.item9 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item9.set_position(200, 300)
-        # self.item0 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item0.set_position(200, 400)
-        # self.key11 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.key11.set_position(200, 600)
-        # self.key12 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.key12.set_position(200, 500)
+        # # The items in room two
+        # # self.item3 = Item("assets/items/key.png", ITEM_SIZE)
+        # # self.item3.set_position(200, 200)
+        # # self.item4 = Item("assets/items/key.png", ITEM_SIZE)
+        # # self.item4.set_position(300, 300)
+        # # self.item5 = Item("assets/items/key.png", ITEM_SIZE)
+        # # self.item5.set_position(400, 400)
+        # # self.item6 = Item("assets/items/key.png", ITEM_SIZE)
+        # # self.item6.set_position(100, 100)
+        # # self.item7 = Item("assets/items/key.png", ITEM_SIZE)
+        # # self.item7.set_position(50, 50)
+        # # self.item8 = Item("assets/items/key.png", ITEM_SIZE)
+        # # self.item8.set_position(250, 250)
+        # # self.item9 = Item("assets/items/key.png", ITEM_SIZE)
+        # # self.item9.set_position(200, 300)
+        # # self.item0 = Item("assets/items/key.png", ITEM_SIZE)
+        # # self.item0.set_position(200, 400)
+        # # self.key11 = Item("assets/items/key.png", ITEM_SIZE)
+        # # self.key11.set_position(200, 600)
+        # # self.key12 = Item("assets/items/key.png", ITEM_SIZE)
+        # # self.key12.set_position(200, 500)
 
-        # self.room2.itemsGroup.add(self.item3)
-        # self.room2.itemsGroup.add(self.item4)
-        # self.room2.itemsGroup.add(self.item5)
-        # self.room2.itemsGroup.add(self.item6)
-        # self.room2.itemsGroup.add(self.item7)
-        # self.room2.itemsGroup.add(self.item8)
-        # self.room2.itemsGroup.add(self.item9)
-        # self.room2.itemsGroup.add(self.item0)
-        # self.room2.itemsGroup.add(self.key11)
-        # self.room2.itemsGroup.add(self.key12)
+        # # self.room2.itemsGroup.add(self.item3)
+        # # self.room2.itemsGroup.add(self.item4)
+        # # self.room2.itemsGroup.add(self.item5)
+        # # self.room2.itemsGroup.add(self.item6)
+        # # self.room2.itemsGroup.add(self.item7)
+        # # self.room2.itemsGroup.add(self.item8)
+        # # self.room2.itemsGroup.add(self.item9)
+        # # self.room2.itemsGroup.add(self.item0)
+        # # self.room2.itemsGroup.add(self.key11)
+        # # self.room2.itemsGroup.add(self.key12)
 
     def __update_sprites(self):
 
