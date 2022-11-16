@@ -1,11 +1,7 @@
 from GameSprites import *
 from item import *
-from Player import *
+# from Player import *
 from bag import *
-
-ROOM1 = "assets/rooms/mathroom.png"
-ROOM1WALLS = "assets/rooms/mathroom_clutter.png"
-ROOM2 = "assets/background2.png"
 
 
 class Scene(GameSprite):

@@ -11,6 +11,8 @@ class Door(Item):
     def open_door(self, no_key=False):
         if not no_key:
             return "assets/items/door1.png"
+        else:
+            return "assets/items/door.png"
 
     # set the next room of this door
     def set_next_room(self, room):

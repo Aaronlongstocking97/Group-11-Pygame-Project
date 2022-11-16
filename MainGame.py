@@ -55,22 +55,20 @@ class MainGame(object):
         # Add a spice of dialog to the mix
         self.dialog = Dialog()
 
+        self.door2 = Door("assets/items/door.png", ITEM_SIZE)
+        self.door2.init_door(self.room2, self.room1, (500, 500), (910, 170))
+
+        self.key2 = Key("assets/items/key.png", ITEM_SIZE)
+        self.key2.init_key(self.room2, self.door2, (400, 400),
+                           "This is the key for door2")
+
         # The items in room one
         self.door1 = Door("assets/items/door.png", ITEM_SIZE)
-        # set position of door(testing)
-        self.door1.set_position(910, 170)
-        # set the next room when player enter this door
-        self.door1.set_next_room(self.room2)
-        # This is a door and it is in room 1, so it should be in the door group of room1
-        self.room1.doorGroup.add(self.door1)
+        self.door1.init_door(self.room1, self.room2, (910, 170), (500, 500))
 
         self.key1 = Key("assets/items/key.png", ITEM_SIZE)
-        self.key1.set_position(400, 400)
-        self.key1.set_description("This is a key")
-        # this is to set this key is to be used for door 1
-        self.key1.set_matched_door(self.door1)
-        # add to the keys group of room1
-        self.room1.keysGroup.add(self.key1)
+        self.key1.init_key(self.room1, self.door1, (400, 400),
+                           "This is the key for door1")
 
         # normal item
         self.item2 = Item("assets/items/key.png", ITEM_SIZE)
