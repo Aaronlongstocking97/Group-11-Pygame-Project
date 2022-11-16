@@ -1,16 +1,27 @@
 import json
+import random
 
-class Genrator():
+class Generator():
 
-    def __init__(self):
-        pass
+    def __init__(self, filename):
+        self.data = self.open_file(filename)
 
 
-    def open_file(self, file_name):
-        with open(file_name+".json", "r") as my_file:
+    def open_file(self, filename):
+        with open(filename+".json", "r") as my_file:
             if not my_file:
                 print("file open failed")
             data = my_file.read()
 
         obj = json.loads(data)
+        obj = list(obj.items())
 
+        return obj
+
+    def generate(self, data):
+        choice = random.randint(0, len(data) -1)
+        que,ans = data.pop(choice)
+
+g = Generator("math_equations")
+
+g.generate(g.data)
