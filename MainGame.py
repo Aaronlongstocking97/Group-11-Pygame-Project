@@ -70,46 +70,27 @@ class MainGame(object):
         self.key1.init_key(self.room1, self.door1, (400, 400),
                            "This is the key for door1")
 
+        # Create the safe for room 1
+        self.safe = Item("assets/checkLights/safe-deposit.png", ITEM_SIZE)
+        self.safe.set_position(300, 400)
+        self.safe.description = "Answer questions right to get the key"
+        self.room1.safeGroup.add(self.safe)
+
+        self.safe = Item("assets/checkLights/safe-deposit.png", ITEM_SIZE)
+        self.safe.set_position(300, 400)
+        self.safe.description = "Answer questions right to get the key"
+        self.room2.safeGroup.add(self.safe)
+
         # normal item
         self.item2 = Item("assets/items/key.png", ITEM_SIZE)
         self.item2.set_position(300, 300)
         self.item2.description = "This is just an item"
         self.room1.itemsGroup.add(self.item2)
 
-        # The items in room two
-        # self.item3 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item3.set_position(200, 200)
-        # self.item4 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item4.set_position(300, 300)
-        # self.item5 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item5.set_position(400, 400)
-        # self.item6 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item6.set_position(100, 100)
-        # self.item7 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item7.set_position(50, 50)
-        # self.item8 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item8.set_position(250, 250)
-        # self.item9 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item9.set_position(200, 300)
-        # self.item0 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.item0.set_position(200, 400)
-        # self.key11 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.key11.set_position(200, 600)
-        # self.key12 = Item("assets/items/key.png", ITEM_SIZE)
-        # self.key12.set_position(200, 500)
-
-        # self.room2.itemsGroup.add(self.item3)
-        # self.room2.itemsGroup.add(self.item4)
-        # self.room2.itemsGroup.add(self.item5)
-        # self.room2.itemsGroup.add(self.item6)
-        # self.room2.itemsGroup.add(self.item7)
-        # self.room2.itemsGroup.add(self.item8)
-        # self.room2.itemsGroup.add(self.item9)
-        # self.room2.itemsGroup.add(self.item0)
-        # self.room2.itemsGroup.add(self.key11)
-        # self.room2.itemsGroup.add(self.key12)
+        self.answer = None
 
     def __update_sprites(self):
+
 
         # draw current rooms contents
         self.__draw_room(self.current_room)
@@ -181,8 +162,31 @@ class MainGame(object):
                         self, self.bag.items_list[self.bag.index])
                 elif event.key == pygame.K_q:
                     self.__quit_game()
+                elif event.key == pygame.K_6:
+                    self.answer = True
+                    self.answer_light = "assets/checkLights/check.png"
+                elif event.key == pygame.K_7:
+                    self.answer = False
+                    self.answer_light = "assets/checkLights/declined.png"
+                    
+                    
 
     def __collide_check(self):
+        if pygame.sprite.spritecollide(self.player, self.current_room.safeGroup, False, pygame.sprite.collide_mask):
+            self.light = Item("assets/checkLights/rotate.png", LIGHT_SIZE)
+            self.light.set_position(100, 200)
+            self.current_room.safeGroup.add(self.light)
+            if self.answer == False:
+                self.wrong_light = Item(self.answer_light, LIGHT_SIZE)
+                self.wrong_light.set_position(100, 200)
+                self.current_room.safeGroup.add(self.wrong_light)
+                self.current_room.safeGroup.remove(self.light)
+            if self.answer == True:
+                self.true_light = Item(self.answer_light, LIGHT_SIZE)
+                self.true_light.set_position(100, 200)
+                self.current_room.safeGroup.add(self.true_light)
+                self.current_room.safeGroup.remove(self.light)
+
         # add item
         if self.bag.remain > 0:
             # if player collide with a item in items group(they are almost the same, potentially could be encapuslate into a function)
@@ -217,6 +221,8 @@ class MainGame(object):
             self._screen.blit(door.image, door.rect)
         for key in room.keysGroup:
             self._screen.blit(key.image, key.rect)
+        for safe in room.safeGroup:
+            self._screen.blit(safe.image, safe.rect)
 
     # pass next room and set current_room to next room
     def switch_room(self, next_room):

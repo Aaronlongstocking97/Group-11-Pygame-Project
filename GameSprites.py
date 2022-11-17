@@ -6,6 +6,7 @@ import pygame
 SCREEN_RECT = pygame.Rect(0, 0, 990, 800)
 FRAME_RATE = 60
 ITEM_SIZE = (60, 60)
+LIGHT_SIZE = (30, 30)
 
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)

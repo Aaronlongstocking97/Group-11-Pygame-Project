@@ -26,12 +26,19 @@ class RoomOne(Scene):
         self.itemsGroup = pygame.sprite.Group()
         self.keysGroup = pygame.sprite.Group()
         self.doorGroup = pygame.sprite.Group()
+        self.safeGroup = pygame.sprite.Group()
         # self.walls = GameSprite(ROOM1WALLS, 0, (990,800))
         # self.walls.mask = pygame.mask.from_surface(self.walls.image)
 
     def addItemTo(self, item, position, group):
         return super().addItemTo(item, position, group)
-
+        
+    # def check_answer(self, answer=None):
+    #     if answer == True:
+    #         return "assets/checkLights/check.png"
+        
+    #     if answer == False:
+    #         return "assets/checkLights/declined.png"
 
 class RoomTwo(Scene):
 
@@ -41,6 +48,7 @@ class RoomTwo(Scene):
         self.itemsGroup = pygame.sprite.Group()
         self.keysGroup = pygame.sprite.Group()
         self.doorGroup = pygame.sprite.Group()
+        self.safeGroup = pygame.sprite.Group()
 
     def addItemTo(self, item, position, group):
         return super().addItemTo(item, position, group)
