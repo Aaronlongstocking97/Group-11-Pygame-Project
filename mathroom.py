@@ -44,14 +44,6 @@ class MathRoom(Scene):
         # Create the loading lights on the white board
         self.loadingLight1 = Light(LOADING_LIGHT, (25 ,25))
         self.loadingLight1.init_light(self, (330, 12))
-        # self.loadingLight2 = Light(LOADING_LIGHT, (25 ,25))
-        # self.loadingLight2.init_light(self, (360, 12))
-        # self.loadingLight3 = Light(LOADING_LIGHT, (25 ,25))
-        # self.loadingLight3.init_light(self, (390, 12))
-        # self.loadingLight4 = Light(LOADING_LIGHT, (25 ,25))
-        # self.loadingLight4.init_light(self, (420, 12))
-        # self.loadingLight5 = Light(LOADING_LIGHT, (25 ,25))
-        # self.loadingLight5.init_light(self, (450, 12))
 
     def display_question(self, callback):
         question_output = self.font.render(self.ques, True, BLACK)

@@ -131,12 +131,10 @@ class MainGame(object):
                 player_try = self.math_room.answer_box.check_answer(self, events)
                 if player_try == True:
                     print("Good Job")
-                    self.light = Light(GREEN_LIGHT, (25, 25))
-                    self.light.init_light(self.math_room, (330, 12))
+                    self.math_room.loadingLight1.right_answer()
                     self.math_room.reset_question()
                 elif player_try == False:
-                    self.light = Light(RED_LIGHT, (25, 25))
-                    self.light.init_light(self.math_room, (330, 12))
+                    self.math_room.loadingLight1.wrong_answer()
                     print("傻逼")
 
 
