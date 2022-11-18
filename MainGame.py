@@ -9,6 +9,7 @@ from dialog import *
 from key import *
 from mathroom import *
 from hallway import *
+from library import *
 from pen import *
 from scienceroom import *
 
@@ -56,11 +57,14 @@ class MainGame(object):
         # create rooms
         self.math_room = MathRoom(MATH_ROOM)
         self.hallway = Hallway(HALLWAY)
+        self.library = Library(LIBRARY)
         self.science_room = ScienceRoom(SCIENCE_ROOM)
+
 
         # initialize rooms
         self.math_room.init_math_room(self)
         self.hallway.init_hallway(self)
+        self.library.init_library(self)
         self.science_room.init_science_room(self)
 
         # Initialize the dialog
