@@ -50,7 +50,7 @@ class MainGame(object):
         self.bag = Bag()
         # create the player and set the position of player(testing)
         self.player = Player("assets/chararcter/character_front.png", (60, 80))
-        self.player.set_position(600, 600)
+        self.player.set_position(500, 500)
 
         # create rooms
         self.math_room = MathRoom(MATH_ROOM)

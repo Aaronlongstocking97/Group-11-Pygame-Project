@@ -17,8 +17,8 @@ class Hallway(Scene):
         return super().addItemTo(item, position, group)
 
     def init_hallway(self, callback):
-        callback.door_to_math = Door(DOOR_IMAGE, ITEM_SIZE)
-        callback.door_to_math.init_door(self, callback.math_room, (500, 500), (910, 170),
+        callback.door_to_math = Door(DOOR_IMAGE, DOOR_SIZE)
+        callback.door_to_math.init_door(self, callback.math_room, (197, 185), (800, 40),
                                     "This door is locked, you might need a key.")
 
         callback.key2 = Key(KEY_IMAGE, ITEM_SIZE)
@@ -26,5 +26,5 @@ class Hallway(Scene):
                            "This is the key to open the math room door")
 
         callback.pencil = Pen(PENCIL_IMAGE, ITEM_SIZE)
-        callback.pencil.init_pencil(self, (200, 200), "This is a pencil. You may use it to answer some questions")
+        callback.pencil.init_pencil(self, (300, 300), "This is a pencil. You may use it to answer some questions")
 

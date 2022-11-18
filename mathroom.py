@@ -34,8 +34,8 @@ class MathRoom(Scene):
 
         self.answer_box = AnswerBox(BOX_IMAGE, (100, 50))
 
-        callback.math_door = Door(DOOR_IMAGE, ITEM_SIZE)
-        callback.math_door.init_door(self, callback.hallway, (910, 170), (500, 500),
+        callback.math_door = Door(DOOR_IMAGE, DOOR_SIZE)
+        callback.math_door.init_door(self, callback.hallway, (800, 40), (197, 185),
                                 "This door is locked, you might need a key.")
 
         callback.key1 = Key(KEY_IMAGE, ITEM_SIZE)

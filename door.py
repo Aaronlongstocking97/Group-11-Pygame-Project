@@ -5,6 +5,7 @@ class Door(Item):
     def __init__(self, image_path, size):
         super().__init__(image_path, size)
 
+        
         self.locked = True
         self.position_in_next_room = None
 
