@@ -28,3 +28,10 @@ class Hallway(Scene):
         callback.pencil = Pen(PENCIL_IMAGE, ITEM_SIZE)
         callback.pencil.init_pencil(self, (300, 300), "This is a pencil. You may use it to answer some questions")
 
+        callback.door_to_science = Door(DOOR_IMAGE, DOOR_SIZE)
+        callback.door_to_science.init_door(self, callback.science_room, (455, 185), (30, 150),
+                                    "This door is locked, you might need a key.")
+
+        callback.key3 = Key(KEY_IMAGE, ITEM_SIZE)
+        callback.key3.init_key(self, callback.door_to_science, (500, 500), "This is a pencil. You may use it to answer some questions")
+
