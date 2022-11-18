@@ -51,8 +51,8 @@ class MainGame(object):
         # create the bag
         self.bag = Bag()
         # create the player and set the position of player(testing)
-        self.player = Player("assets/chararcter/character_front.png", (60, 80))
-        self.player.set_position(500, 500)
+        self.player = Player(PLAYER_IMAGE, PLAYER_SIZE)
+        
 
         # create rooms
         self.math_room = MathRoom(MATH_ROOM)
@@ -122,7 +122,7 @@ class MainGame(object):
 
         # when player collide with a door in door group
         collide = pygame.sprite.spritecollide(
-            self.player, self.current_room.doorGroup, False, pygame.sprite.collide_mask)
+            self.player.body, self.current_room.doorGroup, False, pygame.sprite.collide_mask)
         if collide:
             for door in collide:
                 door.show_tip(self)
@@ -134,7 +134,7 @@ class MainGame(object):
                                 self, self.bag.items_list[self.bag.index], door)
 
         # show the pop up box for math room
-        if  430 <= self.player.rect.x <= 500 and 130 <= self.player.rect.y <= 170:
+        if  430 <= self.player.body.rect.x <= 500 and 130 <= self.player.body.rect.y <= 170:
             if self.current_room == self.math_room:
                 self.math_room.answer_box.display(self)
                 self.math_room.answer_box.show_tip(self)
@@ -165,7 +165,7 @@ class MainGame(object):
         if self.bag.remain > 0:
             # if player collide with a item in items group(they are almost the same, potentially could be encapuslate into a function)
             collide = pygame.sprite.spritecollide(
-                self.player, self.current_room.itemsGroup, False, pygame.sprite.collide_mask)
+                self.player.body, self.current_room.itemsGroup, False, pygame.sprite.collide_mask)
             # this is a list
 
             if collide:
@@ -178,7 +178,7 @@ class MainGame(object):
 
             # if the player collide with a key
             collide = pygame.sprite.spritecollide(
-                self.player, self.current_room.keysGroup, False, pygame.sprite.collide_mask)
+                self.player.body, self.current_room.keysGroup, False, pygame.sprite.collide_mask)
 
             if collide:
                 for item in collide:
@@ -186,7 +186,7 @@ class MainGame(object):
                     self.bag.append_item(item, self.bag.keysGroup)
             
             collide = pygame.sprite.spritecollide(
-                self.player, self.current_room.pensGroup, False, pygame.sprite.collide_mask)
+                self.player.body, self.current_room.pensGroup, False, pygame.sprite.collide_mask)
 
             if collide:
                 for item in collide:
