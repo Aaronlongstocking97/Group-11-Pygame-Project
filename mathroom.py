@@ -2,25 +2,30 @@ from scene import *
 from math_generator import *
 from door import *
 from key import *
+
 from answer_box import *
+
 
 class MathRoom(Scene):
 
     def __init__(self, image):
         super().__init__(image)
         # all the groups in room 1
+
         self.font = pygame.font.SysFont('timesnewroman', 30)
+
         self.itemsGroup = pygame.sprite.Group()
         self.keysGroup = pygame.sprite.Group()
         self.doorGroup = pygame.sprite.Group()
         # self.walls = GameSprite(ROOM1WALLS, 0, (990,800))
         # self.walls.mask = pygame.mask.from_surface(self.walls.image)
-        
+
 
     def addItemTo(self, item, position, group):
         return super().addItemTo(item, position, group)
 
     def init_math_room(self, callback):
+
         self.questions = Generator(EQUATIONS_FILE_NAME)
         self.ques, self.ans = self.questions.generate()
 
@@ -41,3 +46,4 @@ class MathRoom(Scene):
 
     def reset_question(self):
         self.ques, self.ans = self.questions.generate()
+

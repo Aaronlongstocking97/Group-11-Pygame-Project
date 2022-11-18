@@ -59,8 +59,8 @@ class MainGame(object):
         self.math_room.init_math_room(self)
         self.hallway.init_hallway(self)
 
+        # Initialize the dialog
         self.dialog = Dialog()
-
 
     def __update_sprites(self):
 

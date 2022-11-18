@@ -22,3 +22,4 @@ class Hallway(Scene):
         callback.key2 = Key(KEY_IMAGE, ITEM_SIZE)
         callback.key2.init_key(self, callback.door_to_math, (400, 400),
                            "This is the key to open the math room door")
+
