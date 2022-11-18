@@ -2,7 +2,7 @@
 
 Background Story: An unlucky kid was locked in the school, and he is trying to solve the problems in the rooms in order to get free.
 
-![](assets/chararcter/character_temp.png)
+![](assets/chararcter/character_front.png)
 
 Attach a pictrure for the math room
 Room 1(Math room):

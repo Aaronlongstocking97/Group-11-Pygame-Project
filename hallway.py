@@ -21,12 +21,13 @@ class Hallway(Scene):
         callback.door_to_math.init_door(self, callback.math_room, (197, 185), (800, 40),
                                     "Math room is locked, you might need a key.")
 
-        callback.key2 = Key(KEY_IMAGE, ITEM_SIZE)
-        callback.key2.init_key(self, callback.door_to_math, (400, 400),
+        callback.key_mathroom = Key(KEY_IMAGE, ITEM_SIZE)
+        callback.key_mathroom.init_key(self, callback.door_to_math, (400, 400),
                            "This is the key to open the math room door")
 
         callback.pencil = Pen(PENCIL_IMAGE, ITEM_SIZE)
         callback.pencil.init_pencil(self, (300, 300), "This is a pencil. You may use it to answer some questions")
+
 
 
         callback.door_to_library = Door(DOOR_IMAGE, DOOR_SIZE)
@@ -37,4 +38,11 @@ class Hallway(Scene):
         callback.key_library.init_key(self, callback.door_to_library, (600, 400),
                            "This is the key to open the library door")
 
+
+        callback.door_to_science = Door(DOOR_IMAGE, DOOR_SIZE)
+        callback.door_to_science.init_door(self, callback.science_room, (455, 185), (30, 150),
+                                    "This door is locked, you might need a key.")
+
+        callback.key_science = Key(KEY_IMAGE, ITEM_SIZE)
+        callback.key_science.init_key(self, callback.door_to_science, (500, 500), "This is a pencil. You may use it to answer some questions")
 
