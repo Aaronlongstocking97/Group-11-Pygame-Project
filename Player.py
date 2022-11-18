@@ -79,3 +79,4 @@ class Player(GameSprite):
                 x, y = door.position_in_next_room
                 callback.player.set_position(x, y)
                 callback.switch_room(next_room)
+

@@ -1,6 +1,7 @@
 from GameSprites import *
 from item import *
 from key import *
+from pen import *
 
 
 class Bag(GameSprite):
@@ -23,6 +24,7 @@ class Bag(GameSprite):
         # all groups in bag
         self.bagGroup = pygame.sprite.Group()
         self.keysGroup = pygame.sprite.Group()
+        self.pensGroup = pygame.sprite.Group()
         # how many items can be put in the bag
         self.remain = 9
 
@@ -67,12 +69,15 @@ class Bag(GameSprite):
         if item != 0:
             # figure out what kind of item is it, if it is a key type, then it would be set to/remove from keys group.
             # As items getting more and more, we can encapsulate this into a function
-            if type(item) == type(Key("assets/items/key.png", size=None)):
+            if type(item) == type(Key(KEY_IMAGE, size=None)):
                 bag_group = self.keysGroup
                 room_group = callback.current_room.keysGroup
-            elif type(item) == type(Item("assets/items/key.png", size=None)):
+            elif type(item) == type(Item(KEY_IMAGE, size=None)):
                 bag_group = self.bagGroup
                 room_group = callback.current_room.itemsGroup
+            elif type(item) == type(Pen(PENCIL_IMAGE, size=None)):
+                bag_group = self.pensGroup
+                room_group = callback.current_room.pensGroup
             self.remove_item(item, bag_group)
             callback.current_room.addItemTo(
                 item, callback.player.rect, room_group)

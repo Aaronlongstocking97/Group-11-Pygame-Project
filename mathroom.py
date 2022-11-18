@@ -19,6 +19,7 @@ class MathRoom(Scene):
         self.keysGroup = pygame.sprite.Group()
         self.doorGroup = pygame.sprite.Group()
         self.lightsGroup = pygame.sprite.Group()
+        self.pensGroup = pygame.sprite.Group()
         # self.walls = GameSprite(ROOM1WALLS, 0, (990,800))
         # self.walls.mask = pygame.mask.from_surface(self.walls.image)
 

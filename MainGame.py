@@ -9,6 +9,7 @@ from dialog import *
 from key import *
 from mathroom import *
 from hallway import *
+from pen import *
 
 # Does this still need to take in an object?
 
@@ -79,6 +80,8 @@ class MainGame(object):
         # Draw the contents inside of the keys group
         for item in self.bag.keysGroup:
             self._screen.blit(item.image, item.rect)
+        for item in self.bag.pensGroup:
+            self._screen.blit(item.image, item.rect)
 
         self.player.move()
 
@@ -124,18 +127,30 @@ class MainGame(object):
                                 self, self.bag.items_list[self.bag.index], door)
 
         # show the pop up box for math room
-        if  670 <= self.player.rect.x <= 700:
+        if  430 <= self.player.rect.x <= 500 and 130 <= self.player.rect.y <= 170:
             if self.current_room == self.math_room:
                 self.math_room.answer_box.display(self)
-                self.math_room.answer_box.receive_input(self, events)
-                player_try = self.math_room.answer_box.check_answer(self, events)
-                if player_try == True:
-                    print("Good Job")
-                    self.math_room.loadingLight1.right_answer()
-                    self.math_room.reset_question()
-                elif player_try == False:
-                    self.math_room.loadingLight1.wrong_answer()
-                    print("傻逼")
+                self.math_room.answer_box.show_tip(self)
+                # if you can write on the box (You have used a key)
+                if self.math_room.answer_box.can_write == True:
+                    self.math_room.answer_box.receive_input(self, events)
+                    player_try = self.math_room.answer_box.check_answer(self, events)
+                    if player_try == True:
+                        self.math_room.loadingLight1.right_answer()
+                        self.math_room.reset_question()
+                    elif player_try == False:
+                        self.math_room.loadingLight1.wrong_answer()
+                else:
+                    if type(self.bag.items_list[self.bag.index]) == type(Pen((PENCIL_IMAGE), size=None)):
+                        for event in events:
+                            if event.type == pygame.KEYDOWN:
+                                if event.key == pygame.K_q:
+                                    self.math_room.answer_box.can_write = True
+                                    self.bag.remove_item(self.bag.items_list[self.bag.index], self.bag.pensGroup)
+                                    self.math_room.answer_box.set_tip("now you can wirte")
+                    else:
+                        self.math_room.answer_box.set_tip("you need a pencil")
+                    
 
 
     def __collide_check(self):
@@ -162,6 +177,14 @@ class MainGame(object):
                 for item in collide:
                     item.remove(self.current_room.keysGroup)
                     self.bag.append_item(item, self.bag.keysGroup)
+            
+            collide = pygame.sprite.spritecollide(
+                self.player, self.current_room.pensGroup, False, pygame.sprite.collide_mask)
+
+            if collide:
+                for item in collide:
+                    item.remove(self.current_room.pensGroup)
+                    self.bag.append_item(item, self.bag.pensGroup)
 
 
     def __draw_room(self, room):
@@ -174,6 +197,8 @@ class MainGame(object):
             self._screen.blit(door.image, door.rect)
         for key in room.keysGroup:
             self._screen.blit(key.image, key.rect)
+        for pencil in room.pensGroup:
+            self. _screen.blit(pencil.image, pencil.rect)
 
 
         if self.current_room == self.math_room:

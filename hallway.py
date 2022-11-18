@@ -1,6 +1,7 @@
 from scene import *
 from door import *
 from key import *
+from pen import *
 
 class Hallway(Scene):
 
@@ -10,6 +11,7 @@ class Hallway(Scene):
         self.itemsGroup = pygame.sprite.Group()
         self.keysGroup = pygame.sprite.Group()
         self.doorGroup = pygame.sprite.Group()
+        self.pensGroup = pygame.sprite.Group()
 
     def addItemTo(self, item, position, group):
         return super().addItemTo(item, position, group)
@@ -22,4 +24,7 @@ class Hallway(Scene):
         callback.key2 = Key(KEY_IMAGE, ITEM_SIZE)
         callback.key2.init_key(self, callback.door_to_math, (400, 400),
                            "This is the key to open the math room door")
+
+        callback.pencil = Pen(PENCIL_IMAGE, ITEM_SIZE)
+        callback.pencil.init_pencil(self, (200, 200), "This is a pencil. You may use it to answer some questions")
 
