@@ -29,7 +29,7 @@ GREEN_LIGHT = "assets/mathroom/check.png"
 RED_LIGHT = "assets/mathroom/remove.png"
 LOADING_LIGHT = "assets/mathroom/circle.png"
 PENCIL_IMAGE = "assets/mathroom/pencil.png"
-
+SCIENCE_ROOM = "assets/rooms/science_room.png"
 
 
 # class GameSprite(pygame.sprite.Sprite, ABC):
