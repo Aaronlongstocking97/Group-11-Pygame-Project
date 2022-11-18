@@ -18,3 +18,15 @@ class Light(Item):
         self.set_position(x, y)
         # add to the light group of room1
         room.lightsGroup.add(self)
+
+    def wrong_answer(self):
+        self.image = pygame.image.load(RED_LIGHT)
+        self.image = pygame.transform.scale(self.image, (25 ,25))
+        self.rect.x = 330
+        self.rect.y = 12
+
+    def right_answer(self):
+        self.image = pygame.image.load(GREEN_LIGHT)
+        self.image = pygame.transform.scale(self.image, (25 ,25))
+        self.rect.x = 330
+        self.rect.y = 12
