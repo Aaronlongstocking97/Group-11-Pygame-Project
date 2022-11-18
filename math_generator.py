@@ -18,11 +18,7 @@ class Generator():
 
         return obj
 
-    def generate(self, data):
-        choice = random.randint(0, len(data) -1)
-        que,ans = data.pop(choice)
+    def generate(self):
+        choice = random.randint(0, len(self.data) -1)
+        que,ans = self.data.pop(choice)
         return que, ans
-
-g = Generator("math_equations")
-
-print(g.generate(g.data))

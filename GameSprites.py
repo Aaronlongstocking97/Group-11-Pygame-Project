@@ -19,6 +19,10 @@ HOVER_IMAGE = "assets/items/hover.png"
 MATH_ROOM = "assets/rooms/mathroom.png"
 ROOM1WALLS = "assets/rooms/mathroom_clutter.png"
 HALLWAY = "assets/rooms/background2.png"
+BOX_IMAGE = "assets/items/box.png"
+DOOR_IMAGE = "assets/items/door.png"
+KEY_IMAGE = "assets/items/key.png"
+EQUATIONS_FILE_NAME = "math_equations"
 
 
 # class GameSprite(pygame.sprite.Sprite, ABC):

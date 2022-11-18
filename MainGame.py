@@ -73,11 +73,7 @@ class MainGame(object):
         self._screen.blit(self.player.image, self.player.rect)
 
         self.dialog.display(self._screen, self.bag.items_list[self.bag.index])
-        # self.dialog.display(self._screen)
-        # x = self.player.rect.x
-        # y = self.player.rect.y
 
-        # Draw the contents inside of the bag
         for item in self.bag.bagGroup:
             self._screen.blit(item.image, item.rect)
         # Draw the contents inside of the keys group
@@ -96,44 +92,49 @@ class MainGame(object):
 
         # all the one time press events would go here. (move is not one time press events becase
         # when you press left and don't release, the player is keeping moving left)
-
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
                 self.__quit_game()
             if event.type == pygame.KEYDOWN:
+
                 # press a, to select next item in the bag
                 if event.key == pygame.K_a:
-                    if self.bag.index > 0:
-                        self.bag.hover_rect.x -= 110
-                        self.bag.index -= 1
+                    self.bag.move_hover_left()
+
                 # d to select the next prev item in the bag
                 elif event.key == pygame.K_d:
-                    if self.bag.index < 8:
-                        self.bag.hover_rect.x += 110
-                        self.bag.index += 1
+                    self.bag.move_hover_right()
+
                 # press space, put the item selected in the bag to current room at the same location of player
                 elif event.key == pygame.K_SPACE:
-                    # Gets the item that the player chose (Consider Revising)
-                    item = self.bag.items_list[self.bag.index]
-                    if item != 0:
-                        # figure out what kind of item is it, if it is a key type, then it would be set to/remove from keys group.
-                        # As items getting more and more, we can encapsulate this into a function
-                        if type(item) == type(Key("assets/items/key.png", size=None)):
-                            bag_group = self.bag.keysGroup
-                            room_group = self.current_room.keysGroup
-                        elif type(item) == type(Item("assets/items/key.png", size=None)):
-                            bag_group = self.bag.bagGroup
-                            room_group = self.current_room.itemsGroup
-                        self.bag.remove_item(item, bag_group)
-                        self.current_room.addItemTo(
-                            item, self.player.rect, room_group)
-                elif event.key == pygame.K_1:
-                    # needs to be changed
-                    self.player.open_door(
-                        self, self.bag.items_list[self.bag.index])
-                elif event.key == pygame.K_q:
-                    self.__quit_game()
+                    self.bag.put_from_bag_event(self)
+
+        # when player collide with a door in door group
+        collide = pygame.sprite.spritecollide(
+            self.player, self.current_room.doorGroup, False, pygame.sprite.collide_mask)
+        if collide:
+            for door in collide:
+                door.show_tip(self)
+                for event in events:
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_q:
+                        # needs to be changed
+                            self.player.open_door(
+                                self, self.bag.items_list[self.bag.index], door)
+
+        # show the pop up box for math room
+        if  670 <= self.player.rect.x <= 700:
+            if self.current_room == self.math_room:
+                self.math_room.answer_box.display(self)
+                self.math_room.answer_box.receive_input(self, events)
+                player_try = self.math_room.answer_box.check_answer(self, events)
+                if player_try == True:
+                    print("Good Job")
+                    self.math_room.reset_question()
+                elif player_try == False:
+                    print("傻逼")
+
 
     def __collide_check(self):
         # add item
@@ -160,6 +161,7 @@ class MainGame(object):
                     item.remove(self.current_room.keysGroup)
                     self.bag.append_item(item, self.bag.keysGroup)
 
+
     def __draw_room(self, room):
         # Draw background
         self._screen.blit(room.image, room.rect)
@@ -171,9 +173,14 @@ class MainGame(object):
         for key in room.keysGroup:
             self._screen.blit(key.image, key.rect)
 
+        if self.current_room == self.math_room:
+            self.math_room.display_question(self)
+
+
     # pass next room and set current_room to next room
     def switch_room(self, next_room):
         self.current_room = next_room
+
 
     def __quit_game(self):
         pygame.quit()

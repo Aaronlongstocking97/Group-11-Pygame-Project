@@ -27,3 +27,5 @@ class Key(Item):
         self.set_matched_door(door)
         # add to the keys group of room1
         room.keysGroup.add(self)
+
+    
