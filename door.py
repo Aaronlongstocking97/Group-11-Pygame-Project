@@ -21,10 +21,17 @@ class Door(Item):
     def set_position_in_next_room(self, x, y):
         self.position_in_next_room = (x, y)
 
-    def init_door(self, this_room, next_room, this_room_position, next_room_position):
+    def set_tip(self, tip):
+        return super().set_tip(tip)
+
+    def show_tip(self, callback):
+        return super().show_tip(callback)
+
+    def init_door(self, this_room, next_room, this_room_position, next_room_position, tip):
         x, y = this_room_position
         self.set_position(x, y)
         self.set_next_room(next_room)
         x1, y1 = next_room_position
         self.set_position_in_next_room(x1, y1)
+        self.set_tip(tip)
         this_room.doorGroup.add(self)

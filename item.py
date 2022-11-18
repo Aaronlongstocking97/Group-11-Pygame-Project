@@ -5,11 +5,9 @@ class Item(GameSprite):
 
     def __init__(self, image_path, size):
         super().__init__(image_path, speed=0, size=size)
-        self.font = 'freesansbold.ttf'
-        self.font_size = 20
-        self.text_color = (0, 0, 0)
-        self.text_bg_color = (255, 255, 255)
+        self.font = pygame.font.SysFont('timesnewroman', 20)
         self.description = ""
+        self.tip = ""
 
     def set_position(self, x, y):
         self.rect.x = x
@@ -26,15 +24,12 @@ class Item(GameSprite):
         # Set the description
         self.description = description
 
-    def show_description(self, window_width, window_height):
+    def show_tip(self, callback):
         '''Show item description'''
 
         # Render the description on the window
-        font = pygame.font.Font('freesansbold.ttf', self.font_size)
-        text = font.render(self.description, True,
-                           self.text_color, self.text_bg_color)
-        text_rect = text.get_rect()
-        text_rect.center = (window_width, window_height)
+        tip = self.font.render(self.tip, True, BLACK, WHITE)
+        callback._screen.blit(tip, (20, 650))
 
-    def usage(self):
-        pass
+    def set_tip(self, tip):
+        self.tip = tip

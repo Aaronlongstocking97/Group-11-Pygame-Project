@@ -1,5 +1,6 @@
 from GameSprites import *
 from item import *
+from key import *
 
 
 class Bag(GameSprite):
@@ -59,3 +60,29 @@ class Bag(GameSprite):
         item.remove(bag_group)
         # remain + 1
         self.remain += 1
+
+    def put_from_bag_event(self, callback):
+        # Gets the item that the player chose (Consider Revising)
+        item = self.items_list[self.index]
+        if item != 0:
+            # figure out what kind of item is it, if it is a key type, then it would be set to/remove from keys group.
+            # As items getting more and more, we can encapsulate this into a function
+            if type(item) == type(Key("assets/items/key.png", size=None)):
+                bag_group = self.keysGroup
+                room_group = callback.current_room.keysGroup
+            elif type(item) == type(Item("assets/items/key.png", size=None)):
+                bag_group = self.bagGroup
+                room_group = callback.current_room.itemsGroup
+            self.remove_item(item, bag_group)
+            callback.current_room.addItemTo(
+                item, callback.player.rect, room_group)
+
+    def move_hover_left(self):
+        if self.index > 0:
+            self.hover_rect.x -= 110
+            self.index -= 1
+
+    def move_hover_right(self):
+        if self.index < 8:
+            self.hover_rect.x += 110
+            self.index += 1
