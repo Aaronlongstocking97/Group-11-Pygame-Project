@@ -9,6 +9,7 @@ from dialog import *
 from key import *
 from mathroom import *
 from hallway import *
+from library import *
 from pen import *
 
 # Does this still need to take in an object?
@@ -55,10 +56,12 @@ class MainGame(object):
         # create rooms
         self.math_room = MathRoom(MATH_ROOM)
         self.hallway = Hallway(HALLWAY)
+        self.library = Library(LIBRARY)
 
         # initialize rooms
         self.math_room.init_math_room(self)
         self.hallway.init_hallway(self)
+        self.library.init_library(self)
 
         # Initialize the dialog
         self.dialog = Dialog()
