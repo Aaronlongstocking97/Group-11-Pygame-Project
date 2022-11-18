@@ -9,6 +9,8 @@ class AnswerBox(Item):
         self.rect.centerx = SCREEN_RECT.centerx
         self.rect.centery = SCREEN_RECT.centery - 300
         self.input = "= "
+        self.can_write = False
+        self.tip = ""
         
 
 
@@ -29,12 +31,19 @@ class AnswerBox(Item):
 
 
     def check_answer(self, callback, evnets):
-
         for event in evnets:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_f:
                     answer = str(callback.math_room.ans)
                     if answer == self.input[2:]:
+                        self.input = "= "
                         return True
                     else:
+                        self.input = "= "
                         return False
+
+    def show_tip(self, callback):
+        return super().show_tip(callback)
+
+    def set_tip(self, tip):
+        return super().set_tip(tip)

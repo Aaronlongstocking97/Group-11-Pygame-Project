@@ -27,6 +27,7 @@ SAFE_IMAGE = "assets/mathroom/safe-deposit.png"
 GREEN_LIGHT = "assets/mathroom/check.png"
 RED_LIGHT = "assets/mathroom/remove.png"
 LOADING_LIGHT = "assets/mathroom/circle.png"
+PENCIL_IMAGE = "assets/mathroom/pencil.png"
 
 
 # class GameSprite(pygame.sprite.Sprite, ABC):
