@@ -131,8 +131,12 @@ class MainGame(object):
                 player_try = self.math_room.answer_box.check_answer(self, events)
                 if player_try == True:
                     print("Good Job")
+                    self.light = Light(GREEN_LIGHT, (25, 25))
+                    self.light.init_light(self.math_room, (330, 12))
                     self.math_room.reset_question()
                 elif player_try == False:
+                    self.light = Light(RED_LIGHT, (25, 25))
+                    self.light.init_light(self.math_room, (330, 12))
                     print("傻逼")
 
 
@@ -173,9 +177,11 @@ class MainGame(object):
         for key in room.keysGroup:
             self._screen.blit(key.image, key.rect)
 
+
         if self.current_room == self.math_room:
             self.math_room.display_question(self)
-
+            for light in room.lightsGroup:
+                self._screen.blit(light.image, light.rect)
 
     # pass next room and set current_room to next room
     def switch_room(self, next_room):
