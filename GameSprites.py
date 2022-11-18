@@ -23,6 +23,10 @@ BOX_IMAGE = "assets/items/box.png"
 DOOR_IMAGE = "assets/items/door.png"
 KEY_IMAGE = "assets/items/key.png"
 EQUATIONS_FILE_NAME = "math_equations"
+SAFE_IMAGE = "assets/mathroom/safe-deposit.png"
+GREEN_LIGHT = "assets/mathroom/check.png"
+RED_LIGHT = "assets/mathroom/remove.png"
+LOADING_LIGHT = "assets/mathroom/circle.png"
 
 
 # class GameSprite(pygame.sprite.Sprite, ABC):

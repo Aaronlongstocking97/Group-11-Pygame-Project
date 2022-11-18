@@ -2,6 +2,7 @@ from scene import *
 from math_generator import *
 from door import *
 from key import *
+from light import *
 
 from answer_box import *
 
@@ -17,6 +18,7 @@ class MathRoom(Scene):
         self.itemsGroup = pygame.sprite.Group()
         self.keysGroup = pygame.sprite.Group()
         self.doorGroup = pygame.sprite.Group()
+        self.lightsGroup = pygame.sprite.Group()
         # self.walls = GameSprite(ROOM1WALLS, 0, (990,800))
         # self.walls.mask = pygame.mask.from_surface(self.walls.image)
 
@@ -38,6 +40,18 @@ class MathRoom(Scene):
         callback.key1 = Key(KEY_IMAGE, ITEM_SIZE)
         callback.key1.init_key(self, callback.math_door, (400, 400),
                            "This is the key to enter the hallway")
+
+        # Create the loading lights on the white board
+        self.loadingLight1 = Light(LOADING_LIGHT, (25 ,25))
+        self.loadingLight1.init_light(self, (330, 12))
+        # self.loadingLight2 = Light(LOADING_LIGHT, (25 ,25))
+        # self.loadingLight2.init_light(self, (360, 12))
+        # self.loadingLight3 = Light(LOADING_LIGHT, (25 ,25))
+        # self.loadingLight3.init_light(self, (390, 12))
+        # self.loadingLight4 = Light(LOADING_LIGHT, (25 ,25))
+        # self.loadingLight4.init_light(self, (420, 12))
+        # self.loadingLight5 = Light(LOADING_LIGHT, (25 ,25))
+        # self.loadingLight5.init_light(self, (450, 12))
 
     def display_question(self, callback):
         question_output = self.font.render(self.ques, True, BLACK)
