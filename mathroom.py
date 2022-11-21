@@ -39,7 +39,7 @@ class MathRoom(Scene):
         
         self.ques, self.ans = self.questions.generate()
         
-        callback.math_door.init_door(self, callback.hallway, (800, 40), (197, 185),
+        callback.math_door.init_door(self, callback.hallway, (450, 600), (197, 185),
                                 "This door is locked, you might need a key.")
         callback.math_door.locked = False
         

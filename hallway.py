@@ -28,7 +28,7 @@ class Hallway(Scene):
 
     def init_hallway(self, callback):
         
-        callback.door_to_math.init_door(self, callback.math_room, (197, 185), (800, 40),
+        callback.door_to_math.init_door(self, callback.math_room, (197, 185), (450, 600),
                                     "Math room is locked, you might need a key.")
         
         callback.key_mathroom.init_key(self, callback.door_to_math, (400, 400),
