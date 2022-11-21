@@ -12,6 +12,8 @@ class Hallway(Scene):
         self.keysGroup = pygame.sprite.Group()
         self.doorGroup = pygame.sprite.Group()
         self.pensGroup = pygame.sprite.Group()
+        self.walls = GameSprite(HALLWAY_WALLS, 0, (990,800))
+        self.walls.mask = pygame.mask.from_surface(self.walls.image)
 
     def addItemTo(self, item, position, group):
         return super().addItemTo(item, position, group)
