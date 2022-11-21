@@ -27,23 +27,27 @@ class MathRoom(Scene):
     def addItemTo(self, item, position, group):
         return super().addItemTo(item, position, group)
 
+    def create_room(self, callback):
+        self.questions = Generator(EQUATIONS_FILE_NAME)
+        self.answer_box = AnswerBox(BOX_IMAGE, (100, 50))
+        callback.math_door = Door(DOOR_IMAGE, DOOR_SIZE)
+        callback.key_library = Key(KEY_IMAGE, ITEM_SIZE)
+        self.loadingLight1 = Light(LOADING_LIGHT, (25 ,25))
+
     def init_math_room(self, callback):
 
-        self.questions = Generator(EQUATIONS_FILE_NAME)
+        
         self.ques, self.ans = self.questions.generate()
-
-        self.answer_box = AnswerBox(BOX_IMAGE, (100, 50))
-
-        callback.math_door = Door(DOOR_IMAGE, DOOR_SIZE)
+        
         callback.math_door.init_door(self, callback.hallway, (800, 40), (197, 185),
                                 "This door is locked, you might need a key.")
-
-        callback.key1 = Key(KEY_IMAGE, ITEM_SIZE)
-        callback.key1.init_key(self, callback.math_door, (400, 400),
-                           "This is the key to enter the hallway")
+        callback.math_door.locked = False
+        
+        callback.key_library.init_key(self, callback.door_to_library, (600, 400),
+                           "This is the key to open the library door")
 
         # Create the loading lights on the white board
-        self.loadingLight1 = Light(LOADING_LIGHT, (25 ,25))
+        
         self.loadingLight1.init_light(self, (330, 12))
 
     def display_question(self, callback):

@@ -60,6 +60,10 @@ class MainGame(object):
         self.library = Library(LIBRARY)
         self.science_room = ScienceRoom(SCIENCE_ROOM)
 
+        self.math_room.create_room(self)
+        self.hallway.creat_hallway(self)
+        self.library.create_library(self)
+        self.science_room.create_science_room(self)
 
         # initialize rooms
         self.math_room.init_math_room(self)
