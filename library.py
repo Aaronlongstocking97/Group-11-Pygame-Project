@@ -36,7 +36,7 @@ class Library(Scene):
 
         
         callback.library_door.init_door(self, callback.hallway, (513, 600), (712, 185),
-                                "This door is locked, you might need a key.")
+                                "To the hallway.")
         callback.library_door.locked = False
 
         

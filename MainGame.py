@@ -151,6 +151,7 @@ class MainGame(object):
                     if player_try == True:
                         self.math_room.loadingLight1.right_answer()
                         self.math_room.reset_question()
+                        self.math_room.answers += 1
                     elif player_try == False:
                         self.math_room.loadingLight1.wrong_answer()
                 else:
@@ -218,6 +219,9 @@ class MainGame(object):
             self.math_room.display_question(self)
             for light in room.lightsGroup:
                 self._screen.blit(light.image, light.rect)
+            if self.math_room.answers >= 5 and self.math_room.passed == False:
+                self.math_room.pass_room(self)
+                self.math_room.passed = True
 
     # pass next room and set current_room to next room
     def switch_room(self, next_room):
