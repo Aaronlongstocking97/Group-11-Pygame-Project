@@ -100,7 +100,7 @@ class MainGame(object):
         self.player.move()
 
         collide = pygame.sprite.collide_mask(
-            self.player, self.current_room.walls)
+            self.player.body, self.current_room.walls)
         if collide != None:
             self.player.set_position(x, y)
 
