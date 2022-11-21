@@ -40,7 +40,7 @@ class Hallway(Scene):
                                     "Library is locked, you might need a key.")
 
         callback.door_to_science.init_door(self, callback.science_room, (455, 185), (30, 150),
-                                    "This door is locked, you might need a key.")
+                                    "Science room is locked, you might need a key.")
 
         
 

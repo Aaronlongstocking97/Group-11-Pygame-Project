@@ -37,7 +37,7 @@ class ScienceRoom(Scene):
 
         
         callback.science_door.init_door(self, callback.hallway, (30, 150), (455, 185),
-                                "This door is locked, you might need a key.")
+                                "To the hallway.")
         callback.science_door.locked = False
 
         
