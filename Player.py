@@ -1,5 +1,6 @@
 from GameSprites import *
 from key import *
+from body import *
 
 
 class Player(GameSprite):
@@ -8,6 +9,11 @@ class Player(GameSprite):
         super().__init__(image_path, speed, size=size)
 
         self.size = size
+        self.set_position(500, 500)
+
+
+        self.body = Body(PLAYER_IMAGE, BODY_SIZE)
+        self.body.set_position(self.rect.x, self.rect.bottom)
 
         self.images = {
             "Right": pygame.image.load('assets/chararcter/character_right.png'),
@@ -53,6 +59,8 @@ class Player(GameSprite):
             self.rect.top = 0
         elif self.rect.bottom > 700:
             self.rect.bottom = 700
+        
+        self.body.attach_player(self.rect.x, self.rect.bottom)
 
     # There may be a better way of doing this function
     def open_door(self, callback, key, door):

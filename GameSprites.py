@@ -7,6 +7,8 @@ SCREEN_RECT = pygame.Rect(0, 0, 990, 800)
 FRAME_RATE = 60
 ITEM_SIZE = (60, 60)
 DOOR_SIZE = (80, 95)
+PLAYER_SIZE = (60, 80)
+BODY_SIZE = (60, 45)
 
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
@@ -31,6 +33,7 @@ RED_LIGHT = "assets/mathroom/remove.png"
 LOADING_LIGHT = "assets/mathroom/circle.png"
 PENCIL_IMAGE = "assets/mathroom/pencil.png"
 SCIENCE_ROOM = "assets/rooms/science_room.png"
+PLAYER_IMAGE = "assets/chararcter/character_front.png"
 
 
 # class GameSprite(pygame.sprite.Sprite, ABC):
