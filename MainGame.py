@@ -83,13 +83,15 @@ class MainGame(object):
         for item in self.bag.pensGroup:
             self._screen.blit(item.image, item.rect)
 
+        x = self.player.rect.x
+        y = self.player.rect.y
+
         self.player.move()
 
-        # collide = pygame.sprite.collide_mask(
-        #     self.player, self.current_room.walls)
-        # if collide != None:
-        #     self.player.rect.x = x
-        #     self.player.rect.y = y
+        collide = pygame.sprite.collide_mask(
+            self.player, self.current_room.walls)
+        if collide != None:
+            self.player.set_position(x, y)
 
     def __event_handle(self):
 
