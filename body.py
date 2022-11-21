@@ -9,7 +9,7 @@ class Body(GameSprite):
 
 
     def attach_player(self, x, y):
-        self.rect.x = x
+        self.rect.x = x + 10
         self.rect.bottom = y
 
     def set_position(self, x, y):
