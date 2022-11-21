@@ -27,24 +27,21 @@ class Library(Scene):
     def addItemTo(self, item, position, group):
         return super().addItemTo(item, position, group)
 
+    def create_library(self, callback):
+        callback.library_door = Door(DOOR_IMAGE, DOOR_SIZE)
+        callback.key_science = Key(KEY_IMAGE, ITEM_SIZE)
+
     def init_library(self, callback):
 
-        # self.questions = Generator(EQUATIONS_FILE_NAME)
-        # self.ques, self.ans = self.questions.generate()
 
-        self.answer_box = AnswerBox(BOX_IMAGE, (100, 50))
-
-        callback.library_door = Door(DOOR_IMAGE, DOOR_SIZE)
+        
         callback.library_door.init_door(self, callback.hallway, (513, 600), (712, 185),
                                 "This door is locked, you might need a key.")
+        callback.library_door.locked = False
 
-        callback.key3 = Key(KEY_IMAGE, ITEM_SIZE)
-        callback.key3.init_key(self, callback.library_door, (400, 400),
-                           "This is the key to enter the hallway")
+        
+        callback.key_science.init_key(self, callback.door_to_science, (500, 500), "This is the key to science")
 
-        # Create the loading lights on the white board
-        # self.loadingLight1 = Light(LOADING_LIGHT, (25 ,25))
-        # self.loadingLight1.init_light(self, (330, 12))
 
     def display_question(self, callback):
         question_output = self.font.render(self.ques, True, BLACK)
