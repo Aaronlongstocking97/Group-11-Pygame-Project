@@ -6,6 +6,7 @@ import pygame
 SCREEN_RECT = pygame.Rect(0, 0, 990, 800)
 FRAME_RATE = 60
 ITEM_SIZE = (60, 60)
+DOOR_SIZE = (80, 95)
 
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
@@ -20,8 +21,9 @@ MATH_ROOM = "assets/rooms/mathroom.png"
 MATH_ROOM_WALLS = "assets/rooms/mathroom_clutter.png"
 HALLWAY = "assets/rooms/hallway.png"
 HALLWAY_WALLS = "assets/rooms/hallway_mask.png"
+LIBRARY = "assets/rooms/library.png"
 BOX_IMAGE = "assets/items/box.png"
-DOOR_IMAGE = "assets/items/door.png"
+DOOR_IMAGE = "assets/rooms/door_closed.png"
 KEY_IMAGE = "assets/items/key.png"
 EQUATIONS_FILE_NAME = "math_equations"
 SAFE_IMAGE = "assets/mathroom/safe-deposit.png"
@@ -29,6 +31,7 @@ GREEN_LIGHT = "assets/mathroom/check.png"
 RED_LIGHT = "assets/mathroom/remove.png"
 LOADING_LIGHT = "assets/mathroom/circle.png"
 PENCIL_IMAGE = "assets/mathroom/pencil.png"
+SCIENCE_ROOM = "assets/rooms/science_room.png"
 
 
 # class GameSprite(pygame.sprite.Sprite, ABC):

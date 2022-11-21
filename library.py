@@ -1,5 +1,5 @@
 from scene import *
-from math_generator import *
+# from math_generator import *
 from door import *
 from key import *
 from light import *
@@ -7,7 +7,7 @@ from light import *
 from answer_box import *
 
 
-class MathRoom(Scene):
+class Library(Scene):
 
     def __init__(self, image):
         super().__init__(image)
@@ -20,31 +20,31 @@ class MathRoom(Scene):
         self.doorGroup = pygame.sprite.Group()
         self.lightsGroup = pygame.sprite.Group()
         self.pensGroup = pygame.sprite.Group()
-        self.walls = GameSprite(MATH_ROOM_WALLS, 0, (990,800))
-        self.walls.mask = pygame.mask.from_surface(self.walls.image)
+        # self.walls = GameSprite(ROOM1WALLS, 0, (990,800))
+        # self.walls.mask = pygame.mask.from_surface(self.walls.image)
 
 
     def addItemTo(self, item, position, group):
         return super().addItemTo(item, position, group)
 
-    def init_math_room(self, callback):
+    def init_library(self, callback):
 
-        self.questions = Generator(EQUATIONS_FILE_NAME)
-        self.ques, self.ans = self.questions.generate()
+        # self.questions = Generator(EQUATIONS_FILE_NAME)
+        # self.ques, self.ans = self.questions.generate()
 
         self.answer_box = AnswerBox(BOX_IMAGE, (100, 50))
 
-        callback.math_door = Door(DOOR_IMAGE, DOOR_SIZE)
-        callback.math_door.init_door(self, callback.hallway, (800, 40), (197, 185),
+        callback.library_door = Door(DOOR_IMAGE, DOOR_SIZE)
+        callback.library_door.init_door(self, callback.hallway, (513, 600), (712, 185),
                                 "This door is locked, you might need a key.")
 
-        callback.key1 = Key(KEY_IMAGE, ITEM_SIZE)
-        callback.key1.init_key(self, callback.math_door, (400, 400),
+        callback.key3 = Key(KEY_IMAGE, ITEM_SIZE)
+        callback.key3.init_key(self, callback.library_door, (400, 400),
                            "This is the key to enter the hallway")
 
         # Create the loading lights on the white board
-        self.loadingLight1 = Light(LOADING_LIGHT, (25 ,25))
-        self.loadingLight1.init_light(self, (330, 12))
+        # self.loadingLight1 = Light(LOADING_LIGHT, (25 ,25))
+        # self.loadingLight1.init_light(self, (330, 12))
 
     def display_question(self, callback):
         question_output = self.font.render(self.ques, True, BLACK)

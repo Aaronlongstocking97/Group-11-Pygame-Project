@@ -7,7 +7,7 @@ from light import *
 from answer_box import *
 
 
-class MathRoom(Scene):
+class ScienceRoom(Scene):
 
     def __init__(self, image):
         super().__init__(image)
@@ -20,26 +20,24 @@ class MathRoom(Scene):
         self.doorGroup = pygame.sprite.Group()
         self.lightsGroup = pygame.sprite.Group()
         self.pensGroup = pygame.sprite.Group()
-        self.walls = GameSprite(MATH_ROOM_WALLS, 0, (990,800))
-        self.walls.mask = pygame.mask.from_surface(self.walls.image)
 
 
     def addItemTo(self, item, position, group):
         return super().addItemTo(item, position, group)
 
-    def init_math_room(self, callback):
+    def init_science_room(self, callback):
 
         self.questions = Generator(EQUATIONS_FILE_NAME)
         self.ques, self.ans = self.questions.generate()
 
         self.answer_box = AnswerBox(BOX_IMAGE, (100, 50))
 
-        callback.math_door = Door(DOOR_IMAGE, DOOR_SIZE)
-        callback.math_door.init_door(self, callback.hallway, (800, 40), (197, 185),
+        callback.science_door = Door(DOOR_IMAGE, DOOR_SIZE)
+        callback.science_door.init_door(self, callback.hallway, (30, 150), (455, 185),
                                 "This door is locked, you might need a key.")
 
         callback.key1 = Key(KEY_IMAGE, ITEM_SIZE)
-        callback.key1.init_key(self, callback.math_door, (400, 400),
+        callback.key1.init_key(self, callback.science_door, (100, 300),
                            "This is the key to enter the hallway")
 
         # Create the loading lights on the white board
@@ -53,4 +51,3 @@ class MathRoom(Scene):
 
     def reset_question(self):
         self.ques, self.ans = self.questions.generate()
-

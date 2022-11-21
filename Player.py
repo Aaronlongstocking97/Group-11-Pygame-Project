@@ -70,13 +70,13 @@ class Player(GameSprite):
                         door.set_tip("You can open it!")
                         # switch
                         x, y = door.position_in_next_room
-                        callback.player.set_position(x, y)
+                        callback.player.set_position(x + 10, y + 30)
                         callback.switch_room(next_room)
                     else:
                         print("It is not the right key to use")
             elif door.locked == False:
                 next_room = door.next_room
                 x, y = door.position_in_next_room
-                callback.player.set_position(x, y)
+                callback.player.set_position(x + 10, y + 30)
                 callback.switch_room(next_room)
 
