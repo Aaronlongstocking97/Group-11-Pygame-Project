@@ -158,6 +158,7 @@ class MainGame(object):
                     elif player_try == False:
                         self.math_room.loadingLight1.wrong_answer()
                 else:
+                    self.math_room.answer_box.set_tip("you need a pencil")
                     if type(self.bag.items_list[self.bag.index]) == type(Pen((PENCIL_IMAGE), size=None)):
                         for event in events:
                             if event.type == pygame.KEYDOWN:
@@ -165,8 +166,6 @@ class MainGame(object):
                                     self.math_room.answer_box.can_write = True
                                     self.bag.remove_item(self.bag.items_list[self.bag.index], self.bag.pensGroup)
                                     self.math_room.answer_box.set_tip("now you can wirte")
-                    else:
-                        self.math_room.answer_box.set_tip("you need a pencil")
                     
 
 
