@@ -29,7 +29,7 @@ class ScienceRoom(Scene):
 
     def create_science_room(self, callback):
         callback.science_door = Door(DOOR_IMAGE, DOOR_SIZE)
-        callback.key1 = Key(KEY_IMAGE, ITEM_SIZE)
+        callback.key_exit = Key(KEY_IMAGE, ITEM_SIZE)
 
     def init_science_room(self, callback):
 
@@ -40,8 +40,7 @@ class ScienceRoom(Scene):
                                 "To the hallway.")
         callback.science_door.locked = False
 
-        
-        callback.key1.init_key(self, callback.science_door, (100, 300),
+        callback.key_exit.init_key(self, callback.door_to_exit, (100, 300),
                            "This is the key to escape")
 
 

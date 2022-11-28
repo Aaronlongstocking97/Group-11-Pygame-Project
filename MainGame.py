@@ -59,6 +59,7 @@ class MainGame(object):
         self.hallway = Hallway(HALLWAY)
         self.library = Library(LIBRARY)
         self.science_room = ScienceRoom(SCIENCE_ROOM)
+        self.winning_scene = Scene(WINNING_SCENE)
 
         self.math_room.create_room(self)
         self.hallway.creat_hallway(self)
@@ -98,11 +99,13 @@ class MainGame(object):
         y = self.player.rect.y
 
         self.player.move()
-
-        collide = pygame.sprite.collide_mask(
-            self.player.body, self.current_room.walls)
-        if collide != None:
-            self.player.set_position(x, y)
+        
+        # walls
+        if self.current_room != self.winning_scene:
+            collide = pygame.sprite.collide_mask(
+                self.player.body, self.current_room.walls)
+            if collide != None:
+                self.player.set_position(x, y)
 
     def __event_handle(self):
 
