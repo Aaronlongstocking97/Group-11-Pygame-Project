@@ -6,6 +6,7 @@ class Generator():
 
     def __init__(self, filename):
         self.data = self.open_file(filename)
+        self.filename = filename
 
     def open_file(self, filename):
         with open(filename+".json", "r") as my_file:
@@ -18,7 +19,10 @@ class Generator():
         return obj
 
     def generate(self):
-        choice = random.randint(0, len(self.data) -1)
-        que,ans = self.data.pop(choice)
-        return que, ans
+        if len(self.data) > 0:
+            choice = random.randint(0, len(self.data) -1)
+            que,ans = self.data.pop(choice)
+            return que, ans
+        else:
+            self.data = self.open_file(self.filename)
 
