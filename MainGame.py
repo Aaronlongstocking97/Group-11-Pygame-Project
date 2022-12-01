@@ -12,6 +12,7 @@ from hallway import *
 from library import *
 from pen import *
 from scienceroom import *
+from button import *
 
 # Does this still need to take in an object?
 
@@ -230,3 +231,37 @@ class MainGame(object):
     def __quit_game(self):
         pygame.quit()
         exit()
+
+    def get_font(size):
+        return pygame.font.Font('assets/menu/font.ttf', size)
+
+    def main_menu(self):
+        while True:
+            self._screen.blit(pygame.image.load("assets/menu/MenuBackground.png"),(0,0))
+
+            MENU_MOUSE_POS = pygame.mouse.get_pos()
+
+            MENU_TEXT = pygame.font.Font('assets/menu/font.ttf', 75).render("ESCAPE ROOM", True, "#b68f40")
+            MENU_RECT = MENU_TEXT.get_rect(center=(500, 150))
+
+            PLAY_BUTTON = Button(image=pygame.image.load("assets/menu/MenuRect.png"), pos=(500, 300), 
+                            text_input="PLAY", font=pygame.font.Font('assets/menu/font.ttf', 50), base_color="#d7fcd4", hovering_color="White")
+            QUIT_BUTTON = Button(image=pygame.image.load("assets/menu/MenuRect.png"), pos=(500, 450), 
+                            text_input="QUIT", font=pygame.font.Font('assets/menu/font.ttf', 50), base_color="#d7fcd4", hovering_color="White")
+
+            self._screen.blit(MENU_TEXT, MENU_RECT)
+
+            for button in [PLAY_BUTTON,  QUIT_BUTTON]:
+                button.changeColor(MENU_MOUSE_POS)
+                button.update(self._screen)
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.__quit_game()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        self.startGame()
+                    if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        self.__quit_game()
+
+            pygame.display.update()

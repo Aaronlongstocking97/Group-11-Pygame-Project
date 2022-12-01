@@ -5,7 +5,7 @@ def main():
 
     start = MainGame()
 
-    start.startGame()
+    start.main_menu()
 
 
 if __name__ == "__main__":
