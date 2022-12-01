@@ -19,9 +19,8 @@ class Generator():
         return obj
 
     def generate(self):
-        if len(self.data) > 0:
-            choice = random.randint(0, len(self.data) - 1)
-            que, ans = self.data.pop(choice)
-            return que, ans
-        else:
+        if len(self.data) == 0:
             self.data = self.open_file(self.filename)
+        choice = random.randint(0, len(self.data) - 1)
+        que, ans = self.data.pop(choice)
+        return que, ans
