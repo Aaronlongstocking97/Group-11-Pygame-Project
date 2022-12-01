@@ -2,20 +2,23 @@
 
 Background Story: An unlucky kid was locked in the school, and he is trying to solve the problems in the rooms in order to get free.
 
-![](assets/chararcter/character_front.png)
+![](assets/markdown/character_markdown.png)
 
-Attach a pictrure for the math room
-Room 1(Math room):
+## Room 1(Math room):
+
+![](assets/rooms/mathroom.png)
 
 The room has question on the whiteboard. And the door next to whiteboard is locked by number password. He needs to find a way to solve the pasword. After he has solved the question then he needs to head to the Science Lab.
 
-Attach a pic for the Science Lab
-Room 2(Science Lab):
+## Room 2(Science Lab):
+
+![](assets/rooms/science_room.png)
 
 Science lab has a lot of chemical liquids in beaker. And referring to material notice on the notice board, mix colorful liquids by getting and using each color liquid in the sicence lab, and make correct color medicine, then the lock for teacher's table drawer will be unlocked. There is an answer. After player got science answer, head to Reading and Writing Center.
 
-Attach a pic for the Reading and Writing Center
-Room 3(Reading and Writing Center):
+## Room 3(Reading and Writing Center):
+
+![](assets/rooms/library.png)
 
 In the reading center, there is a Scrabble and play it, and the blank letter space with color. And the word by connecting the color letters will be the answer to open a shelf which has an answer.
 
@@ -37,8 +40,6 @@ Below is the software demo video:
 -  [Visual Studio Code](https://code.visualstudio.com/)
 
 # Future Work
-
-{Make a list of things that you need to fix, improve, and add in the future.}
 
 -  Item 1
 -  Item 2
