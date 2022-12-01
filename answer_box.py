@@ -21,20 +21,20 @@ class AnswerBox(Item):
 
 
 
-    def receive_input(self, callback, events):
+    def receive_input(self, events, room):
         for event in events:
             if event.type ==pygame.KEYDOWN:
                 if 48 <= event.key <= 58:
-                    callback.math_room.answer_box.input += chr(event.key)
-                elif event.key == 8 and callback.math_room.answer_box.input != "= ":
-                    callback.math_room.answer_box.input = callback.math_room.answer_box.input[:-1]
+                    room.answer_box.input += chr(event.key)
+                elif event.key == 8 and room.answer_box.input != "= ":
+                    room.answer_box.input = room.answer_box.input[:-1]
 
 
-    def check_answer(self, callback, evnets):
+    def check_answer(self, evnets, room):
         for event in evnets:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_f:
-                    answer = str(callback.math_room.ans)
+                    answer = str(room.ans)
                     if answer == self.input[2:]:
                         self.input = "= "
                         return True
