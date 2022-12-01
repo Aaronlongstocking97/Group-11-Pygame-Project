@@ -1,5 +1,8 @@
 from item import *
 
+# This class creates a loading function/image
+# on the white board in the math room.
+
 
 class Light(Item):
 
@@ -21,12 +24,12 @@ class Light(Item):
 
     def wrong_answer(self):
         self.image = pygame.image.load(RED_LIGHT)
-        self.image = pygame.transform.scale(self.image, (25 ,25))
+        self.image = pygame.transform.scale(self.image, (25, 25))
         self.rect.x = 330
         self.rect.y = 12
 
     def right_answer(self):
         self.image = pygame.image.load(GREEN_LIGHT)
-        self.image = pygame.transform.scale(self.image, (25 ,25))
+        self.image = pygame.transform.scale(self.image, (25, 25))
         self.rect.x = 330
         self.rect.y = 12
