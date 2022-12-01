@@ -148,9 +148,10 @@ class MainGame(object):
                 self.math_room.answer_box.show_tip(self)
                 # if you can write on the box (You have used a key)
                 if self.math_room.answer_box.can_write == True:
-                    self.math_room.answer_box.receive_input(self, events)
-                    player_try = self.math_room.answer_box.check_answer(
-                        self, events)
+
+                    self.math_room.answer_box.receive_input(events, self.math_room)
+                    player_try = self.math_room.answer_box.check_answer(events, self.math_room)
+
                     if player_try == True:
                         self.math_room.loadingLight1.right_answer()
                         self.math_room.reset_question()
@@ -164,10 +165,23 @@ class MainGame(object):
                             if event.type == pygame.KEYDOWN:
                                 if event.key == pygame.K_q:
                                     self.math_room.answer_box.can_write = True
-                                    self.bag.remove_item(
-                                        self.bag.items_list[self.bag.index], self.bag.pensGroup)
-                                    self.math_room.answer_box.set_tip(
-                                        "now you can wirte")
+                                    self.bag.remove_item(self.bag.items_list[self.bag.index], self.bag.pensGroup)
+                                    self.math_room.answer_box.set_tip("now you can wirte")
+
+
+            if self.current_room == self.science_room:
+                self.science_room.answer_box.display(self)
+                self.science_room.answer_box.show_tip(self)
+                self.science_room.answer_box.can_write == True
+                self.science_room.answer_box.receive_input(events, self.science_room)
+                player_try = self.science_room.answer_box.check_answer(events, self.science_room)
+                if player_try == True:
+                    self.science_room.loadingLight1.right_answer()
+                    self.science_room.reset_question()
+                    self.science_room.answers += 1
+                elif player_try == False:
+                    self.science_room.loadingLight1.wrong_answer()
+               
 
     def __collide_check(self):
         # add item
@@ -222,6 +236,14 @@ class MainGame(object):
             if self.math_room.answers >= 5 and self.math_room.passed == False:
                 self.math_room.pass_room(self)
                 self.math_room.passed = True
+
+        if self.current_room == self.science_room:
+            self.science_room.display_question(self)
+            for light in room.lightsGroup:
+                self._screen.blit(light.image, light.rect)
+            if self.science_room.answers >= 5 and self.science_room.passed == False:
+                self.science_room.pass_room(self)
+                self.science_room.passed = True
 
     # pass next room and set current_room to next room
     def switch_room(self, next_room):

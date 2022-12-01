@@ -44,6 +44,3 @@ class Hallway(Scene):
                                     "Science room is locked, you might need a key.")
         
         callback.door_to_exit.init_door(self, callback.winning_scene, (500, 500), (500, 500), "It's locked! You can't leave the school.")
-
-        
-
