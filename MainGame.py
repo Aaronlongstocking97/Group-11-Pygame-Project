@@ -52,7 +52,6 @@ class MainGame(object):
         self.bag = Bag()
         # create the player and set the position of player(testing)
         self.player = Player(PLAYER_IMAGE, PLAYER_SIZE)
-        
 
         # create rooms
         self.math_room = MathRoom(MATH_ROOM)
@@ -99,7 +98,7 @@ class MainGame(object):
         y = self.player.rect.y
 
         self.player.move()
-        
+
         # walls
         if self.current_room != self.winning_scene:
             collide = pygame.sprite.collide_mask(
@@ -138,19 +137,20 @@ class MainGame(object):
                 for event in events:
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_q:
-                        # needs to be changed
+                            # needs to be changed
                             self.player.open_door(
                                 self, self.bag.items_list[self.bag.index], door)
 
         # show the pop up box for math room
-        if  430 <= self.player.body.rect.x <= 500 and 130 <= self.player.body.rect.y <= 170:
+        if 430 <= self.player.body.rect.x <= 500 and 130 <= self.player.body.rect.y <= 170:
             if self.current_room == self.math_room:
                 self.math_room.answer_box.display(self)
                 self.math_room.answer_box.show_tip(self)
                 # if you can write on the box (You have used a key)
                 if self.math_room.answer_box.can_write == True:
                     self.math_room.answer_box.receive_input(self, events)
-                    player_try = self.math_room.answer_box.check_answer(self, events)
+                    player_try = self.math_room.answer_box.check_answer(
+                        self, events)
                     if player_try == True:
                         self.math_room.loadingLight1.right_answer()
                         self.math_room.reset_question()
@@ -158,17 +158,16 @@ class MainGame(object):
                     elif player_try == False:
                         self.math_room.loadingLight1.wrong_answer()
                 else:
+                    self.math_room.answer_box.set_tip("you need a pencil")
                     if type(self.bag.items_list[self.bag.index]) == type(Pen((PENCIL_IMAGE), size=None)):
                         for event in events:
                             if event.type == pygame.KEYDOWN:
                                 if event.key == pygame.K_q:
                                     self.math_room.answer_box.can_write = True
-                                    self.bag.remove_item(self.bag.items_list[self.bag.index], self.bag.pensGroup)
-                                    self.math_room.answer_box.set_tip("now you can wirte")
-                    else:
-                        self.math_room.answer_box.set_tip("you need a pencil")
-                    
-
+                                    self.bag.remove_item(
+                                        self.bag.items_list[self.bag.index], self.bag.pensGroup)
+                                    self.math_room.answer_box.set_tip(
+                                        "now you can wirte")
 
     def __collide_check(self):
         # add item
@@ -194,7 +193,7 @@ class MainGame(object):
                 for item in collide:
                     item.remove(self.current_room.keysGroup)
                     self.bag.append_item(item, self.bag.keysGroup)
-            
+
             collide = pygame.sprite.spritecollide(
                 self.player.body, self.current_room.pensGroup, False, pygame.sprite.collide_mask)
 
@@ -202,7 +201,6 @@ class MainGame(object):
                 for item in collide:
                     item.remove(self.current_room.pensGroup)
                     self.bag.append_item(item, self.bag.pensGroup)
-
 
     def __draw_room(self, room):
         # Draw background
@@ -217,7 +215,6 @@ class MainGame(object):
         for pencil in room.pensGroup:
             self. _screen.blit(pencil.image, pencil.rect)
 
-
         if self.current_room == self.math_room:
             self.math_room.display_question(self)
             for light in room.lightsGroup:
@@ -229,7 +226,6 @@ class MainGame(object):
     # pass next room and set current_room to next room
     def switch_room(self, next_room):
         self.current_room = next_room
-
 
     def __quit_game(self):
         pygame.quit()
