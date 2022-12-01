@@ -8,31 +8,31 @@ Background Story: An unlucky kid was locked in the school, and he is trying to s
 
 ![](assets/rooms/mathroom.png)
 
-The room has question on the whiteboard. And the door next to whiteboard is locked by number password. He needs to find a way to solve the pasword. After he has solved the question then he needs to head to the Science Lab.
+The room has question on the whiteboard. And the door next to whiteboard is locked. He needs to find a way to solve the math quiz in order to get acceses for the next room.
 
-## Room 2(Science Lab):
-
-![](assets/rooms/science_room.png)
-
-Science lab has a lot of chemical liquids in beaker. And referring to material notice on the notice board, mix colorful liquids by getting and using each color liquid in the sicence lab, and make correct color medicine, then the lock for teacher's table drawer will be unlocked. There is an answer. After player got science answer, head to Reading and Writing Center.
-
-## Room 3(Reading and Writing Center):
+## Room 2(Reading and Writing Center):
 
 ![](assets/rooms/library.png)
 
 In the reading center, there is a Scrabble and play it, and the blank letter space with color. And the word by connecting the color letters will be the answer to open a shelf which has an answer.
 
+## Room 3(Science Lab):
+
+![](assets/rooms/science_room.png)
+
+Science lab needs you to figure out how to fix colors and find what's the color that is matching the quiz. After he has solved all the quiz for the color then he is able to access the exit door in order to get free.
+
 Purpose:
-The purpose of this game is to help kids around 6th grade to learn by playing game.
+The purpose of this game is to help children around 2nd grade to learn by playing game.
 
 Below is the software demo video:
 [Software Demo Video](http://youtube.link.goes.here)
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
-
-{Describe the programming language that you used and any libraries.}
+- Python 3.9.6 64-bit
+- Visual Studio Code
+- Pygame 2.0
 
 # Useful Websites
 
@@ -44,3 +44,5 @@ Below is the software demo video:
 -  Item 1
 -  Item 2
 -  Item 3
+
+# Contributors 
