@@ -1,9 +1,9 @@
 {
-    "orange - yellow": "1",
-    "purple - red": "2",
-    "green - blue": "3",
-    "red + blue": "4",
-    "red + yellow": "5",
-    "blue + yellow": "6",
-    "red + blue + yellow": "7"
+    "orange - yellow = ? ": "1",
+    "purple - red = ? ": "2",
+    "green - blue = ? ": "3",
+    "red + blue = ? ": "4",
+    "red + yellow = ? ": "5",
+    "blue + yellow = ? ": "6",
+    "red + blue + yellow = ? ": "7"
 }

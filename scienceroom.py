@@ -47,7 +47,7 @@ class ScienceRoom(Scene):
 
     def display_question(self, callback):
         question_output = self.font.render(self.ques, True, BLACK)
-        callback._screen.blit(question_output, (SCREEN_RECT.centerx - 50, 40))
+        callback._screen.blit(question_output, (550, 40))
     
     def pass_room(self, callback):
         callback.key_exit.init_key(self, callback.door_to_exit, (100, 300),
