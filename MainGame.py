@@ -162,7 +162,8 @@ class MainGame(object):
                     elif player_try == False:
                         self.math_room.loadingLight1.wrong_answer()
                 else:
-                    self.math_room.answer_box.set_tip("You need a pencil.")
+                    self.math_room.answer_box.set_tip(
+                        "You need a pencil.")  # Changed Grammar
                     if type(self.bag.items_list[self.bag.index]) == type(Pen((PENCIL_IMAGE), size=None)):
                         for event in events:
                             if event.type == pygame.KEYDOWN:
@@ -171,7 +172,7 @@ class MainGame(object):
                                     self.bag.remove_item(
                                         self.bag.items_list[self.bag.index], self.bag.pensGroup)
                                     self.math_room.answer_box.set_tip(
-                                        "Now you can write.")
+                                        "Now you can write.")  # Changed Grammar
 
             if self.current_room == self.science_room:
                 self.science_room.answer_box.display(self)
