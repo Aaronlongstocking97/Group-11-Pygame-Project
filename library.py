@@ -1,4 +1,5 @@
 from scene import *
+from question_generator import *
 from door import *
 from key import *
 from light import *
