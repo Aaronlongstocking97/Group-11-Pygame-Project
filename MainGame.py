@@ -189,6 +189,22 @@ class MainGame(object):
                 elif player_try == False:
                     self.science_room.loadingLight1.wrong_answer()
 
+            # Added section for library questions
+            if self.current_room == self.library:
+                self.library.answer_box.display(self)
+                self.library.answer_box.show_tip(self)
+                self.library.answer_box.can_write == True
+                self.library.answer_box.receive_input(
+                    events, self.library)
+                player_try = self.library.answer_box.check_answer(
+                    events, self.library)
+                if player_try == True:
+                    self.library.loadingLight1.right_answer()
+                    self.library.reset_question()
+                    self.library.answers += 1
+                elif player_try == False:
+                    self.library.loadingLight1.wrong_answer()
+
     def __collide_check(self):
         # add item
         if self.bag.remain > 0:
@@ -250,6 +266,15 @@ class MainGame(object):
             if self.science_room.answers >= 5 and self.science_room.passed == False:
                 self.science_room.pass_room(self)
                 self.science_room.passed = True
+
+        # Added library section to draw room
+        if self.current_room == self.library:
+            self.library.display_question(self)
+            for light in room.lightsGroup:
+                self._screen.blit(light.image, light.rect)
+            if self.library.answers >= 5 and self.library.passed == False:
+                self.library.pass_room(self)
+                self.library.passed = True
 
     # pass next room and set current_room to next room
     def switch_room(self, next_room):
