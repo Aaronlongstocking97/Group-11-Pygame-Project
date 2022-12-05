@@ -31,8 +31,8 @@ class Library(Scene):
         self.questions = Generator(SPELLING_WORDS_FILE_NAME)
         # The values (answer_box, loadingLight1) need to be adjusted
         # to the correct space in the room.
-        # self.answer_box = AnswerBox(BOX_IMAGE, (100, 50))
-        # self.loadingLight1 = Light(LOADING_LIGHT, (25, 25))
+        self.answer_box = AnswerBox(BOX_IMAGE, (100, 50))
+        self.loadingLight1 = Light(LOADING_LIGHT, (25, 25))
 
     def init_library(self, callback):
 
@@ -46,7 +46,7 @@ class Library(Scene):
         # Creates the loading lights on the white board
 
         # added and needs to be placed in the correct position.
-        # self.loadingLight1.init_light(self, (330, 12))
+        self.loadingLight1.init_light(self, (330, 12))
 
     def display_question(self, callback):
         question_output = self.font.render(self.ques, True, BLACK)
