@@ -1,5 +1,5 @@
 from scene import *
-from math_generator import *
+from question_generator import *
 from door import *
 from key import *
 from light import *
