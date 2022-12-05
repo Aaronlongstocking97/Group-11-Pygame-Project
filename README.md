@@ -25,9 +25,6 @@ Science lab needs you to figure out how to fix colors and find what's the color 
 Purpose:
 The purpose of this game is to help children around 2nd grade to learn by playing game.
 
-Below is the software demo video:
-[Software Demo Video](http://youtube.link.goes.here)
-
 # Development Environment
 
 - Python 3.9.6 64-bit
@@ -39,10 +36,10 @@ Below is the software demo video:
 -  [Pygame](https://www.pygame.org/docs/)
 -  [Visual Studio Code](https://code.visualstudio.com/)
 
-# Future Work
+# Contributors
 
--  Item 1
--  Item 2
--  Item 3
-
-# Contributors 
+- [Team Lead Aaron Jones](https://github.com/Aaronlongstocking97)
+- [Quality Assurance Xing Gao](https://github.com/SolomonGao)
+- [Project Manager Aoi Kuriki](https://github.com/A0i-Noel)
+- [Graphic Designer Todd Wahlquist](https://github.com/Blazelighter)
+- [Documentation Manager Kai Zhang](https://github.com/KaiTheOcean)
