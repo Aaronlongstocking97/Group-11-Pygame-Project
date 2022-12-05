@@ -23,7 +23,7 @@ class MathRoom(Scene):
         self.walls = GameSprite(MATH_ROOM_WALLS, 0, (990,800))
         self.walls.mask = pygame.mask.from_surface(self.walls.image)
 
-        self.answers = 5
+        self.answers = 0
         self.passed = False
 
 
