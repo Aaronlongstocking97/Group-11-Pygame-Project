@@ -32,6 +32,7 @@ class Library(Scene):
         callback.library_door = Door(DOOR_IMAGE, DOOR_SIZE)
         # changed wording and needs to be connected to other variables
         callback.key_library = Key(KEY_IMAGE, ITEM_SIZE)
+        # callback.key_science = Key(KEY_IMAGE, ITEM_SIZE)
 
     def init_library(self, callback):
 
@@ -42,7 +43,7 @@ class Library(Scene):
                                         "To the hallway.")
         callback.library_door.locked = False
 
-        # Create the loading lights on the white board
+        # Creates the loading lights on the white board
 
         # added and needs to be connected to other variables
         self.loadingLight1.init_light(self, (330, 12))
