@@ -308,3 +308,64 @@ class MainGame(object):
                         self.__quit_game()
 
             pygame.display.update()
+
+    def end_menu(self):
+        while True:
+            self._screen.blit(pygame.image.load("assets/menu/menuBackground.jpeg"),(0,0))
+
+            MENU_MOUSE_POS = pygame.mouse.get_pos()
+
+            MENU_TEXT = pygame.font.Font('assets/menu/font.ttf', 75).render("GOOD JOB!", True, "#b68f40")
+            MENU_RECT = MENU_TEXT.get_rect(center=(500, 150))
+
+            PLAY_BUTTON = Button(image=pygame.image.load("assets/menu/MenuRect.png"), pos=(500, 300), 
+                            text_input="PLAY AGAIN", font=pygame.font.Font('assets/menu/font.ttf', 50), base_color="#d7fcd4", hovering_color="White")
+            QUIT_BUTTON = Button(image=pygame.image.load("assets/menu/MenuRect.png"), pos=(500, 450), 
+                            text_input="QUIT", font=pygame.font.Font('assets/menu/font.ttf', 50), base_color="#d7fcd4", hovering_color="White")
+
+            self._screen.blit(MENU_TEXT, MENU_RECT)
+
+            font = pygame.font.SysFont(None, 36)
+            inst1 = "button instruction:"
+            inst2 = "arrow button: move"
+            inst3 = "a: select left side item"
+            inst4 = "d: select right side item"
+            inst5 = "q: use selected item and open a door"
+            inst6 = "f: submit an answer"
+
+            img1 = font.render(inst1, True, WHITE)
+            self._screen.blit(img1, (100, 550))
+            img2 = font.render(inst2, True, WHITE)
+            self._screen.blit(img2, (100, 590))
+            img3 = font.render(inst3, True, WHITE)
+            self._screen.blit(img3, (100, 630))
+            img4 = font.render(inst4, True, WHITE)
+            self._screen.blit(img4, (100, 670))
+            img5 = font.render(inst5, True, WHITE)
+            self._screen.blit(img5, (100, 710))
+            img6 = font.render(inst6, True, WHITE)
+            self._screen.blit(img6, (100, 750))
+
+            for button in [PLAY_BUTTON,  QUIT_BUTTON]:
+                button.changeColor(MENU_MOUSE_POS)
+                button.update(self._screen)
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.__quit_game()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        self.restart()
+                        self.startGame()
+                    if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        self.__quit_game()
+
+            pygame.display.update()
+
+    def restart(self):
+
+        self.math_room.kill()
+        self.hallway.kill()
+        self.library.kill()
+        self.science_room.kill()
+        self.__create_sprites()
