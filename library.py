@@ -17,7 +17,7 @@ class Library(Scene):
         self.keysGroup = pygame.sprite.Group()
         self.doorGroup = pygame.sprite.Group()
         self.lightsGroup = pygame.sprite.Group()
-        # self.pensGroup = pygame.sprite.Group() # This isn't necessary
+        self.pensGroup = pygame.sprite.Group()  # This isn't necessary
         self.walls = GameSprite(LIBRARY_WALLS, 0, (990, 800))
         self.walls.mask = pygame.mask.from_surface(self.walls.image)
         self.answers = 0
