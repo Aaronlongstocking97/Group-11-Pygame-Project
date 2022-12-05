@@ -39,6 +39,7 @@ SCIENCE_ROOM = "assets/rooms/science_room.png"
 SCIENCE_ROOM_WALLS = "assets/rooms/science_room_mask.png"
 WINNING_SCENE = "assets/rooms/background2.png"
 PLAYER_IMAGE = "assets/chararcter/character_front.png"
+MUSIC = "assets/music/locks and keys.mp3"
 
 
 # class GameSprite(pygame.sprite.Sprite, ABC):
