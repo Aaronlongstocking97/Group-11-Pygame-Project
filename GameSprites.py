@@ -29,7 +29,6 @@ BOX_IMAGE = "assets/items/box.png"
 DOOR_IMAGE = "assets/rooms/door_closed.png"
 KEY_IMAGE = "assets/items/key.png"
 EQUATIONS_FILE_NAME = "math_equations"
-SPELLING_WORDS_FILE_NAME = "spelling_words"
 SCIENCE_ROOM_EQUATIONS_FILE_NAME = "science_room"
 SAFE_IMAGE = "assets/mathroom/safe-deposit.png"
 GREEN_LIGHT = "assets/mathroom/check.png"
@@ -40,6 +39,7 @@ SCIENCE_ROOM = "assets/rooms/science_room.png"
 SCIENCE_ROOM_WALLS = "assets/rooms/science_room_mask.png"
 WINNING_SCENE = "assets/rooms/background2.png"
 PLAYER_IMAGE = "assets/chararcter/character_front.png"
+MUSIC = "assets/music/locks and keys.mp3"
 
 
 # class GameSprite(pygame.sprite.Sprite, ABC):

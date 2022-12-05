@@ -35,6 +35,8 @@ class MainGame(object):
     def startGame(self):
         # Set the current room to the first room in the game.
         self.current_room = self.hallway
+        pygame.mixer.music.load(MUSIC)
+        pygame.mixer.music.play(-1)
 
         while True:
             # frame rate 60 hz
