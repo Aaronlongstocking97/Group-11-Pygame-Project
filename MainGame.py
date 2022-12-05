@@ -12,6 +12,7 @@ from hallway import *
 from library import *
 from pen import *
 from scienceroom import *
+from button import *
 
 # Does this still need to take in an object?
 
@@ -149,8 +150,10 @@ class MainGame(object):
                 # if you can write on the box (You have used a key)
                 if self.math_room.answer_box.can_write == True:
 
-                    self.math_room.answer_box.receive_input(events, self.math_room)
-                    player_try = self.math_room.answer_box.check_answer(events, self.math_room)
+                    self.math_room.answer_box.receive_input(
+                        events, self.math_room)
+                    player_try = self.math_room.answer_box.check_answer(
+                        events, self.math_room)
 
                     if player_try == True:
                         self.math_room.loadingLight1.right_answer()
@@ -165,23 +168,25 @@ class MainGame(object):
                             if event.type == pygame.KEYDOWN:
                                 if event.key == pygame.K_q:
                                     self.math_room.answer_box.can_write = True
-                                    self.bag.remove_item(self.bag.items_list[self.bag.index], self.bag.pensGroup)
-                                    self.math_room.answer_box.set_tip("now you can wirte")
-
+                                    self.bag.remove_item(
+                                        self.bag.items_list[self.bag.index], self.bag.pensGroup)
+                                    self.math_room.answer_box.set_tip(
+                                        "now you can wirte")
 
             if self.current_room == self.science_room:
                 self.science_room.answer_box.display(self)
                 self.science_room.answer_box.show_tip(self)
                 self.science_room.answer_box.can_write == True
-                self.science_room.answer_box.receive_input(events, self.science_room)
-                player_try = self.science_room.answer_box.check_answer(events, self.science_room)
+                self.science_room.answer_box.receive_input(
+                    events, self.science_room)
+                player_try = self.science_room.answer_box.check_answer(
+                    events, self.science_room)
                 if player_try == True:
                     self.science_room.loadingLight1.right_answer()
                     self.science_room.reset_question()
                     self.science_room.answers += 1
                 elif player_try == False:
                     self.science_room.loadingLight1.wrong_answer()
-               
 
     def __collide_check(self):
         # add item
