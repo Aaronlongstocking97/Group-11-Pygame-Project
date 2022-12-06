@@ -21,7 +21,7 @@ class Library(Scene):
         self.walls = GameSprite(LIBRARY_WALLS, 0, (990, 800))
         self.walls.mask = pygame.mask.from_surface(self.walls.image)
         # altered for testing purposes
-        self.answers = 0
+        self.answers = 5
         self.passed = False
 
     def addItemTo(self, item, position, group):

@@ -22,7 +22,7 @@ class ScienceRoom(Scene):
         self.walls.mask = pygame.mask.from_surface(self.walls.image)
 
         # altered for testing purposes
-        self.answers = 0
+        self.answers = 5
         self.passed = False
 
     def addItemTo(self, item, position, group):
