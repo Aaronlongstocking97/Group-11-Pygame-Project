@@ -10,7 +10,6 @@ class AnswerBox(Item):
         self.font = pygame.font.SysFont('timesnewroman', 30)
         self.rect.centerx = SCREEN_RECT.centerx
         self.rect.centery = SCREEN_RECT.centery - 300
-        # self.rect.centery = SCREEN_RECT.centery
         self.input = "= "
         self.can_write = False
         self.tip = ""
@@ -23,7 +22,6 @@ class AnswerBox(Item):
     def init_answer_box(self, room, position):
         x, y = position
         self.set_position(x, y)
-        # room.answerBoxGroup.add(self)
 
     def display(self, callback):
         ouput = self.font.render(self.input, True, BLACK)
@@ -38,20 +36,17 @@ class AnswerBox(Item):
                     room.answer_box.input += chr(event.key)
                 elif event.key == 8 and room.answer_box.input != "= ":
                     room.answer_box.input = room.answer_box.input[:-1]
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_h:
-                    room.answer_box.input = room.answer_box.input[:-1]
+        # for event in pygame.event.get():
+        #     if event.type == pygame.KEYDOWN:
+        #         if event.key == pygame.K_h:
+        #             room.answer_box.input = room.answer_box.input[:-1]
                 # Add a statement here to insert characters because the
                 # code above only accepts numbers and they are hardcoded and
                 # they are not set to the standard Pygame keyboard key words.
 
-    # def check_answer(self, evnets, room):
-    #     for event in evnets:
     def check_answer(self, events, room):
         for event in events:
             if event.type == pygame.KEYDOWN:
-                # if event.key == pygame.K_f:
                 if event.key == pygame.K_RETURN:
                     answer = str(room.ans)
                     if answer == self.input[2:]:

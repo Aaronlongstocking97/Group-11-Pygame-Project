@@ -276,8 +276,6 @@ class MainGame(object):
             self.library.display_question(self)
             for light in room.lightsGroup:
                 self._screen.blit(light.image, light.rect)
-            # for answer in room.answerBoxGroup:
-            #     self._screen.blit(answer.image, answer.rect)
             if self.library.answers >= 5 and self.library.passed == False:
                 self.library.pass_room(self)
                 self.library.passed = True
