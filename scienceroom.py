@@ -21,6 +21,7 @@ class ScienceRoom(Scene):
         self.walls = GameSprite(SCIENCE_ROOM_WALLS, 0, (990, 800))
         self.walls.mask = pygame.mask.from_surface(self.walls.image)
 
+        # altered for testing purposes
         self.answers = 0
         self.passed = False
 

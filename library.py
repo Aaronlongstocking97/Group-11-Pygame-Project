@@ -20,6 +20,7 @@ class Library(Scene):
         self.pensGroup = pygame.sprite.Group()  # This isn't necessary
         self.walls = GameSprite(LIBRARY_WALLS, 0, (990, 800))
         self.walls.mask = pygame.mask.from_surface(self.walls.image)
+        # altered for testing purposes
         self.answers = 0
         self.passed = False
 

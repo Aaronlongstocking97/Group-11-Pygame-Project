@@ -21,7 +21,7 @@ class MathRoom(Scene):
         self.pensGroup = pygame.sprite.Group()
         self.walls = GameSprite(MATH_ROOM_WALLS, 0, (990, 800))
         self.walls.mask = pygame.mask.from_surface(self.walls.image)
-
+        # altered for testing purposes
         self.answers = 0
         self.passed = False
 
