@@ -47,6 +47,11 @@ class Library(Scene):
         # added and needs to be placed in the correct position.
         self.loadingLight1.init_light(self, (330, 12))
 
+        # altered for testing purposes
+        callback.key_science = Key(KEY_IMAGE, ITEM_SIZE)
+        callback.key_science.init_key(self, callback.door_to_science, (600, 400),
+                                      "This is the key to open the science door")
+
     def display_question(self, callback):
         question_output = self.font.render(self.ques, True, BLACK)
         # callback._screen.blit(question_output, (SCREEN_RECT.centerx - 30, 40))
@@ -61,8 +66,9 @@ class Library(Scene):
         self.ques, self.ans = self.questions.generate()
 
     def pass_room(self, callback):
-        callback.key_science = Key(KEY_IMAGE, ITEM_SIZE)
-        # Sets the location of where the key will be placed. The location needs
-        # to be changed.
-        callback.key_science.init_key(self, callback.door_to_science, (600, 400),
-                                      "This is the key to open the science door")
+        # callback.key_science = Key(KEY_IMAGE, ITEM_SIZE)
+        # # Sets the location of where the key will be placed. The location needs
+        # # to be changed.
+        # callback.key_science.init_key(self, callback.door_to_science, (600, 400),
+        #                               "This is the key to open the science door")
+        pass
