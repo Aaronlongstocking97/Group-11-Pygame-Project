@@ -348,7 +348,9 @@ class MainGame(object):
     def end_menu(self):
         while True:
             self._screen.blit(pygame.image.load(
-                "assets/menu/menuBackground.jpeg"), (0, 0))
+                "assets/menu/MenuBackground.png"), (0, 0))
+            self._screen.blit(pygame.image.load(
+                "assets/menu/image000000.png"), (0, 0))
 
             MENU_MOUSE_POS = pygame.mouse.get_pos()
 
