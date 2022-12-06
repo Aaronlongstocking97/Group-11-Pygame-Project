@@ -30,7 +30,8 @@ class AnswerBox(Item):
     def check_answer(self, evnets, room):
         for event in evnets:
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_f:
+                # if event.key == pygame.K_f:
+                if event.key == pygame.K_RETURN:
                     answer = str(room.ans)
                     if answer == self.input[2:]:
                         self.input = "= "
