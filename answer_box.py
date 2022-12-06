@@ -1,7 +1,5 @@
 from item import *
 
-# Need to change this class to allow letters to be inputed.
-
 
 class AnswerBox(Item):
 
@@ -26,7 +24,6 @@ class AnswerBox(Item):
     def display(self, callback):
         ouput = self.font.render(self.input, True, BLACK)
         callback._screen.blit(self.image, self.rect)
-        # These values alter were the input box text aligns
         callback._screen.blit(ouput, (self.rect.x + 20, self.rect.y + 10))
 
     def receive_input(self, events, room):
@@ -36,13 +33,6 @@ class AnswerBox(Item):
                     room.answer_box.input += chr(event.key)
                 elif event.key == 8 and room.answer_box.input != "= ":
                     room.answer_box.input = room.answer_box.input[:-1]
-        # for event in pygame.event.get():
-        #     if event.type == pygame.KEYDOWN:
-        #         if event.key == pygame.K_h:
-        #             room.answer_box.input = room.answer_box.input[:-1]
-                # Add a statement here to insert characters because the
-                # code above only accepts numbers and they are hardcoded and
-                # they are not set to the standard Pygame keyboard key words.
 
     def check_answer(self, events, room):
         for event in events:
