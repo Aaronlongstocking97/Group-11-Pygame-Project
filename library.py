@@ -17,6 +17,7 @@ class Library(Scene):
         self.keysGroup = pygame.sprite.Group()
         self.doorGroup = pygame.sprite.Group()
         self.lightsGroup = pygame.sprite.Group()
+        # self.answerBoxGroup = pygame.sprite.Group()
         self.pensGroup = pygame.sprite.Group()  # This isn't necessary
         self.walls = GameSprite(LIBRARY_WALLS, 0, (990, 800))
         self.walls.mask = pygame.mask.from_surface(self.walls.image)
@@ -31,7 +32,10 @@ class Library(Scene):
         self.questions = Generator(SPELLING_WORDS_FILE_NAME)
         # The values (answer_box, loadingLight1) need to be adjusted
         # to the correct space in the room.
+        # self.answer_box = AnswerBox(BOX_IMAGE, (100, 50))
         self.answer_box = AnswerBox(BOX_IMAGE, (100, 50))
+        # Changing these values (answer_box, loadingLight1) will only
+        # increase the size of the object not the location.
         self.loadingLight1 = Light(LOADING_LIGHT, (25, 25))
 
     def init_library(self, callback):
@@ -45,7 +49,9 @@ class Library(Scene):
         # Creates the loading lights on the white board
 
         # added and needs to be placed in the correct position.
-        self.loadingLight1.init_light(self, (330, 12))
+        # self.loadingLight1.init_light(self, (330, 12))
+        self.loadingLight1.init_light(self, (330, 100))
+        self.answer_box.init_answer_box(self, (450, 200))
 
         # altered for testing purposes
         callback.key_science = Key(KEY_IMAGE, ITEM_SIZE)

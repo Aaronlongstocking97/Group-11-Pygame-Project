@@ -191,6 +191,8 @@ class MainGame(object):
                 elif player_try == False:
                     self.science_room.loadingLight1.wrong_answer()
 
+        # show the pop up box for library
+        if 430 <= self.player.body.rect.x <= 500 and 230 <= self.player.body.rect.y <= 270:
             # Added section for library questions
             if self.current_room == self.library:
                 self.library.answer_box.display(self)
@@ -274,6 +276,8 @@ class MainGame(object):
             self.library.display_question(self)
             for light in room.lightsGroup:
                 self._screen.blit(light.image, light.rect)
+            # for answer in room.answerBoxGroup:
+            #     self._screen.blit(answer.image, answer.rect)
             if self.library.answers >= 5 and self.library.passed == False:
                 self.library.pass_room(self)
                 self.library.passed = True
