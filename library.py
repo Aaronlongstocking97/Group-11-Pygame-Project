@@ -45,7 +45,6 @@ class Library(Scene):
         # Creates the loading lights on the white board
 
         # added and needs to be placed in the correct position.
-        # self.loadingLight1.init_light(self, (330, 12))
         self.loadingLight1.init_light(self, (330, 100))
         self.answer_box.init_answer_box(self, (450, 200))
 
