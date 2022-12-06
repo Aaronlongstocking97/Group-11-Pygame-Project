@@ -45,6 +45,7 @@ class MathRoom(Scene):
         # Create the loading lights on the white board
 
         self.loadingLight1.init_light(self, (330, 12))
+        # altered for testing purposes
         callback.key_library = Key(KEY_IMAGE, ITEM_SIZE)
         callback.key_library.init_key(self, callback.door_to_library, (600, 400),
                                       "This is the key to open the library door")

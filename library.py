@@ -36,7 +36,6 @@ class Library(Scene):
 
     def init_library(self, callback):
 
-        # added and needs to be connected to other variables
         self.ques, self.ans = self.questions.generate()
 
         callback.library_door.init_door(self, callback.hallway, (513, 600), (712, 185),
@@ -50,7 +49,13 @@ class Library(Scene):
 
     def display_question(self, callback):
         question_output = self.font.render(self.ques, True, BLACK)
-        callback._screen.blit(question_output, (SCREEN_RECT.centerx - 30, 40))
+        # callback._screen.blit(question_output, (SCREEN_RECT.centerx - 30, 40))
+        # callback._screen.blit(question_output, (SCREEN_RECT.centerx - 50, 40))
+        # callback._screen.blit(question_output, (SCREEN_RECT.centerx - 85, 40))
+        # callback._screen.blit(question_output, (SCREEN_RECT.centerx - 85, 80))
+        # callback._screen.blit(question_output, (SCREEN_RECT.centerx - 85, 105))
+        # callback._screen.blit(question_output, (SCREEN_RECT.centerx - 85, 130))
+        callback._screen.blit(question_output, (SCREEN_RECT.centerx - 88, 130))
 
     def reset_question(self):
         self.ques, self.ans = self.questions.generate()
