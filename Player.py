@@ -76,6 +76,8 @@ class Player(GameSprite):
                         next_room = door.next_room
                         door.locked = False
                         door.set_tip("You can open it!")
+                        if next_room == "End":
+                            callback.end_menu()
                         # switch
                         x, y = door.position_in_next_room
                         callback.player.set_position(x + 10, y + 30)
