@@ -14,6 +14,7 @@ class AnswerBox(Item):
         self.input = "= "
         self.can_write = False
         self.tip = ""
+        self.active = False
 
     def set_position(self, x, y):
         self.rect.x = x
@@ -36,6 +37,10 @@ class AnswerBox(Item):
                 if 48 <= event.key <= 58:
                     room.answer_box.input += chr(event.key)
                 elif event.key == 8 and room.answer_box.input != "= ":
+                    room.answer_box.input = room.answer_box.input[:-1]
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_h:
                     room.answer_box.input = room.answer_box.input[:-1]
                 # Add a statement here to insert characters because the
                 # code above only accepts numbers and they are hardcoded and
