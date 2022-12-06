@@ -11,7 +11,6 @@ class Player(GameSprite):
         self.size = size
         self.set_position(500, 500)
 
-
         self.body = Body(PLAYER_IMAGE, BODY_SIZE)
         self.body.set_position(self.rect.x, self.rect.bottom)
 
@@ -59,32 +58,33 @@ class Player(GameSprite):
             self.rect.top = 0
         elif self.rect.bottom > 700:
             self.rect.bottom = 700
-        
+
         self.body.attach_player(self.rect.x, self.rect.bottom)
 
     # There may be a better way of doing this function
     def open_door(self, callback, key, door):
-            if door.locked == True:
-                # if this key is matching this door
-                if type(key) == type(Key("assets/items/key.png", size=None)):
-                    if key.door == door:
-                        # remove key from bag's key group
-                        callback.bag.keysGroup.remove(key)
-                        # remove key for the bag list
-                        callback.bag.items_list[callback.bag.index] = 0
-                        # set next room to be the door's next room
-                        next_room = door.next_room
-                        door.locked = False
-                        door.set_tip("You can open it!")
-                        # switch
-                        x, y = door.position_in_next_room
-                        callback.player.set_position(x + 10, y + 30)
-                        callback.switch_room(next_room)
-                    else:
-                        print("It is not the right key to use")
-            elif door.locked == False:
-                next_room = door.next_room
-                x, y = door.position_in_next_room
-                callback.player.set_position(x + 10, y + 30)
-                callback.switch_room(next_room)
-
+        if door.locked == True:
+            # if this key is matching this door
+            if type(key) == type(Key("assets/items/key.png", size=None)):
+                if key.door == door:
+                    # remove key from bag's key group
+                    callback.bag.keysGroup.remove(key)
+                    # remove key for the bag list
+                    callback.bag.items_list[callback.bag.index] = 0
+                    # set next room to be the door's next room
+                    next_room = door.next_room
+                    door.locked = False
+                    door.set_tip("You can open it!")
+                    if next_room == "End":
+                        callback.end_menu()
+                    # switch
+                    x, y = door.position_in_next_room
+                    callback.player.set_position(x + 10, y + 30)
+                    callback.switch_room(next_room)
+                else:
+                    print("It is not the right key to use")
+        elif door.locked == False:
+            next_room = door.next_room
+            x, y = door.position_in_next_room
+            callback.player.set_position(x + 10, y + 30)
+            callback.switch_room(next_room)
