@@ -1,4 +1,6 @@
 import pygame
+import time
+
 from GameSprites import *
 from item import *
 from Player import *
@@ -28,6 +30,8 @@ class MainGame(object):
         # create all the sprites and put them in the right
         # position plus right group
         self.__create_sprites()
+        self._startTime = 0
+        self._endTime = 0
 
         # This is a pointer to point the current room the player is in.
         self.current_room = None
@@ -305,6 +309,7 @@ class MainGame(object):
                     self.__quit_game()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        self._startTime = time.perf_counter()
                         self.startGame()
                     if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                         self.__quit_game()
