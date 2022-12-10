@@ -25,7 +25,7 @@ class Hallway(Scene):
         callback.pencil = Pen(PENCIL_IMAGE, ITEM_SIZE)
         callback.door_to_library = Door(DOOR_IMAGE, DOOR_SIZE)
         callback.door_to_science = Door(DOOR_IMAGE, DOOR_SIZE)
-        callback.door_to_exit = Door(DOOR_IMAGE, DOOR_SIZE)
+        callback.door_to_exit = Door(DOUBLE_DOOR, DOUBLE_DOOR_SIZE)
 
     def init_hallway(self, callback):
         
@@ -43,4 +43,4 @@ class Hallway(Scene):
         callback.door_to_science.init_door(self, callback.science_room, (455, 185), (30, 150),
                                     "Science room is locked, you might need a key.")
         
-        callback.door_to_exit.init_exit(self, (500, 500), "It's locked! You can't leave the school.")
+        callback.door_to_exit.init_exit(self, (400, 505), "It's locked! You can't leave the school.")

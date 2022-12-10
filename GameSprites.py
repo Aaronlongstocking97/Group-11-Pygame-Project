@@ -9,6 +9,7 @@ ITEM_SIZE = (60, 60)
 DOOR_SIZE = (80, 95)
 PLAYER_SIZE = (60, 80)
 BODY_SIZE = (40, 30)
+DOUBLE_DOOR_SIZE = (190, 95)
 
 BLACK = (0, 0, 0)
 GREEN = (0, 255, 0)
@@ -40,6 +41,7 @@ SCIENCE_ROOM_WALLS = "assets/rooms/science_room_mask.png"
 WINNING_SCENE = "assets/rooms/background2.png"
 PLAYER_IMAGE = "assets/chararcter/character_front.png"
 MUSIC = "assets/music/locks and keys.mp3"
+DOUBLE_DOOR = "assets/rooms/doubledoor.png"
 
 
 # class GameSprite(pygame.sprite.Sprite, ABC):
