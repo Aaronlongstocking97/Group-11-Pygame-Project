@@ -1,5 +1,4 @@
 from MainGame import *
-from server import *
 
 
 def main():

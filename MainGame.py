@@ -15,6 +15,7 @@ from library import *
 from pen import *
 from scienceroom import *
 from button import *
+from server import *
 
 # Does this still need to take in an object?
 
@@ -32,6 +33,7 @@ class MainGame(object):
         self.__create_sprites()
         self._startTime = 0
         self._endTime = 0
+        self.server = Server()
 
         # This is a pointer to point the current room the player is in.
         self.current_room = None
@@ -274,7 +276,9 @@ class MainGame(object):
 
             PLAY_BUTTON = Button(image=pygame.image.load("assets/menu/MenuRect.png"), pos=(500, 300), 
                             text_input="PLAY", font=pygame.font.Font('assets/menu/font.ttf', 50), base_color="#d7fcd4", hovering_color="White")
-            QUIT_BUTTON = Button(image=pygame.image.load("assets/menu/MenuRect.png"), pos=(500, 450), 
+            RANKING_BUTTON = Button(image=pygame.image.load("assets/menu/MenuRect.png"), pos=(500, 450), 
+                            text_input="RANKING", font=pygame.font.Font('assets/menu/font.ttf', 50), base_color="#d7fcd4", hovering_color="White")
+            QUIT_BUTTON = Button(image=pygame.image.load("assets/menu/MenuRect.png"), pos=(500, 600), 
                             text_input="QUIT", font=pygame.font.Font('assets/menu/font.ttf', 50), base_color="#d7fcd4", hovering_color="White")
 
             self._screen.blit(MENU_TEXT, MENU_RECT)
@@ -300,7 +304,7 @@ class MainGame(object):
             img6 = font.render(inst6, True, WHITE)
             self._screen.blit(img6, (100, 750))
 
-            for button in [PLAY_BUTTON,  QUIT_BUTTON]:
+            for button in [PLAY_BUTTON, RANKING_BUTTON,  QUIT_BUTTON]:
                 button.changeColor(MENU_MOUSE_POS)
                 button.update(self._screen)
 
@@ -311,12 +315,17 @@ class MainGame(object):
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                         self._startTime = time.perf_counter()
                         self.startGame()
+                    if RANKING_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        self.ranking()
                     if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                         self.__quit_game()
 
             pygame.display.update()
 
     def end_menu(self):
+        self._endTime = time.perf_counter()
+        Server.postScore(self.server,self._startTime, self._endTime)
+
         while True:
             self._screen.blit(pygame.image.load("assets/menu/MenuBackground.png"),(0,0))
             self._screen.blit(pygame.image.load("assets/menu/image000000.png"),(0,0))
@@ -377,3 +386,49 @@ class MainGame(object):
         self.library.kill()
         self.science_room.kill()
         self.__create_sprites()
+
+    def ranking(self):
+        while True:
+            self._screen.blit(pygame.image.load("assets/menu/menuBackground.jpeg"),(0,0))
+
+            MENU_MOUSE_POS = pygame.mouse.get_pos()
+
+            MENU_TEXT = pygame.font.Font('assets/menu/font.ttf', 75).render("RANKING", True, "#b68f40")
+            MENU_RECT = MENU_TEXT.get_rect(center=(500, 150))
+
+
+            BACK_BUTTON = Button(image=pygame.image.load("assets/menu/MenuRect.png"), pos=(500, 700), 
+                            text_input="QUIT", font=pygame.font.Font('assets/menu/font.ttf', 50), base_color="#d7fcd4", hovering_color="White")
+
+            self._screen.blit(MENU_TEXT, MENU_RECT)
+
+            font = pygame.font.SysFont(None, 72)
+
+            ranking_data = Server.getScore(self.server)
+            # print(ranking_data)
+            first = ("1st: "+str(ranking_data[0]))
+            second = ("2nd: "+str(ranking_data[1]))
+            third = ("3rd: "+str(ranking_data[2]))
+
+            first_img = font.render(first, True, WHITE)
+            self._screen.blit(first_img, (400, 200))
+            second_img = font.render(second, True, WHITE)
+            self._screen.blit(second_img, (400, 344))
+            third_img = font.render(third, True, WHITE)
+            self._screen.blit(third_img, (400, 488))
+
+            
+            
+
+            for button in [BACK_BUTTON]:
+                button.changeColor(MENU_MOUSE_POS)
+                button.update(self._screen)
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.__quit_game()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if BACK_BUTTON.checkForInput(MENU_MOUSE_POS):
+                        self.main_menu()
+
+            pygame.display.update()
