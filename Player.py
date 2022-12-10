@@ -1,5 +1,5 @@
 from GameSprites import *
-from MainGame import *
+# from MainGame import *
 from key import *
 from body import *
 
