@@ -9,6 +9,7 @@ class AnswerBox(Item):
         self.rect.centerx = SCREEN_RECT.centerx
         self.rect.centery = SCREEN_RECT.centery - 300
         self.input = "= "
+        self.text = ''
         self.can_write = False
         self.tip = ""
         self.active = False
@@ -29,10 +30,23 @@ class AnswerBox(Item):
     def receive_input(self, events, room):
         for event in events:
             if event.type == pygame.KEYDOWN:
-                if 48 <= event.key <= 58:
-                    room.answer_box.input += chr(event.key)
-                elif event.key == 8 and room.answer_box.input != "= ":
+                if event.key == pygame.K_BACKSPACE:
                     room.answer_box.input = room.answer_box.input[:-1]
+                else:
+                    self.text += event.unicode
+                # if 48 <= event.key <= 58:
+                #     room.answer_box.input += chr(event.key)
+                # elif event.key == 8 and room.answer_box.input != "= ":
+                #     room.answer_box.input = room.answer_box.input[:-1]
+                # if event.key == pygame.K_e:
+                #     room.answer_box.input += self.text
+
+            # if event.type == pygame.TEXTINPUT:
+            #     room.answer_box.input += self.text
+                # room.answer_box.input += event.unicode
+                # room.answer_box.input += event.
+                # else:
+                #     self.text += event.unicode
 
     def check_answer(self, events, room):
         for event in events:

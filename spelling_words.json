@@ -1,9 +1,9 @@
 {
-	"teammate | t = #? ": "2",
-	"windshield | i = #? ": "2",
-	"interpret | r = #? ": "2",
-	"dishwasher | s = #? ": "2",
-	"transition | n = #? ": "2",
-	"literature | t = #? ": "2",
-	"expression | e = #? ": "2"
+	"_eamma_e = ? ": "t",
+	"w_ndsh_eld = ? ": "i",
+	"l_tt_r = ? ": "e",
+	"di_hwa_her = ? ": "s",
+	"tra_sitio_ = ? ": "n",
+	"li_era_ure = ? ": "t",
+	"_xpr_ssion = ? ": "e"
 }
