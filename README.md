@@ -22,7 +22,7 @@ In the reading center, there is a Scrabble and play it, and the blank letter spa
 
 Science lab needs you to figure out how to fix colors and find what's the color that is matching the quiz. After he has solved all the quiz for the color then he is able to access the exit door in order to get free.
 
-Purpose:
+### Purpose:
 The purpose of this game is to help children around 2nd grade to learn by playing game.
 
 # Development Environment
