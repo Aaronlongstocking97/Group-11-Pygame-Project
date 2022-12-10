@@ -8,19 +8,19 @@ Background Story: An unlucky kid was locked in the school, and he is trying to s
 
 ![](assets/rooms/mathroom.png)
 
-The room has question on the whiteboard. And the door next to whiteboard is locked. He needs to find a way to solve the math quiz in order to get acceses for the next room.
+The room has question on the whiteboard. And the door next to whiteboard is locked. He needs to find a way to solve the math quiz in order to gain access for the next room.
 
-## Room 2(Reading and Writing Center):
+## Room 2(Library):
 
 ![](assets/rooms/library.png)
 
-In the reading center, there is a Scrabble and play it, and the blank letter space with color. And the word by connecting the color letters will be the answer to open a shelf which has an answer.
+In the Library, the user needs to guess how many times the letter has repeated in the board.
 
 ## Room 3(Science Lab):
 
 ![](assets/rooms/science_room.png)
 
-Science lab needs you to figure out how to fix colors and find what's the color that is matching the quiz. After he has solved all the quiz for the color then he is able to access the exit door in order to get free.
+Science lab needs you to figure out how to fix colors and find what's the color that is matching the quiz. After he has solved all the quiz for the color then he is able to access the exit door in order to get out.
 
 ### Purpose:
 The purpose of this game is to help children around 2nd grade to learn by playing game.
