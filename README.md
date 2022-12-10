@@ -35,6 +35,7 @@ The purpose of this game is to help children around 2nd grade to learn by playin
 
 -  [Pygame](https://www.pygame.org/docs/)
 -  [Visual Studio Code](https://code.visualstudio.com/)
+- [Modern Interiors Asset Pack](https://limezu.itch.io/moderninteriors)
 
 # Contributors
 
